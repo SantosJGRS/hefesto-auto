@@ -1,0 +1,67 @@
+/* colocando cor de funfo no cabeçalho, cor do texto e fonte */
+header {
+   background-color: #db6e6e; /* Cor de fundo do cabeçalho */
+   font-family: open-sans, sans-serif; /* Fonte do texto */
+   color: #070404; /* Cor do texto */
+}
+nav a{ 
+   color: #070404; /* Cor dos texto no menu */
+   text-decoration: none; /* Remove o sublinhado dos links */
+   margin: 0 10px; /* Adiciona um pouco de espaço entre os links */
+}
+
+nav { text-align: center; /* Centraliza o texto dos links */ }
+
+nav{ 
+   text-align: center; /* Centraliza o texto do link */
+   border-color: rgb(0, 0, 0);
+   border-width: 1px;/* Define a largura da borda */
+   border-style: solid; /* Define o estilo da borda */
+   padding: 10px; /* distancia entre as bordas */
+}
+.logo img { 
+   height: 80px; /* Define a altura da imagem da logo */
+   width: auto; /* Mantém a proporção da logo */
+}
+.caixa-de-pesquisa input[type="text"] {
+   padding: 5px; /* Adiciona um pouco de espaço dentro do campo de pesquisa */
+   border: 1px solid #ccc; /* Define a borda do campo de pesquisa */
+   border-radius: 4px; /* Adiciona cantos arredondados ao campo de pesquisa */
+   font-family: open-sans, sans-serif; /* Fonte do texto do campo de pesquisa */
+   width: 200px; /* Define a largura do campo de pesquisa */
+   height: 30px; /* Define a altura do campo de pesquisa */
+   
+}
+
+.caixa-de-pesquisa{
+   display: flex; /* Usa flexbox para alinhar os itens */
+   align-items: center; /* Alinha os itens verticalmente ao centro */
+   justify-content: center; /* Centraliza os itens horizontalmente */
+   position: relative; /* Permite posicionar a imagem de pesquisa dentro do campo de pesquisa */
+}
+
+.topo{ 
+   display: flex; /* Usa flexbox para alinhar os itens */
+   align-items: center; /* Alinha os itens verticalmente ao centro */   
+   justify-content: space-between; /* Distribui os itens com espaço entre eles */
+}
+.caixa-de-pesquisa img {
+   height: 15px; /* Define a altura da imagem de pesquisa */
+   width: 15px; /* Mantém a proporção da imagem de pesquisa */
+   position: absolute; /* Permite posicionar a imagem de pesquisa dentro do campo de pesquisa */
+   left: 10px; /* Posiciona a imagem de pesquisa à esquerda do campo de pesquisa */
+}
+
+.caixa-de-pesquisa input[type="text"] {
+   padding-left: 30px; /* Adiciona espaço à esquerda do texto para evitar sobreposição com a imagem de pesquisa */
+}
+
+.icones a img {
+   height: 30px; /* Define a altura das imagens dos ícones */
+   width: auto; /* Mantém a proporção das imagens dos ícones */
+   margin-left: 50px; /* Adiciona um pouco de espaço entre os ícones */
+}
+
+.icones a img {
+   padding-right: 25px; /* Adiciona um pouco de espaço à direita dos ícones */
+}
