@@ -1,11 +1,11 @@
 /* colocando cor de funfo no cabeçalho, cor do texto e fonte */
 header {
-   background-color: #db6e6e; /* Cor de fundo do cabeçalho */
+   background-color: #fd1111; /* Cor de fundo do cabeçalho */
    font-family: open-sans, sans-serif; /* Fonte do texto */
    color: #070404; /* Cor do texto */
 }
 nav a{ 
-   color: #070404; /* Cor dos texto no menu */
+   color: #070303; /* Cor dos texto no menu */
    text-decoration: none; /* Remove o sublinhado dos links */
    margin: 0 10px; /* Adiciona um pouco de espaço entre os links */
 }
@@ -25,10 +25,10 @@ nav{
 }
 .caixa-de-pesquisa input[type="text"] {
    padding: 5px; /* Adiciona um pouco de espaço dentro do campo de pesquisa */
-   border: 1px solid #ccc; /* Define a borda do campo de pesquisa */
+   border: 1px solid #fffdfd; /* Define a borda do campo de pesquisa */
    border-radius: 4px; /* Adiciona cantos arredondados ao campo de pesquisa */
    font-family: open-sans, sans-serif; /* Fonte do texto do campo de pesquisa */
-   width: 200px; /* Define a largura do campo de pesquisa */
+   width: 500px; /* Define a largura do campo de pesquisa */
    height: 30px; /* Define a altura do campo de pesquisa */
    
 }
@@ -56,12 +56,42 @@ nav{
    padding-left: 30px; /* Adiciona espaço à esquerda do texto para evitar sobreposição com a imagem de pesquisa */
 }
 
-.icones a img {
-   height: 30px; /* Define a altura das imagens dos ícones */
-   width: auto; /* Mantém a proporção das imagens dos ícones */
-   margin-left: 50px; /* Adiciona um pouco de espaço entre os ícones */
+.icones {
+   display: flex;
+   align-items: center;
+   justify-content: flex-end;
+   transform: translateX(-30px);
+}
+
+.icones a {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   width: 30px;
+   height: 30px;
+   margin-left: 12px;
+   border: 2px solid #000000;
+   border-radius: 50%;
+   background-color: rgba(255, 255, 255, 0);
+   transition: transform 0.0s ease, background-color 0.0s ease;
+}
+
+.icones a:hover {
+   transform: scale(1.05);
+   background-color: rgb(255, 255, 255);
 }
 
 .icones a img {
-   padding-right: 25px; /* Adiciona um pouco de espaço à direita dos ícones */
+   height: 20px;
+   width: auto;
+}
+.imagens-banner img{
+   max-width: 100%;
+}
+
+.banner{
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin:0;
 }
