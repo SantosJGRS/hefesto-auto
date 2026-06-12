@@ -85,13 +85,91 @@ nav{
    height: 20px;
    width: auto;
 }
+
 .imagens-banner img{
+   display: block;
+   width: 100%;
+   height: auto;
+}
+.banner{
+   width: 100vw;
+   height: auto;
+   margin: 0;
+   padding: 0;
+}
+.imagens-banner{
    max-width: 100%;
+   position: relative;
+  
+}
+/*
+.botoes-banner{
+   position: absolute;
+   top: 50%;
+   left: 5%;
 }
 
-.banner{
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   margin:0;
+.botao-comprar{
+   background-color: #fd1111;
+   color: #fdfdfd;
+   border-radius: 10px;
+   font-family: open-sans, sans-serif;
+   padding: 5px 10px;
+   
+   
 }
+
+
+.botao-comprar:hover{
+   background-color: #fdae03;
+   color: #fdfdfd;
+   border-radius: 10px;
+   font-family: open-sans, sans-serif;
+   padding: 5px 10px;
+}
+*/
+.btn-comprar{
+   position: absolute;
+   top: 50%;
+   left: 10%;
+   background-color: #fd1111;
+   color: #fdfdfd;
+   border-radius: 10px;
+   font-family: open-sans, sans-serif;
+   font-size: 18px;
+   padding: 5px 20px;
+   border: none; /* Remove a borda do botão */
+  
+}
+
+.btn-anterior{
+   position: absolute;
+   top: 40%;
+   left: 2%;
+   background-color: #ffffff00;
+   color: #fdfdfd;
+   border-radius: 99%;  
+   border: none;
+   padding: 10px; /* Remove a borda do botão */
+   
+}
+.btn-próximo{
+   position: absolute;
+   top: 40%;
+   right: 2%;
+   background-color: #fffdfd00;
+   color: #fdfdfd;
+   border-radius: 99%;  
+   border: none;
+   padding: 10px;
+   justify-content: center;
+}
+
+.btn-anterior:hover, .btn-próximo:hover{
+   background-color: #ffffff;
+   color: #fdfdfd;
+   border-radius: 99%;  
+   border: none;
+   padding: 10px; /* Remove a borda do botão */
+   justify-content: center;
+}''
