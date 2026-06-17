@@ -1,59 +1,96 @@
 /* colocando cor de funfo no cabeçalho, cor do texto e fonte */
 header {
-   background-color: #fd1111; /* Cor de fundo do cabeçalho */
-   font-family: open-sans, sans-serif; /* Fonte do texto */
-   color: #070404; /* Cor do texto */
-}
-nav a{ 
-   color: #070303; /* Cor dos texto no menu */
-   text-decoration: none; /* Remove o sublinhado dos links */
-   margin: 0 10px; /* Adiciona um pouco de espaço entre os links */
+   background-color: #fd1111;
+   /* Cor de fundo do cabeçalho */
+   font-family: open-sans, sans-serif;
+   /* Fonte do texto */
+   color: #070404;
+   /* Cor do texto */
 }
 
-nav { text-align: center; /* Centraliza o texto dos links */ }
+nav a {
+   color: #070303;
+   /* Cor dos texto no menu */
+   text-decoration: none;
+   /* Remove o sublinhado dos links */
+   margin: 0 10px;
+   /* Adiciona um pouco de espaço entre os links */
+}
 
-nav{ 
-   text-align: center; /* Centraliza o texto do link */
+nav {
+   text-align: center;
+   /* Centraliza o texto dos links */
+}
+
+nav {
+   text-align: center;
+   /* Centraliza o texto do link */
    border-color: rgb(0, 0, 0);
-   border-width: 1px;/* Define a largura da borda */
-   border-style: solid; /* Define o estilo da borda */
-   padding: 10px; /* distancia entre as bordas */
+   border-width: 1px;
+   /* Define a largura da borda */
+   border-style: solid;
+   /* Define o estilo da borda */
+   padding: 10px;
+   /* distancia entre as bordas */
 }
-.logo img { 
-   height: 80px; /* Define a altura da imagem da logo */
-   width: auto; /* Mantém a proporção da logo */
+
+.logo img {
+   height: 80px;
+   /* Define a altura da imagem da logo */
+   width: auto;
+   /* Mantém a proporção da logo */
 }
+
 .caixa-de-pesquisa input[type="text"] {
-   padding: 5px; /* Adiciona um pouco de espaço dentro do campo de pesquisa */
-   border: 1px solid #fffdfd; /* Define a borda do campo de pesquisa */
-   border-radius: 4px; /* Adiciona cantos arredondados ao campo de pesquisa */
-   font-family: open-sans, sans-serif; /* Fonte do texto do campo de pesquisa */
-   width: 500px; /* Define a largura do campo de pesquisa */
-   height: 30px; /* Define a altura do campo de pesquisa */
-   
+   padding: 5px;
+   /* Adiciona um pouco de espaço dentro do campo de pesquisa */
+   border: 1px solid #fffdfd;
+   /* Define a borda do campo de pesquisa */
+   border-radius: 4px;
+   /* Adiciona cantos arredondados ao campo de pesquisa */
+   font-family: open-sans, sans-serif;
+   /* Fonte do texto do campo de pesquisa */
+   width: 500px;
+   /* Define a largura do campo de pesquisa */
+   height: 30px;
+   /* Define a altura do campo de pesquisa */
+
 }
 
-.caixa-de-pesquisa{
-   display: flex; /* Usa flexbox para alinhar os itens */
-   align-items: center; /* Alinha os itens verticalmente ao centro */
-   justify-content: center; /* Centraliza os itens horizontalmente */
-   position: relative; /* Permite posicionar a imagem de pesquisa dentro do campo de pesquisa */
+.caixa-de-pesquisa {
+   display: flex;
+   /* Usa flexbox para alinhar os itens */
+   align-items: center;
+   /* Alinha os itens verticalmente ao centro */
+   justify-content: center;
+   /* Centraliza os itens horizontalmente */
+   position: relative;
+   /* Permite posicionar a imagem de pesquisa dentro do campo de pesquisa */
 }
 
-.topo{ 
-   display: flex; /* Usa flexbox para alinhar os itens */
-   align-items: center; /* Alinha os itens verticalmente ao centro */   
-   justify-content: space-between; /* Distribui os itens com espaço entre eles */
+.topo {
+   display: flex;
+   /* Usa flexbox para alinhar os itens */
+   align-items: center;
+   /* Alinha os itens verticalmente ao centro */
+   justify-content: space-between;
+   /* Distribui os itens com espaço entre eles */
 }
+
 .caixa-de-pesquisa img {
-   height: 15px; /* Define a altura da imagem de pesquisa */
-   width: 15px; /* Mantém a proporção da imagem de pesquisa */
-   position: absolute; /* Permite posicionar a imagem de pesquisa dentro do campo de pesquisa */
-   left: 10px; /* Posiciona a imagem de pesquisa à esquerda do campo de pesquisa */
+   height: 15px;
+   /* Define a altura da imagem de pesquisa */
+   width: 15px;
+   /* Mantém a proporção da imagem de pesquisa */
+   position: absolute;
+   /* Permite posicionar a imagem de pesquisa dentro do campo de pesquisa */
+   left: 10px;
+   /* Posiciona a imagem de pesquisa à esquerda do campo de pesquisa */
 }
 
 .caixa-de-pesquisa input[type="text"] {
-   padding-left: 30px; /* Adiciona espaço à esquerda do texto para evitar sobreposição com a imagem de pesquisa */
+   padding-left: 30px;
+   /* Adiciona espaço à esquerda do texto para evitar sobreposição com a imagem de pesquisa */
 }
 
 .icones {
@@ -86,22 +123,25 @@ nav{
    width: auto;
 }
 
-.imagens-banner img{
+.imagens-banner img {
    display: block;
    width: 100%;
    height: auto;
 }
-.banner{
+
+.banner {
    width: 100vw;
    height: auto;
    margin: 0;
    padding: 0;
 }
-.imagens-banner{
+
+.imagens-banner {
    max-width: 100%;
    position: relative;
-  
+
 }
+
 /*
 .botoes-banner{
    position: absolute;
@@ -128,7 +168,7 @@ nav{
    padding: 5px 10px;
 }
 */
-.btn-comprar{
+.btn-comprar {
    position: absolute;
    top: 50%;
    left: 10%;
@@ -138,96 +178,162 @@ nav{
    font-family: open-sans, sans-serif;
    font-size: 18px;
    padding: 5px 20px;
-   border: none; /* Remove a borda do botão */
-  
+   border: none;
+   /* Remove a borda do botão */
+
 }
 
-.btn-anterior{
+.btn-anterior {
    position: absolute;
    top: 40%;
    left: 2%;
    background-color: #ffffff00;
    color: #fdfdfd;
-   border-radius: 99%;  
+   border-radius: 99%;
    border: none;
-   padding: 10px; /* Remove a borda do botão */
-   
+   padding: 10px;
+   /* Remove a borda do botão */
+
 }
-.btn-próximo{
+
+.btn-próximo {
    position: absolute;
    top: 40%;
    right: 2%;
    background-color: #fffdfd00;
    color: #fdfdfd;
-   border-radius: 99%;  
+   border-radius: 99%;
    border: none;
    padding: 10px;
    justify-content: center;
 }
 
-.btn-anterior:hover, .btn-próximo:hover{
+.btn-anterior:hover,
+.btn-próximo:hover {
    background-color: #ffffff;
    color: #fdfdfd;
-   border-radius: 99%;  
+   border-radius: 99%;
    border: none;
-   padding: 10px; /* Remove a borda do botão */
+   padding: 10px;
+   /* Remove a borda do botão */
    justify-content: center;
 }
 
-.ofertas{
+
+
+
+
+.ofertas {
    padding: 20px;
-   
+
 }
 
-.titulo-ofertas{
+.titulo-ofertas {
    font-family: open-sans, sans-serif;
-  display: grid;
+   display: grid;
    grid-template-columns: 2 80% 20%;
    grid-template-rows: 2 50% 50%
 }
-.titulo-ofertas h2{
+
+.titulo-ofertas h2 {
    color: #fd1111;
    font-size: 18px;
    grid-column: 1;
    grid-row: 1;
    margin: 0;
 }
-.titulo-ofertas p{
-   color: #070404;
-   font-size: 12px;
-   grid-column: 1;
-   grid-row: 2;
-   margin: 0;
-   align-self: center; /* Alinha o parágrafo verticalmente ao centro */
-}
-.titulo-ofertas a{
+
+.titulo-ofertas a {
    text-decoration: none;
    color: #fd1111;
    font-size: 12px;
    grid-column: 2;
    grid-row: 2;
-   align-self: center; /* Alinha o link verticalmente ao centro */
+   align-self: center;
+   /* Alinha o link verticalmente ao centro */
    padding-left: 80%;
 }
-.lista-de-produtos{
+
+.lista-de-produtos {
    display: flex;
-   justify-content: space-between; /* Distribui os itens com espaço entre eles */
-   font-family: open-sans, sans-serif; 
-   margin-top: 20px; /* Adiciona um espaço acima da lista de produtos */
+   justify-content: space-between;
+   /* Distribui os itens com espaço entre eles */
+   font-family: open-sans, sans-serif;
+   margin-top: 20px;
+   /* Adiciona um espaço acima da lista de produtos */
 }
-.card-produtos{
-   width: 23%; /* Define a largura de cada card de produto */
-   height: 50%; /* Mantém a proporção da imagem do produto */
-   background-color: #ff4848; /* Cor de fundo do card de produto */
-   border: 1px solid #ffffff; /* Borda do card de produto */
-   border-radius: 10px; /* Cantos arredondados do card de produto */
-   padding: 10px; /* Espaçamento interno do card de produto */
-   text-align: center; /* Centraliza o texto dentro do card de produto */
+
+.card-produtos {
+   width: 10%;
+   /* Define a largura de cada card de produto */
+   height: 50%;
+   /* Mantém a proporção da imagem do produto */
+   background-color: #9292926c;
+   /* Cor de fundo do card de produto */
+   border: 1px solid #ffffff;
+   /* Borda do card de produto */
+   border-radius: 10px;
+   /* Cantos arredondados do card de produto */
+   padding: 10px;
+   /* Espaçamento interno do card de produto */
+   text-align: center;
+   /* Centraliza o texto dentro do card de produto */
 }
-.card-produtos img{
+
+.card-produtos img {
    width: 100%;
    height: auto;
    margin-bottom: 10px;
    border-radius: 10px;
    position: relative;
+}
+
+.card-produtos h3 {
+   font-size: 18px;
+   font-family: open-sans, sans-serif;
+   font-style: bold;
+   color: #000000
+}
+
+.precos {
+   display: grid;
+   grid-template-columns: 2;
+   grid-template-rows: 1;
+   align-items: center;
+}
+
+.p-antigo {
+   grid-column: 1;
+   grid-row: 1;
+   text-align: line-through;
+   font-size: 12px;
+   color: #000000;
+   text-decoration: line-through;
+
+}
+
+.p-promocional {
+   grid-column: 2;
+   grid-row: 1;
+   font-weight: bold;
+   font-size: 18px;
+   color: #ff0000;
+   text-align: left;
+
+}
+.estrelas {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* espaço entre a estrela e a nota */
+     margin-left: 15px; /* aumenta conforme necessário */
+}
+
+.estrelas h5 {
+    margin: 0;
+    height: 24px;
+}
+
+.estrelas img {
+    width: 16px; /* ajuste o tamanho se necessário */
+    height: auto;
 }
