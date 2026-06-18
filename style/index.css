@@ -334,6 +334,64 @@ nav {
 }
 
 .estrelas img {
-    width: 16px; /* ajuste o tamanho se necessário */
+    width: 16px; 
     height: auto;
+}
+  
+footer{
+    background-color: #000000;
+    color: #FFFFFF;
+    font-family: poppins,sans-serif;
+    padding: 10px;
+}
+
+.superior{
+    display:flex;
+    
+    
+    gap:10px;
+    
+    justify-content: space-between;
+   
+    flex-wrap: wrap;
+   
+}
+
+.inferior{
+    display:flex;
+    
+    gap:20px;
+    justify-content: space-between;
+   
+    flex-wrap: wrap;
+
+    align-items: center;
+  
+}
+.coluna1, .coluna2 , .coluna3, .coluna4{
+        flex: 1;
+}
+.superior h2{ 
+   color:#fd1111;
+   font-size: 18px;
+   font-weight: bold;
+
+}
+.superior p{
+   font-size: 12px;
+}
+.superior a{
+   color:#fdfdfd;
+   font-size: 10px;
+   text-decoration: none;
+}
+.superior ul{
+   text-decoration: none;
+   list-style: none;
+   padding: 0px;
+}
+.whatsapp{
+   display: flex;
+   align-items: center;
+   gap: 10px;
 }
