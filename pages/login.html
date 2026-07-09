@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon"
+        href="assets/logoico.png"
+        type="image/x-icon">
+
+    <title>Login - Hefesto Auto</title>
+
+    <link rel="stylesheet"
+        href="style/login.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+    <!-- CABEÇALHO -->
+
+    <header>
+
+        <div class="topo">
+
+            <div class="logo">
+
+                <img src="assets/logoico.png"
+                    alt="logo hefesto auto">
+
+                <h2>HEFESTO AUTO</h2>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <!-- CONTEÚDO -->
+
+    <main class="container-login">
+
+        <!-- LADO ESQUERDO -->
+
+        <section class="apresentacao">
+
+            <div class="texto-apresentacao">
+
+                <h1 id="tituloBoasVindas"></h1>
+
+                <p id="descricaoBoasVindas"></p>
+
+            </div>
+
+            <div class="imagem-login">
+
+                <img id="imagemCadeado"
+                    src="assets/lock.png"
+                    alt="segurança">
+
+            </div>
+
+            <div class="vantagens">
+
+                <div class="item-vantagem">
+
+                    <div class="icone">
+
+                        <i class="fa-solid fa-shield-halved"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h3 id="vantagemTitulo1"></h3>
+
+                        <p id="vantagemTexto1"></p>
+
+                    </div>
+
+                </div>
+
+                <div class="item-vantagem">
+
+                    <div class="icone">
+
+                        <i class="fa-solid fa-bolt"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h3 id="vantagemTitulo2"></h3>
+
+                        <p id="vantagemTexto2"></p>
+
+                    </div>
+
+                </div>
+
+                <div class="item-vantagem">
+
+                    <div class="icone">
+
+                        <i class="fa-solid fa-user"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h3 id="vantagemTitulo3"></h3>
+
+                        <p id="vantagemTexto3"></p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ÁREA LOGIN -->
+
+        <section class="area-login">
+
+            <div class="card-login">
+
+                <div class="titulo-login">
+
+                    <h2 id="tituloLogin"></h2>
+
+                    <p id="descricaoLogin"></p>
+
+                </div>
+
+                <!-- EMAIL -->
+
+                <div class="campo">
+
+                    <label id="labelEmail"
+                        for="email"></label>
+
+                    <div class="input-box">
+
+                        <i class="fa-regular fa-envelope"></i>
+
+                        <input type="email"
+                            id="email">
+
+                    </div>
+
+                </div>
+
+                <!-- SENHA -->
+
+                <div class="campo">
+
+                    <label id="labelSenha"
+                        for="senha"></label>
+
+                    <div class="input-box">
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        <input type="password"
+                            id="senha">
+
+                        <button type="button"
+                            id="toggleSenha">
+
+                            <i class="fa-regular fa-eye"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- OPÇÕES -->
+
+                <div class="opcoes-login">
+
+                    <div class="lembrar">
+
+                        <input type="checkbox"
+                            id="lembrar">
+
+                        <label id="textoLembrar"
+                            for="lembrar"></label>
+
+                    </div>
+
+                    <button type="button"
+                        id="btnEsqueciSenha">
+                    </button>
+
+                </div>
+
+                <!-- BOTÃO LOGIN -->
+
+                <button type="button"
+                    id="btnEntrar">
+
+                </button>
+
+                <!-- SEPARADOR -->
+
+                <div class="separador">
+
+                    <div class="linha"></div>
+
+                    <span id="textoSeparador"></span>
+
+                    <div class="linha"></div>
+
+                </div>
+
+                <!-- GOOGLE -->
+
+                <button type="button"
+                    id="btnGoogle">
+
+                    <img src="assets/google.png"
+                        alt="logo google">
+
+                    <span id="textoGoogle"></span>
+
+                </button>
+
+                <!-- CADASTRO -->
+
+                <div class="cadastro">
+
+                    <p id="textoCadastro"></p>
+
+                    <button type="button"
+                        id="btnCadastro">
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- RODAPÉ -->
+
+    <footer>
+
+        <div class="rodape">
+
+            <p id="copyright"></p>
+
+            <div class="links-rodape">
+
+                <button id="btnPrivacidade"></button>
+
+                <button id="btnTermos"></button>
+
+                <button id="btnSuporte"></button>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+    <script src="js/login.js"></script>
+
+</body>
+
+</html>
