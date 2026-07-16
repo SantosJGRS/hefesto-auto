@@ -24,3 +24,7 @@ router.put("/:id", MarcaController.atualizar);
 router.delete("/:id", MarcaController.excluir);
 
 module.exports = router;
+
+const marcaRoutes = require("../routes/marca_routes.js");
+app.use("/marcas", marcaRoutes);
+

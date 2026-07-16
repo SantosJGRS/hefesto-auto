@@ -24,3 +24,6 @@ router.put("/:id", EnderecoHasClienteController.atualizar);
 router.delete("/:id", EnderecoHasClienteController.excluir);
 
 module.exports = router;
+
+const enderecoHasClienteRoutes = require("../routes/endereco_has_cliente_routes.js");
+app.use("/endereco-has-cliente", enderecoHasClienteRoutes);

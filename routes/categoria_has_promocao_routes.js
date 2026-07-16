@@ -24,3 +24,6 @@ router.put("/:id", CategoriaHasPromocaoController.atualizar);
 router.delete("/:id", CategoriaHasPromocaoController.excluir);
 
 module.exports = router;
+
+const categoriaHasPromocaoRoutes = require("../routes/categoria_has_promocao_routes.js");
+app.use("/categoria-has-promocao", categoriaHasPromocaoRoutes);

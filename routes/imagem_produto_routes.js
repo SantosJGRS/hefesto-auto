@@ -24,3 +24,6 @@ router.put("/:id", ImagemProdutoController.atualizar);
 router.delete("/:id", ImagemProdutoController.excluir);
 
 module.exports = router;
+
+const imagemProdutoRoutes = require("../routes/imagem_produto_routes.js");
+app.use("/imagens-produto", imagemProdutoRoutes);

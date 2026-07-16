@@ -24,3 +24,7 @@ router.put("/:id", ProdutoController.atualizar);
 router.delete("/:id", ProdutoController.excluir);
 
 module.exports = router;
+
+
+const produtoRoutes = require("../routes/produto_routes.js");
+app.use("/produtos", produtoRoutes);

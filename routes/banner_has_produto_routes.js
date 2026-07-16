@@ -24,3 +24,6 @@ router.put("/:id", BannerHasProdutoController.atualizar);
 router.delete("/:id", BannerHasProdutoController.excluir);
 
 module.exports = router;
+
+const bannerHasProdutoRoutes = require("../routes/banner_has_produto_routes.js");
+app.use("/banner-has-produto", bannerHasProdutoRoutes);

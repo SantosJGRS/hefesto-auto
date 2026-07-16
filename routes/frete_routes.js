@@ -24,3 +24,7 @@ router.put("/:id", FreteController.atualizar);
 router.delete("/:id", FreteController.excluir);
 
 module.exports = router;
+
+
+const freteRoutes = require("../routes/frete_routes.js");
+app.use("/fretes", freteRoutes);

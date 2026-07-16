@@ -24,3 +24,6 @@ router.put("/:id", EnderecoController.atualizar);
 router.delete("/:id", EnderecoController.excluir);
 
 module.exports = router;
+
+const enderecoRoutes = require("../routes/endereco_routes.js");
+app.use("/enderecos", enderecoRoutes);

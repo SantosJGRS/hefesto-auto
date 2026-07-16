@@ -23,3 +23,8 @@ router.put("/:id", ClienteController.atualizar);
 router.delete("/:id", ClienteController.excluir);
 
 module.exports = router;
+
+
+const clienteRoutes = require("../routes/cliente_routes.js");
+app.use("/clientes", clienteRoutes);
+

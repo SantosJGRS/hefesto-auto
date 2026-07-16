@@ -24,3 +24,6 @@ router.put("/:id", CategoriaController.atualizar);
 router.delete("/:id", CategoriaController.excluir);
 
 module.exports = router;
+
+const categoriaRoutes = require("../routes/categoria_routes.js");
+app.use("/categorias", categoriaRoutes);
