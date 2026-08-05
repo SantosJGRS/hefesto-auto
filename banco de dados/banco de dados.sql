@@ -1,6 +1,8 @@
 CREATE DATABASE hefestoauto;
 USE hefestoauto;
 
+
+
 -- =====================================
 -- TABELAS SEM DEPENDÊNCIAS
 -- =====================================
@@ -8,18 +10,18 @@ CREATE TABLE Lojista(
     idLojista INT PRIMARY KEY AUTO_INCREMENT,
 
     nome VARCHAR(200) NOT NULL,
-    cpf MEDIUMINT(11) NOT NULL,
-    cnpj MEDIUMINT(14) NOT NULL,
+    cpf varchar(11) NOT NULL,
+    cnpj varchar(14) NOT NULL,
     email VARCHAR(120) NOT NULL,
     senha VARCHAR(20) NOT NULL,
-    telefone MEDIUMINT(13) NOT NULL
+    telefone varchar(13) NOT NULL
 );
 
 CREATE TABLE Endereco(
     idEndereco INT PRIMARY KEY AUTO_INCREMENT,
 
     rua VARCHAR(50) NOT NULL,
-    cep MEDIUMINT(10) NOT NULL,
+    cep varchar(10) NOT NULL,
     setor VARCHAR(50) NOT NULL,
     numero INT NOT NULL,
     complemento VARCHAR(100),
@@ -33,7 +35,7 @@ CREATE TABLE Loja (
     instagram VARCHAR(100),
     facebook VARCHAR(100),
     linkedin VARCHAR(100),
-    telefone MEDIUMINT(13) NOT NULL,
+    telefone varchar(13) NOT NULL,
     email VARCHAR(100) NOT NULL,
     Lojista_idLojista INT,
     Endereco_idEndereco INT,
@@ -47,11 +49,11 @@ CREATE TABLE Cliente(
     idCliente INT PRIMARY KEY AUTO_INCREMENT,
 
     nome VARCHAR(250) NOT NULL,
-    cpf MEDIUMINT(11) NOT NULL,
-    telefone MEDIUMINT(13) NOT NULL,
+    cpf varchar(11) ,
+    telefone varchar(13) ,
     email VARCHAR(120) NOT NULL,
     senha VARCHAR(255) NOT NULL,
-    data_nascimento DATE NOT NULL,
+    data_nascimento DATE ,
 
     Loja_idLoja INT,
 
@@ -166,7 +168,7 @@ CREATE TABLE Cartao_Pagamento(
     numero VARCHAR(19) NOT NULL,
     data_vencimento VARCHAR(7) NOT NULL,
     cvc INT NOT NULL,
-    cpf MEDIUMINT(11) NOT NULL,
+    cpf VARCHAR(11) NOT NULL,
     nome_proprietario VARCHAR(200) NOT NULL,
     nome_identificacao VARCHAR(45) NOT NULL,
     bandeira VARCHAR(45) NOT NULL,
@@ -322,7 +324,7 @@ CREATE TABLE Endereco_has_Cliente(
     FOREIGN KEY (Cliente_idCliente) REFERENCES Cliente(idCliente)
 );
 INSERT INTO Endereco
-(rua,cep,bairro,numero,complemento,tipo)
+(rua,cep,setor,numero,complemento,tipo)
 values("Rodoviário","77781708","Rodoviário",
 1230,"Ao lado do Senac","Comercial");
 
@@ -331,13 +333,15 @@ VALUES ("João","09012209022","joao@gmail.com","123abc"
 ,"3992129510");
 
 
--- LISTAR DADOS DA TABELA
-SELECT * FROM Endereco;
-SELECT * FROM lOJISTA;
-SELECT * FROM Loja;
 
 -- CADASTRAR OS DADOS DA LOJA
 INSERT INTO Loja (nome, whatsapp,telefone,email
 ,endereco_idendereco,lojista_idLojista)
 values("hefestoauto","6399212-9510",
 63992129510,"hefestoauto@gmail.com",1,1);
+
+
+-- LISTAR DADOS DA TABELA
+SELECT * FROM Endereco;
+SELECT * FROM lOJISTA;
+SELECT * FROM Loja;
