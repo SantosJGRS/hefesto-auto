@@ -1,525 +1,380 @@
 /* ==========================================
-   DADOS DA PÁGINA
+   CADASTRO.JS
+   HEFESTO AUTOPEÇAS
 ========================================== */
-
-const pageData = {
-
-    logo:
-        "assets",
-
-    googleIcon:
-        "../assets/google.png",
-
-    tituloCadastro:
-        "Criar conta",
-
-    descricaoLinha1:
-        "Leva menos de 1 minuto.",
-
-    descricaoLinha2:
-        "Crie seu perfil para começar.",
-
-    tituloFormulario:
-        "Seus dados",
-
-    descricaoFormulario:
-        "Preencha seus dados abaixo.",
-
-    labelNome:
-        "Nome",
-
-    labelEmail:
-        "E-mail",
-
-    labelSenha:
-        "Senha",
-
-    labelConfirmarSenha:
-        "Confirmar senha",
-
-    placeholderNome:
-        "Seu nome completo",
-
-    placeholderEmail:
-        "voce@exemplo.com",
-
-    placeholderSenha:
-        "Mínimo 8 caracteres",
-
-    placeholderConfirmarSenha:
-        "Repita a senha",
-
-    textoBotaoCadastro:
-        "Criar conta",
-
-    textoSeparador:
-        "ou continue com",
-
-    googleTexto:
-        "Continuar com Google",
-
-    textoLogin:
-        "Já possui conta?",
-
-    textoBotaoEntrar:
-        "Entrar",
-
-    textoTermos1:
-        "Ao criar uma conta, você concorda com nossos",
-
-    textoTermos2:
-        "e nossa",
-
-    textoBotaoTermos:
-        "Termos de Uso",
-
-    textoBotaoPrivacidade:
-        "Política de Privacidade"
-};
-
-
-/* ==========================================
-   ELEMENTOS
-========================================== */
-
-const logo =
-    document.getElementById("logo");
-
-const googleIcon =
-    document.getElementById("googleIcon");
-
-const tituloCadastro =
-    document.getElementById("tituloCadastro");
-
-const descricaoLinha1 =
-    document.getElementById("descricaoLinha1");
-
-const descricaoLinha2 =
-    document.getElementById("descricaoLinha2");
-
-const tituloFormulario =
-    document.getElementById("tituloFormulario");
-
-const descricaoFormulario =
-    document.getElementById("descricaoFormulario");
-
-const labelNome =
-    document.getElementById("labelNome");
-
-const labelEmail =
-    document.getElementById("labelEmail");
-
-const labelSenha =
-    document.getElementById("labelSenha");
-
-const labelConfirmarSenha =
-    document.getElementById("labelConfirmarSenha");
-
-const nome =
-    document.getElementById("nome");
-
-const email =
-    document.getElementById("email");
-
-const senha =
-    document.getElementById("senha");
-
-const confirmarSenha =
-    document.getElementById("confirmarSenha");
-
-const btnCriarConta =
-    document.getElementById("btnCriarConta");
-
-const btnGoogle =
-    document.getElementById("btnGoogle");
-
-const btnEntrar =
-    document.getElementById("btnEntrar");
-
-const btnTermos =
-    document.getElementById("btnTermos");
-
-const btnPrivacidade =
-    document.getElementById("btnPrivacidade");
-
-const toggleSenha =
-    document.getElementById("toggleSenha");
-
-const toggleConfirmarSenha =
-    document.getElementById("toggleConfirmarSenha");
-
-const textoSeparador =
-    document.getElementById("textoSeparador");
-
-const googleTexto =
-    document.getElementById("googleTexto");
-
-const textoLogin =
-    document.getElementById("textoLogin");
-
-const textoTermos1 =
-    document.getElementById("textoTermos1");
-
-const textoTermos2 =
-    document.getElementById("textoTermos2");
-
-
-/* ==========================================
-   PREENCHER CONTEÚDO
-========================================== */
-
-function preencherConteudo() {
-
-    logo.src =
-        pageData.logo;
-
-    googleIcon.src =
-        pageData.googleIcon;
-
-    tituloCadastro.textContent =
-        pageData.tituloCadastro;
-
-    descricaoLinha1.textContent =
-        pageData.descricaoLinha1;
-
-    descricaoLinha2.textContent =
-        pageData.descricaoLinha2;
-
-    tituloFormulario.textContent =
-        pageData.tituloFormulario;
-
-    descricaoFormulario.textContent =
-        pageData.descricaoFormulario;
-
-    labelNome.textContent =
-        pageData.labelNome;
-
-    labelEmail.textContent =
-        pageData.labelEmail;
-
-    labelSenha.textContent =
-        pageData.labelSenha;
-
-    labelConfirmarSenha.textContent =
-        pageData.labelConfirmarSenha;
-
-    nome.placeholder =
-        pageData.placeholderNome;
-
-    email.placeholder =
-        pageData.placeholderEmail;
-
-    senha.placeholder =
-        pageData.placeholderSenha;
-
-    confirmarSenha.placeholder =
-        pageData.placeholderConfirmarSenha;
-
-    btnCriarConta.textContent =
-        pageData.textoBotaoCadastro;
-
-    textoSeparador.textContent =
-        pageData.textoSeparador;
-
-    googleTexto.textContent =
-        pageData.googleTexto;
-
-    textoLogin.textContent =
-        pageData.textoLogin;
-
-    btnEntrar.textContent =
-        pageData.textoBotaoEntrar;
-
-    textoTermos1.textContent =
-        pageData.textoTermos1;
-
-    textoTermos2.textContent =
-        pageData.textoTermos2;
-
-    btnTermos.textContent =
-        pageData.textoBotaoTermos;
-
-    btnPrivacidade.textContent =
-        pageData.textoBotaoPrivacidade;
-}
 
 
 /* ==========================================
    MOSTRAR / OCULTAR SENHA
 ========================================== */
 
-function alternarSenha(campo, botao) {
+function mostrarSenha(id, botao) {
 
-    const icon =
-        botao.querySelector("i");
+    const input = document.getElementById(id);
+    const icone = botao.querySelector("i");
 
-    if (campo.type === "password") {
+    if (input.type === "password") {
 
-        campo.type = "text";
+        input.type = "text";
 
-        icon.classList.remove("fa-eye");
-        icon.classList.add("fa-eye-slash");
+        icone.classList.remove("fa-eye");
+        icone.classList.add("fa-eye-slash");
 
     } else {
 
-        campo.type = "password";
+        input.type = "password";
 
-        icon.classList.remove("fa-eye-slash");
-        icon.classList.add("fa-eye");
+        icone.classList.remove("fa-eye-slash");
+        icone.classList.add("fa-eye");
+
     }
+
 }
 
 
 /* ==========================================
-   VALIDAR EMAIL
+   MÁSCARA CPF
 ========================================== */
 
-function emailValido(emailTexto) {
+const cpfInput = document.getElementById("cpf");
 
-    const regex =
-        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+if (cpfInput) {
 
-    return regex.test(emailTexto);
+    cpfInput.addEventListener("input", function () {
+
+        let valor = this.value.replace(/\D/g, "");
+
+        valor = valor.substring(0, 11);
+
+        if (valor.length > 3) {
+
+            valor = valor.replace(
+                /^(\d{3})(\d)/,
+                "$1.$2"
+            );
+
+        }
+
+        if (valor.length > 7) {
+
+            valor = valor.replace(
+                /^(\d{3})\.(\d{3})(\d)/,
+                "$1.$2.$3"
+            );
+
+        }
+
+        if (valor.length > 11) {
+
+            valor = valor.replace(
+                /^(\d{3})\.(\d{3})\.(\d{3})(\d)/,
+                "$1.$2.$3-$4"
+            );
+
+        }
+
+        this.value = valor;
+
+    });
+
 }
 
 
 /* ==========================================
-   VALIDAR FORMULÁRIO
+   MÁSCARA TELEFONE
 ========================================== */
 
-function validarFormulario() {
+const telefoneInput = document.getElementById("telefone");
 
-    if (nome.value.trim() === "") {
+if (telefoneInput) {
 
-        alert("Informe seu nome.");
-        nome.focus();
+    telefoneInput.addEventListener("input", function () {
 
-        return false;
-    }
+        let valor = this.value.replace(/\D/g, "");
 
-    if (email.value.trim() === "") {
+        valor = valor.substring(0, 11);
 
-        alert("Informe seu e-mail.");
-        email.focus();
+        if (valor.length <= 2) {
 
-        return false;
-    }
+            this.value = valor;
 
-    if (!emailValido(email.value.trim())) {
+            return;
 
-        alert("E-mail inválido.");
-        email.focus();
+        }
 
-        return false;
-    }
+        if (valor.length <= 7) {
 
-    if (senha.value.length < 8) {
+            this.value =
+                "(" +
+                valor.substring(0, 2) +
+                ") " +
+                valor.substring(2);
 
-        alert(
-            "A senha deve possuir no mínimo 8 caracteres."
-        );
+            return;
 
-        senha.focus();
+        }
 
-        return false;
-    }
+        this.value =
+            "(" +
+            valor.substring(0, 2) +
+            ") " +
+            valor.substring(2, 7) +
+            "-" +
+            valor.substring(7);
 
-    if (confirmarSenha.value.trim() === "") {
+    });
 
-        alert(
-            "Confirme sua senha."
-        );
-
-        confirmarSenha.focus();
-
-        return false;
-    }
-
-    if (
-        senha.value !==
-        confirmarSenha.value
-    ) {
-
-        alert(
-            "As senhas não conferem."
-        );
-
-        confirmarSenha.focus();
-
-        return false;
-    }
-
-    return true;
 }
 
 
 /* ==========================================
-   CADASTRAR
+   DATA DE NASCIMENTO
 ========================================== */
 
-function criarConta() {
+const dataNascimento =
+    document.getElementById("dataNascimento");
 
-    if (!validarFormulario()) {
-        return;
-    }
+if (dataNascimento) {
 
-    const usuario = {
+    /*
+        Impede que o usuário selecione
+        uma data futura.
+    */
 
-        nome:
-            nome.value.trim(),
+    const hoje = new Date();
 
-        email:
-            email.value.trim(),
+    const ano = hoje.getFullYear();
 
-        senha:
-            senha.value
-    };
+    const mes = String(
+        hoje.getMonth() + 1
+    ).padStart(2, "0");
 
-    console.log(
-        "NOVO USUÁRIO",
-        usuario
-    );
+    const dia = String(
+        hoje.getDate()
+    ).padStart(2, "0");
 
-    alert(
-        "Conta criada com sucesso!"
-    );
+    dataNascimento.max =
+        `${ano}-${mes}-${dia}`;
+
 }
 
 
 /* ==========================================
-   GOOGLE
+   FORMULÁRIO
 ========================================== */
 
-function continuarGoogle() {
-
-    console.log(
-        "Login Google"
-    );
-
-    alert(
-        "Continuar com Google"
-    );
-}
+const formCadastro =
+    document.getElementById("formCadastro");
 
 
-/* ==========================================
-   LOGIN
-========================================== */
+if (formCadastro) {
 
-function abrirLogin() {
+    formCadastro.addEventListener(
+        "submit",
+        async function (event) {
 
-    console.log(
-        "Abrir tela de login"
-    );
-
-    alert(
-        "Redirecionar para login"
-    );
-}
+            event.preventDefault();
 
 
-/* ==========================================
-   TERMOS
-========================================== */
+            /* ==============================
+               CAPTURA DOS CAMPOS
+            ============================== */
 
-function abrirTermos() {
+            const cpf =
+                document.getElementById("cpf").value;
 
-    console.log(
-        "Abrir Termos de Uso"
-    );
-}
+            const email =
+                document.getElementById("email").value;
 
-function abrirPrivacidade() {
+            const senha =
+                document.getElementById("senha").value;
 
-    console.log(
-        "Abrir Política de Privacidade"
-    );
-}
+            const confirmarSenha =
+                document.getElementById(
+                    "confirmarSenha"
+                ).value;
+
+            const telefone =
+                document.getElementById(
+                    "telefone"
+                ).value;
+
+            const dataNascimento =
+                document.getElementById(
+                    "dataNascimento"
+                ).value;
 
 
-/* ==========================================
-   ENTER
-========================================== */
+            /* ==============================
+               VALIDAÇÃO DA SENHA
+            ============================== */
 
-function configurarEnter() {
+            if (senha !== confirmarSenha) {
 
-    document.addEventListener(
-        "keydown",
-        function(event){
+                alert(
+                    "As senhas não coincidem!"
+                );
 
-            if(event.key === "Enter"){
-
-                criarConta();
+                return;
             }
+
+
+            /* ==============================
+               VALIDAÇÃO CPF
+            ============================== */
+
+            const cpfNumeros =
+                cpf.replace(/\D/g, "");
+
+            if (cpfNumeros.length !== 11) {
+
+                alert(
+                    "Digite um CPF válido."
+                );
+
+                return;
+            }
+
+
+            /* ==============================
+               VALIDAÇÃO TELEFONE
+            ============================== */
+
+            const telefoneNumeros =
+                telefone.replace(/\D/g, "");
+
+            if (
+                telefoneNumeros.length !== 10 &&
+                telefoneNumeros.length !== 11
+            ) {
+
+                alert(
+                    "Digite um telefone válido."
+                );
+
+                return;
+            }
+
+
+            /* ==============================
+               VALIDAÇÃO DATA
+            ============================== */
+
+            if (!dataNascimento) {
+
+                alert(
+                    "Informe sua data de nascimento."
+                );
+
+                return;
+            }
+
+
+            /* ==============================
+               OBJETO DOS DADOS
+            ============================== */
+
+            const dadosCadastro = {
+
+                cpf: cpf,
+
+                email: email,
+
+                senha: senha,
+
+                telefone: telefone,
+
+                data_nascimento:
+                    dataNascimento,
+
+                Loja_idLoja: 1
+
+            };
+
+
+            /* ==============================
+               ENVIO PARA O BACKEND
+            ============================== */
+
+            try {
+
+                /*
+                    Quando o backend estiver pronto,
+                    essa parte enviará os dados para:
+
+                    POST /clientes
+                */
+
+                const resposta = await fetch(
+                    "/clientes",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify(
+                            dadosCadastro
+                        )
+                    }
+                );
+
+
+                /* ==============================
+                   RESPOSTA DO SERVIDOR
+                ============================== */
+
+                const resultado =
+                    await resposta.json();
+
+
+                if (!resposta.ok) {
+
+                    throw new Error(
+                        resultado.mensagem ||
+                        resultado.message ||
+                        "Erro ao criar a conta."
+                    );
+
+                }
+
+
+                /* ==============================
+                   SUCESSO
+                ============================== */
+
+                alert(
+                    "Conta criada com sucesso!"
+                );
+
+
+                /*
+                    Depois do cadastro,
+                    manda o usuário para o login.
+                */
+
+                window.location.href =
+                    "login.html";
+
+
+            } catch (erro) {
+
+                console.error(
+                    "Erro no cadastro:",
+                    erro
+                );
+
+
+                alert(
+                    erro.message ||
+                    "Não foi possível criar sua conta."
+                );
+
+            }
+
         }
     );
+
 }
-
-
-/* ==========================================
-   EVENTOS
-========================================== */
-
-function configurarEventos() {
-
-    btnCriarConta.addEventListener(
-        "click",
-        criarConta
-    );
-
-    btnGoogle.addEventListener(
-        "click",
-        continuarGoogle
-    );
-
-    btnEntrar.addEventListener(
-        "click",
-        abrirLogin
-    );
-
-    btnTermos.addEventListener(
-        "click",
-        abrirTermos
-    );
-
-    btnPrivacidade.addEventListener(
-        "click",
-        abrirPrivacidade
-    );
-
-    toggleSenha.addEventListener(
-        "click",
-        () =>
-            alternarSenha(
-                senha,
-                toggleSenha
-            )
-    );
-
-    toggleConfirmarSenha.addEventListener(
-        "click",
-        () =>
-            alternarSenha(
-                confirmarSenha,
-                toggleConfirmarSenha
-            )
-    );
-}
-
-
-/* ==========================================
-   INIT
-========================================== */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
-
-        preencherConteudo();
-
-        configurarEventos();
-
-        configurarEnter();
-
-    }
-);

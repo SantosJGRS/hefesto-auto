@@ -15,7 +15,7 @@ app.use(cors());
 app.use(express.json());
  
 // importar a conexão com o banco de dados
-const conexao = require("./networking");
+const conexao = require("./conexao.js");
 
 
 // Criar uma rota para testar a conexão com o banco de dados
@@ -29,7 +29,3 @@ app.use("/clientes", clienteRoutes);
 app.listen(3000, () => {
     console.log("Servidor iniciado!");
 });
- 
-
-
- 

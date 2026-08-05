@@ -2,569 +2,634 @@
    RESET
 ========================================== */
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-:root{
-    --bg:#050505;
-    --card:#080808;
-    --red:#e50914;
-    --red-hover:#ff1f2d;
-    --white:#ffffff;
-    --gray:#bdbdbd;
-    --line:#252525;
-}
-
-body{
-    min-height:100vh;
-    font-family:'Inter', Arial, sans-serif;
-    background:#000;
-    color:#fff;
-    overflow-x:hidden;
-}
 
 /* ==========================================
-   BACKGROUND
+   VARIÁVEIS
 ========================================== */
 
-.register-page{
+:root {
+    --bg: #050505;
+    --card: #0d0d0d;
+    --input: #151515;
 
-    min-height:100vh;
+    --red: #ed0000;
+    --red-hover: #ff1717;
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    --white: #ffffff;
+    --gray: #a8a8a8;
 
-    padding:40px;
+    --border: #353535;
+}
+
+
+/* ==========================================
+   BODY
+========================================== */
+
+body {
+    min-height: 100vh;
 
     background:
         radial-gradient(
-            circle at top left,
-            rgba(229,9,20,.45),
-            transparent 35%
-        ),
+            circle at center,
+            #111111 0%,
+            #070707 45%,
+            #000000 100%
+        );
 
-        radial-gradient(
-            circle at bottom right,
-            rgba(229,9,20,.25),
-            transparent 30%
-        ),
+    color: var(--white);
 
-        #000;
+    font-family: "Roboto Condensed", Arial, sans-serif;
 }
+
 
 /* ==========================================
-   CONTAINER
+   HEADER
 ========================================== */
 
-.register-container{
+header {
+    width: 100%;
+    height: 93px;
 
-    width:100%;
-    max-width:1400px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-    min-height:900px;
+    padding: 0 48px;
 
-    display:grid;
-    grid-template-columns:1fr 1px 1.2fr;
+    background: #050505;
 
-    align-items:center;
-
-    padding:80px;
-
-    border-radius:30px;
-
-    background:rgba(0,0,0,.25);
-
-    backdrop-filter:blur(5px);
+    border-bottom: 1px solid var(--red);
 }
+
 
 /* ==========================================
-   ESQUERDA
+   LOGO
 ========================================== */
 
-.register-left{
+.logo {
+    display: flex;
+    flex-direction: column;
 
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-
-    padding-right:70px;
+    line-height: 1;
 }
 
-.brand-area{
+.logo-principal {
+    color: var(--red);
 
-    margin-bottom:50px;
+    font-size: 40px;
+    font-weight: 800;
+    font-style: italic;
+
+    letter-spacing: -2px;
 }
 
-#logo{
+.logo-sub {
+    margin-top: 5px;
+    margin-left: 14px;
 
-    width:110px;
-    height:110px;
+    color: var(--white);
 
-    object-fit:contain;
+    font-size: 16px;
+    font-weight: 700;
+
+    letter-spacing: 5px;
 }
 
-#tituloCadastro{
-
-    font-size:4.5rem;
-    font-weight:700;
-
-    margin-bottom:25px;
-}
-
-#descricaoLinha1,
-#descricaoLinha2{
-
-    font-size:1.8rem;
-
-    color:#d2d2d2;
-
-    line-height:1.7;
-}
 
 /* ==========================================
-   DIVISOR
+   BOTÃO ENTRAR
 ========================================== */
 
-.divider{
+.btn-entrar {
+    height: 50px;
 
-    width:1px;
-    height:700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    background:#2a2a2a;
+    gap: 15px;
+
+    padding: 0 25px;
+
+    border: 1px solid var(--red);
+    border-radius: 6px;
+
+    background: transparent;
+
+    color: var(--red);
+
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
 }
+
+.btn-entrar i {
+    font-size: 25px;
+}
+
+.btn-entrar:hover {
+    background: var(--red);
+    color: var(--white);
+}
+
 
 /* ==========================================
-   DIREITA
+   ÁREA PRINCIPAL
 ========================================== */
 
-.register-right{
+main {
+    width: 100%;
+    min-height: calc(100vh - 93px);
 
-    padding-left:70px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    padding: 23px 20px 40px;
 }
+
 
 /* ==========================================
-   CABEÇALHO FORM
+   CARD DE CADASTRO
 ========================================== */
 
-.form-header{
+.cadastro-card {
+    width: 733px;
+    max-width: 100%;
 
-    margin-bottom:35px;
-}
+    padding: 22px 78px 25px;
 
-.form-header h2{
+    border: 1px solid #353535;
+    border-radius: 20px;
 
-    font-size:2.2rem;
-
-    margin-bottom:10px;
-}
-
-.form-header p{
-
-    color:#bdbdbd;
-
-    font-size:1.1rem;
-}
-
-/* ==========================================
-   FORM
-========================================== */
-
-.form-group{
-
-    margin-bottom:25px;
-}
-
-.form-group label{
-
-    display:block;
-
-    margin-bottom:12px;
-
-    font-size:1.1rem;
-
-    font-weight:500;
-}
-
-.input-wrapper{
-
-    height:68px;
-
-    display:flex;
-    align-items:center;
-
-    border:2px solid var(--red);
-
-    border-radius:14px;
-
-    padding:0 20px;
-
-    background:rgba(255,255,255,.02);
-
-    transition:.3s;
-}
-
-.input-wrapper:focus-within{
+    background:
+        linear-gradient(
+            145deg,
+            rgba(20, 20, 20, 0.97),
+            rgba(10, 10, 10, 0.97)
+        );
 
     box-shadow:
-        0 0 15px rgba(229,9,20,.25);
+        0 15px 40px rgba(0, 0, 0, 0.5),
+        0 8px 25px rgba(237, 0, 0, 0.08);
 }
 
-.input-wrapper i{
-
-    color:var(--red);
-
-    font-size:1.2rem;
-}
-
-.input-wrapper input{
-
-    flex:1;
-
-    height:100%;
-
-    border:none;
-    outline:none;
-
-    background:none;
-
-    color:#fff;
-
-    padding-left:15px;
-
-    font-size:1.1rem;
-}
-
-.input-wrapper input::placeholder{
-
-    color:#727272;
-}
 
 /* ==========================================
-   OLHO SENHA
+   ÍCONE DO CADASTRO
 ========================================== */
 
-.icon-button{
+.icone-cadastro {
+    width: 58px;
+    height: 58px;
 
-    background:none;
-    border:none;
+    margin: 0 auto 9px;
 
-    color:#8f8f8f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    cursor:pointer;
+    border: 3px solid var(--red);
+    border-radius: 50%;
 
-    font-size:1rem;
+    color: var(--red);
+
+    font-size: 30px;
 }
 
-.icon-button:hover{
-
-    color:#fff;
-}
 
 /* ==========================================
-   BOTÃO PRINCIPAL
+   TÍTULO
 ========================================== */
 
-.btn-primary{
+.titulo {
+    text-align: center;
 
-    width:100%;
-    height:72px;
+    color: var(--white);
 
-    border:none;
+    font-size: 36px;
+    font-weight: 800;
 
-    border-radius:14px;
+    line-height: 1;
 
-    margin-top:15px;
-
-    background:var(--red);
-
-    color:#fff;
-
-    font-size:1.5rem;
-    font-weight:700;
-
-    cursor:pointer;
-
-    transition:.3s;
+    text-transform: uppercase;
 }
 
-.btn-primary:hover{
-
-    background:var(--red-hover);
+.titulo span {
+    color: var(--red);
 }
+
 
 /* ==========================================
-   SEPARADOR
+   LINHA DO TÍTULO
 ========================================== */
 
-.separator{
+.linha-titulo {
+    width: 110px;
+    height: 3px;
 
-    display:flex;
-    align-items:center;
+    margin: 13px auto 10px;
 
-    gap:20px;
-
-    margin:45px 0;
+    background: var(--red);
 }
 
-.line{
-
-    flex:1;
-
-    height:1px;
-
-    background:#2d2d2d;
-}
-
-#textoSeparador{
-
-    color:#999;
-
-    white-space:nowrap;
-
-    font-size:1rem;
-}
 
 /* ==========================================
-   GOOGLE
+   DESCRIÇÃO
 ========================================== */
 
-.google-button{
+.descricao {
+    margin-bottom: 21px;
 
-    width:100%;
-    height:68px;
+    text-align: center;
 
-    border:2px solid var(--red);
+    color: #b7b7b7;
 
-    border-radius:14px;
-
-    background:none;
-
-    color:#fff;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    gap:15px;
-
-    cursor:pointer;
-
-    transition:.3s;
+    font-size: 17px;
+    font-weight: 400;
 }
 
-.google-button:hover{
 
-    background:rgba(229,9,20,.08);
+/* ==========================================
+   FORMULÁRIO
+========================================== */
+
+form {
+    width: 100%;
 }
 
-#googleIcon{
 
-    width:32px;
-    height:32px;
+/* ==========================================
+   CAMPO
+========================================== */
 
-    object-fit:contain;
+.campo {
+    width: 100%;
+
+    margin-bottom: 17px;
 }
 
-#googleTexto{
 
-    font-size:1.25rem;
-    font-weight:600;
+/* ==========================================
+   LABEL
+========================================== */
+
+.campo label {
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    margin-bottom: 7px;
+
+    color: #eeeeee;
+
+    font-size: 16px;
+    font-weight: 700;
 }
+
+.campo label i {
+    width: 18px;
+
+    color: var(--red);
+
+    font-size: 17px;
+
+    text-align: center;
+}
+
+
+/* ==========================================
+   CONTAINER DO INPUT
+========================================== */
+
+.input-container {
+    position: relative;
+
+    width: 100%;
+}
+
+
+/* ==========================================
+   INPUT
+========================================== */
+
+.input-container input {
+    width: 100%;
+    height: 48px;
+
+    padding: 0 20px;
+
+    border: 1px solid var(--border);
+    border-radius: 6px;
+
+    outline: none;
+
+    background: var(--input);
+
+    color: var(--white);
+
+    font-family: inherit;
+    font-size: 16px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* PLACEHOLDER */
+
+.input-container input::placeholder {
+    color: #8d8d8d;
+
+    opacity: 1;
+}
+
+
+/* INPUT FOCADO */
+
+.input-container input:focus {
+    border-color: var(--red);
+
+    box-shadow:
+        0 0 0 1px rgba(237, 0, 0, 0.15);
+}
+
+
+/* ==========================================
+   INPUT COM ÍCONE
+========================================== */
+
+.input-com-icone {
+    padding-right: 52px !important;
+}
+
+
+/* ==========================================
+   BOTÃO MOSTRAR SENHA
+========================================== */
+
+.mostrar-senha {
+    position: absolute;
+
+    top: 50%;
+    right: 15px;
+
+    transform: translateY(-50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: #999999;
+
+    font-size: 17px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.mostrar-senha:hover {
+    color: var(--white);
+}
+
+
+/* ==========================================
+   BOTÃO CRIAR CONTA
+========================================== */
+
+.btn-cadastro {
+    width: 100%;
+    height: 50px;
+
+    margin-top: -1px;
+
+    border: none;
+    border-radius: 6px;
+
+    background: var(--red);
+
+    color: var(--white);
+
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.1s ease;
+}
+
+.btn-cadastro:hover {
+    background: var(--red-hover);
+
+    box-shadow:
+        0 5px 20px rgba(237, 0, 0, 0.25);
+}
+
+.btn-cadastro:active {
+    transform: scale(0.99);
+}
+
+
+/* ==========================================
+   DIVISOR "OU"
+========================================== */
+
+.ou {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    margin: 18px 0 13px;
+
+    color: #777777;
+
+    font-size: 14px;
+}
+
+.ou::before,
+.ou::after {
+    content: "";
+
+    flex: 1;
+
+    height: 1px;
+
+    background: #3b3b3b;
+}
+
+.ou span {
+    padding: 0 2px;
+}
+
 
 /* ==========================================
    LOGIN
 ========================================== */
 
-.login-area{
+.login {
+    text-align: center;
 
-    margin-top:30px;
+    color: #bcbcbc;
 
-    text-align:center;
-
-    font-size:1.1rem;
+    font-size: 16px;
 }
 
-#textoLogin{
+.login a {
+    margin-left: 10px;
 
-    color:#d0d0d0;
+    color: var(--red);
+
+    text-decoration: none;
+
+    font-weight: 700;
+
+    transition: 0.2s ease;
 }
 
-#btnEntrar{
+.login a:hover {
+    color: var(--red-hover);
 
-    border:none;
-    background:none;
-
-    color:var(--red);
-
-    font-size:1.1rem;
-    font-weight:700;
-
-    margin-left:6px;
-
-    cursor:pointer;
+    text-decoration: underline;
 }
 
-#btnEntrar:hover{
-
-    color:var(--red-hover);
-}
 
 /* ==========================================
-   TERMOS
+   RESPONSIVIDADE
 ========================================== */
 
-.terms-area{
+@media (max-width: 800px) {
 
-    margin-top:45px;
+    header {
+        height: 80px;
 
-    text-align:center;
+        padding: 0 25px;
+    }
 
-    color:#bdbdbd;
+    .logo-principal {
+        font-size: 32px;
+    }
 
-    font-size:.95rem;
+    .logo-sub {
+        font-size: 12px;
 
-    line-height:1.8;
+        letter-spacing: 4px;
+    }
+
+    .btn-entrar {
+        height: 45px;
+
+        padding: 0 17px;
+
+        font-size: 17px;
+    }
+
+    .btn-entrar i {
+        font-size: 21px;
+    }
+
+    main {
+        min-height: calc(100vh - 80px);
+
+        padding: 20px 15px 30px;
+    }
+
+    .cadastro-card {
+        padding: 25px 35px;
+    }
+
+    .titulo {
+        font-size: 31px;
+    }
 }
 
-#btnTermos,
-#btnPrivacidade{
-
-    background:none;
-    border:none;
-
-    color:var(--red);
-
-    cursor:pointer;
-
-    font-size:.95rem;
-}
-
-#btnTermos:hover,
-#btnPrivacidade:hover{
-
-    color:var(--red-hover);
-}
 
 /* ==========================================
-   TABLET
+   CELULAR
 ========================================== */
 
-@media(max-width:1024px){
+@media (max-width: 550px) {
 
-    .register-container{
-
-        grid-template-columns:1fr;
-
-        gap:50px;
-
-        padding:50px;
+    header {
+        padding: 0 15px;
     }
 
-    .divider{
-
-        display:none;
+    .logo-principal {
+        font-size: 27px;
     }
 
-    .register-left{
+    .logo-sub {
+        margin-left: 7px;
 
-        text-align:center;
+        font-size: 10px;
 
-        align-items:center;
-
-        padding-right:0;
+        letter-spacing: 3px;
     }
 
-    .register-right{
+    .btn-entrar {
+        padding: 0 13px;
 
-        padding-left:0;
+        gap: 8px;
+
+        font-size: 15px;
     }
 
-    #tituloCadastro{
-
-        font-size:3rem;
+    .btn-entrar i {
+        font-size: 19px;
     }
 
-    #descricaoLinha1,
-    #descricaoLinha2{
+    .cadastro-card {
+        padding: 25px 20px;
 
-        font-size:1.3rem;
-    }
-}
-
-/* ==========================================
-   MOBILE
-========================================== */
-
-@media(max-width:768px){
-
-    .register-page{
-
-        padding:20px;
+        border-radius: 15px;
     }
 
-    .register-container{
+    .icone-cadastro {
+        width: 53px;
+        height: 53px;
 
-        min-height:auto;
-
-        padding:30px;
+        font-size: 26px;
     }
 
-    #logo{
-
-        width:80px;
-        height:80px;
+    .titulo {
+        font-size: 27px;
     }
 
-    #tituloCadastro{
-
-        font-size:2.4rem;
+    .descricao {
+        font-size: 15px;
     }
 
-    #descricaoLinha1,
-    #descricaoLinha2{
-
-        font-size:1rem;
+    .campo label {
+        font-size: 15px;
     }
 
-    .form-header h2{
-
-        font-size:1.8rem;
-    }
-
-    .input-wrapper{
-
-        height:60px;
-    }
-
-    .btn-primary{
-
-        height:60px;
-
-        font-size:1.2rem;
-    }
-
-    .google-button{
-
-        height:60px;
-    }
-
-    #googleTexto{
-
-        font-size:1rem;
-    }
-
-    .terms-area{
-
-        font-size:.85rem;
-    }
-
-    #btnTermos,
-    #btnPrivacidade{
-
-        font-size:.85rem;
+    .input-container input {
+        height: 47px;
     }
 }

@@ -1,0 +1,393 @@
+/* ==========================================================
+   DASHBOARD HEPHESTO
+   Arquivo: dashboard.css
+========================================================== */
+
+/* ==========================================================
+   RESET
+========================================================== */
+
+*,
+*::before,
+*::after{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    font-family:'Inter',sans-serif;
+
+    background:#090909;
+
+    color:#ffffff;
+
+    overflow-x:hidden;
+
+}
+
+img{
+
+    max-width:100%;
+
+    display:block;
+
+}
+
+a{
+
+    text-decoration:none;
+
+    color:inherit;
+
+}
+
+button{
+
+    border:none;
+
+    outline:none;
+
+    cursor:pointer;
+
+    font-family:inherit;
+
+}
+
+input,
+select{
+
+    border:none;
+
+    outline:none;
+
+    font-family:inherit;
+
+}
+
+table{
+
+    border-collapse:collapse;
+
+    width:100%;
+
+}
+
+/* ==========================================================
+   VARIÁVEIS
+========================================================== */
+
+:root{
+
+    --background:#090909;
+
+    --sidebar:#111214;
+
+    --card:#121314;
+
+    --card-2:#17181a;
+
+    --border:#272727;
+
+    --border-light:#333333;
+
+    --red:#ff2424;
+
+    --red-dark:#be1717;
+
+    --red-soft:#471818;
+
+    --green:#30d86c;
+
+    --yellow:#f5b81f;
+
+    --blue:#2392ff;
+
+    --white:#ffffff;
+
+    --text:#f2f2f2;
+
+    --text-light:#b9b9b9;
+
+    --text-muted:#858585;
+
+    --radius:18px;
+
+    --transition:.25s ease;
+
+    --shadow:0 20px 45px rgba(0,0,0,.30);
+
+}
+
+/* ==========================================================
+   LAYOUT
+========================================================== */
+
+.dashboard{
+
+    display:grid;
+
+    grid-template-columns:260px 1fr;
+
+    min-height:100vh;
+
+    background:var(--background);
+
+}
+
+.content{
+
+    display:flex;
+
+    flex-direction:column;
+
+    padding:28px;
+
+    gap:26px;
+
+}
+
+/* ==========================================================
+   SIDEBAR
+========================================================== */
+
+.sidebar{
+
+    background:var(--sidebar);
+
+    border-right:1px solid var(--border);
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.logo{
+
+    height:92px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:0 24px;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+.logo-icon{
+
+    width:44px;
+
+    height:44px;
+
+    border-radius:10px;
+
+    background:linear-gradient(180deg,#ff4747,#d91717);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#fff;
+
+    font-size:19px;
+
+}
+
+.logo-text h2{
+
+    font-size:18px;
+
+    font-weight:800;
+
+    letter-spacing:.5px;
+
+}
+
+.logo-text span{
+
+    display:block;
+
+    color:var(--red);
+
+    margin-top:4px;
+
+    letter-spacing:4px;
+
+    font-size:12px;
+
+    font-weight:700;
+
+}
+
+/* ==========================================================
+   MENU
+========================================================== */
+
+.menu{
+
+    display:flex;
+
+    flex-direction:column;
+
+    padding:18px 16px;
+
+    gap:5px;
+
+}
+
+.menu-item{
+
+    height:44px;
+
+    border-radius:12px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:0 16px;
+
+    color:#bfbfbf;
+
+    transition:var(--transition);
+
+    font-size:14px;
+
+    font-weight:500;
+
+}
+
+.menu-item i{
+
+    width:18px;
+
+    text-align:center;
+
+    font-size:15px;
+
+}
+
+.menu-item:hover{
+
+    background:#1a1b1d;
+
+    color:#ffffff;
+
+}
+
+.menu-item.active{
+
+    background:linear-gradient(90deg,#c81818,#ff2d2d);
+
+    color:#fff;
+
+    box-shadow:0 12px 30px rgba(255,0,0,.18);
+
+}
+
+/* ==========================================================
+   CARD DA LOJA
+========================================================== */
+
+.store-card{
+
+    margin:18px 16px;
+
+    padding:18px;
+
+    border-radius:18px;
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+}
+
+.store-card h3{
+
+    font-size:15px;
+
+    margin-bottom:18px;
+
+}
+
+.store-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:18px;
+
+}
+
+.store-header span:first-child{
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+.badge{
+
+    background:#5b1717;
+
+    color:#ff6d6d;
+
+    padding:5px 10px;
+
+    border-radius:999px;
+
+    font-size:11px;
+
+    font-weight:700;
+
+}
+
+.store-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+
+}
+
+.info-line{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    font-size:13px;
+
+    color:var(--text-light);
+
+}
+
+.info-line strong{
+
+    color:#fff;
+
+    font-weight:600;
+
+}

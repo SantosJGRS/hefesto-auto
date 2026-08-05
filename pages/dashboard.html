@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Hephesto | Dashboard do Lojista</title>
+
+    <link rel="stylesheet" href="dashboard.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- ===================================================== -->
+    <!-- SIDEBAR -->
+    <!-- ===================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+
+                <i class="fa-solid fa-gears"></i>
+
+            </div>
+
+            <div class="logo-text">
+
+                <h2>HEPHESTO</h2>
+
+                <span>LOJISTA</span>
+
+            </div>
+
+        </div>
+
+        <nav class="menu">
+
+            <a
+                href="#"
+                class="menu-item active">
+
+                <i class="fa-solid fa-chart-pie"></i>
+
+                <span>Dashboard</span>
+
+            </a>
+
+            <a
+                href="#"
+                class="menu-item">
+
+                <i class="fa-solid fa-box"></i>
+
+                <span>Produtos</span>
+
+            </a>
+
+            <a
+                href="#"
+                class="menu-item">
+
+                <i class="fa-regular fa-file-lines"></i>
+
+                <span>Pedidos</span>
+
+            </a>
+
+            <a
+                href="#"
+                class="menu-item">
+
+                <i class="fa-solid fa-users"></i>
+
+                <span>Clientes</span>
+
+            </a>
+
+            <a
+                href="#"
+                class="menu-item">
+
+                <i class="fa-solid fa-tags"></i>
+
+                <span>Promoções</span>
+
+            </a>
+
+            <a
+                href="#"
+                class="menu-item">
+
+                <i class="fa-solid fa-ticket"></i>
+
+                <span>Cupons</span>
+
+            </a>
+
+            <a
+                href="#"
+                class="menu-item">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                <span>Relatórios</span>
+
+            </a>
+
+            <a
+                href="#"
+                class="menu-item">
+
+                <i class="fa-regular fa-star"></i>
+
+                <span>Avaliações</span>
+
+            </a>
+
+            <a
+                href="#"
+                class="menu-item">
+
+                <i class="fa-solid fa-wallet"></i>
+
+                <span>Financeiro</span>
+
+            </a>
+
+            <a
+                href="#"
+                class="menu-item">
+
+                <i class="fa-solid fa-store"></i>
+
+                <span>Minha Loja</span>
+
+            </a>
+
+            <a
+                href="#"
+                class="menu-item">
+
+                <i class="fa-solid fa-gear"></i>
+
+                <span>Configurações</span>
+
+            </a>
+
+        </nav>
+
+        <div class="store-card">
+
+            <h3>Resumo da Loja</h3>
+
+            <div class="store-header">
+
+                <span>Super Autopeças</span>
+
+                <span class="badge">
+
+                    Loja Ativa
+
+                </span>
+
+            </div>
+
+            <div class="store-info">
+
+                <div class="info-line">
+
+                    <span>Plano</span>
+
+                    <strong>Premium</strong>
+
+                </div>
+
+                <div class="info-line">
+
+                    <span>Membro desde</span>
+
+                    <strong>03/01/2024</strong>
+
+                </div>
+
+            </div>
+
+            <button class="outline-button">
+
+                Ver minha loja
+
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+            </button>
+
+        </div>
+
+        <div class="support">
+
+            <div class="support-icon">
+
+                <i class="fa-regular fa-circle-question"></i>
+
+            </div>
+
+            <div>
+
+                <h4>Precisa de ajuda?</h4>
+
+                <span>Fale com nosso suporte</span>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+    <!-- ===================================================== -->
+    <!-- CONTEÚDO -->
+    <!-- ===================================================== -->
+
+    <main class="content">
+
+        <header class="topbar">
+
+            <div class="welcome">
+
+                <h1>
+
+                    Dashboard do Lojista
+
+                </h1>
+
+                <p>
+
+                    Bem-vindo de volta, Marcus Chen!
+
+                </p>
+
+            </div>
+
+            <div class="top-actions">
+
+                <button class="notification">
+
+                    <i class="fa-regular fa-bell"></i>
+
+                    <span class="notification-dot"></span>
+
+                </button>
+
+                <div class="profile">
+
+                    <img
+                        src="https://i.pravatar.cc/150?img=12"
+                        alt="Usuário">
+
+                    <div>
+
+                        <strong>
+
+                            Marcus Chen
+
+                        </strong>
+
+                        <span>
+
+                            Super Autopeças
+
+                        </span>
+
+                    </div>
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <!-- ===================================================== -->
+        <!-- CARDS -->
+        <!-- ===================================================== -->
+
+        <section class="cards">
+
+            <article class="card revenue">
+
+                <div class="card-top">
+
+                    <div>
+
+                        <small>
+
+                            Receita Total
+
+                        </small>
+
+                        <h2>
+
+                            R$ 124.500,00
+
+                        </h2>
+
+                        <p>
+
+                            <span class="positive">
+
+                                ↑ 12,5%
+
+                            </span>
+
+                            vs mês passado
+
+                        </p>
+
+                    </div>
+
+                    <div class="card-icon">
+
+                        <i class="fa-solid fa-dollar-sign"></i>
+
+                    </div>
+
+                </div>
+
+                <div class="mini-chart">
+
+                    <svg
+                        viewBox="0 0 300 80"
+                        preserveAspectRatio="none">
+
+                        <path
+                            d="M0 55
+                            C25 40 40 65 65 48
+                            C90 32 120 56 150 30
+                            C180 10 210 22 240 12
+                            C270 6 285 3 300 0"
+                            fill="none"
+                            stroke="#ff2020"
+                            stroke-width="4"
+                            stroke-linecap="round">
+                        </path>
+
+                    </svg>
+
+                </div>
+
+            </article>
+                        <article class="card orders">
+
+                <div class="card-top">
+
+                    <div>
+
+                        <small>
+
+                            Pedidos Totais
+
+                        </small>
+
+                        <h2>
+
+                            1.284
+
+                        </h2>
+
+                        <p>
+
+                            <span class="positive">
+
+                                ↑ 8,2%
+
+                            </span>
+
+                            vs mês passado
+
+                        </p>
+
+                    </div>
+
+                    <div class="card-icon gray">
+
+                        <i class="fa-solid fa-cart-shopping"></i>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+            <article class="card customers">
+
+                <div class="card-top">
+
+                    <div>
+
+                        <small>
+
+                            Clientes Ativos
+
+                        </small>
+
+                        <h2>
+
+                            8.432
+
+                        </h2>
+
+                        <p>
+
+                            <span class="positive">
+
+                                ↑ 5,1%
+
+                            </span>
+
+                            vs mês passado
+
+                        </p>
+
+                    </div>
+
+                    <div class="card-icon gray">
+
+                        <i class="fa-regular fa-user"></i>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+            <article class="card stock-alert">
+
+                <div class="stock-title">
+
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+
+                    <span>
+
+                        Alertas de Estoque
+
+                    </span>
+
+                </div>
+
+                <h2>
+
+                    24 itens
+
+                </h2>
+
+                <p>
+
+                    Requerem atenção imediata
+
+                </p>
+
+                <button class="danger-button">
+
+                    Ver Estoque
+
+                </button>
+
+            </article>
+
+        </section>
+
+        <!-- ===================================================== -->
+        <!-- GRÁFICOS -->
+        <!-- ===================================================== -->
+
+        <section class="dashboard-grid">
+
+            <section class="sales-panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h2>
+
+                            Desempenho de Vendas
+
+                        </h2>
+
+                        <span>
+
+                            Receita dos últimos 12 meses
+
+                        </span>
+
+                    </div>
+
+                    <select>
+
+                        <option>
+
+                            Este Ano
+
+                        </option>
+
+                        <option>
+
+                            Últimos 6 meses
+
+                        </option>
+
+                        <option>
+
+                            Últimos 30 dias
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="chart-container">
+
+                    <div class="chart-values">
+
+                        <span>R$100k</span>
+                        <span>R$80k</span>
+                        <span>R$60k</span>
+                        <span>R$40k</span>
+                        <span>R$20k</span>
+                        <span>R$0</span>
+
+                    </div>
+
+                    <div class="chart">
+
+                        <div class="grid-lines">
+
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+
+                        </div>
+
+                        <svg
+                            viewBox="0 0 900 360"
+                            preserveAspectRatio="none">
+
+                            <defs>
+
+                                <linearGradient
+                                    id="salesGradient"
+                                    x1="0"
+                                    y1="0"
+                                    x2="0"
+                                    y2="1">
+
+                                    <stop
+                                        offset="0%"
+                                        stop-color="#ff2323"
+                                        stop-opacity="0.40"/>
+
+                                    <stop
+                                        offset="100%"
+                                        stop-color="#ff2323"
+                                        stop-opacity="0"/>
+
+                                </linearGradient>
+
+                            </defs>
+
+                            <path
+                                d="
+                                M0 285
+                                L75 230
+                                L150 255
+                                L225 195
+                                L300 220
+                                L375 175
+                                L450 135
+                                L525 165
+                                L600 125
+                                L675 100
+                                L750 65
+                                L825 10
+                                L825 360
+                                L0 360 Z"
+                                fill="url(#salesGradient)">
+                            </path>
+
+                            <polyline
+                                points="
+                                0,285
+                                75,230
+                                150,255
+                                225,195
+                                300,220
+                                375,175
+                                450,135
+                                525,165
+                                600,125
+                                675,100
+                                750,65
+                                825,10"
+                                fill="none"
+                                stroke="#ff2020"
+                                stroke-width="4"
+                                stroke-linejoin="round"
+                                stroke-linecap="round">
+                            </polyline>
+
+                            <circle cx="0" cy="285" r="5"></circle>
+                            <circle cx="75" cy="230" r="5"></circle>
+                            <circle cx="150" cy="255" r="5"></circle>
+                            <circle cx="225" cy="195" r="5"></circle>
+                            <circle cx="300" cy="220" r="5"></circle>
+                            <circle cx="375" cy="175" r="5"></circle>
+                            <circle cx="450" cy="135" r="5"></circle>
+                            <circle cx="525" cy="165" r="5"></circle>
+                            <circle cx="600" cy="125" r="5"></circle>
+                            <circle cx="675" cy="100" r="5"></circle>
+                            <circle cx="750" cy="65" r="5"></circle>
+                            <circle cx="825" cy="10" r="5"></circle>
+
+                        </svg>
+
+                        <div class="months">
+
+                            <span>Jan</span>
+                            <span>Fev</span>
+                            <span>Mar</span>
+                            <span>Abr</span>
+                            <span>Mai</span>
+                            <span>Jun</span>
+                            <span>Jul</span>
+                            <span>Ago</span>
+                            <span>Set</span>
+                            <span>Out</span>
+                            <span>Nov</span>
+                            <span>Dez</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+                        <aside class="categories-panel">
+
+                <div class="panel-header small">
+
+                    <div>
+
+                        <h2>
+
+                            Categorias mais vendidas
+
+                        </h2>
+
+                        <span>
+
+                            Por volume de vendas
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="donut-area">
+
+                    <div class="donut-chart">
+
+                        <svg
+                            width="230"
+                            height="230"
+                            viewBox="0 0 230 230">
+
+                            <circle
+                                class="donut-bg"
+                                cx="115"
+                                cy="115"
+                                r="72">
+                            </circle>
+
+                            <circle
+                                class="donut motor"
+                                cx="115"
+                                cy="115"
+                                r="72">
+                            </circle>
+
+                            <circle
+                                class="donut suspension"
+                                cx="115"
+                                cy="115"
+                                r="72">
+                            </circle>
+
+                            <circle
+                                class="donut lighting"
+                                cx="115"
+                                cy="115"
+                                r="72">
+                            </circle>
+
+                            <circle
+                                class="donut brakes"
+                                cx="115"
+                                cy="115"
+                                r="72">
+                            </circle>
+
+                        </svg>
+
+                    </div>
+
+                    <div class="legend">
+
+                        <div class="legend-item">
+
+                            <span class="legend-color red"></span>
+
+                            <span class="legend-name">
+
+                                Motor
+
+                            </span>
+
+                            <strong>
+
+                                45%
+
+                            </strong>
+
+                        </div>
+
+                        <div class="legend-item">
+
+                            <span class="legend-color gray-one"></span>
+
+                            <span class="legend-name">
+
+                                Suspensão
+
+                            </span>
+
+                            <strong>
+
+                                30%
+
+                            </strong>
+
+                        </div>
+
+                        <div class="legend-item">
+
+                            <span class="legend-color gray-two"></span>
+
+                            <span class="legend-name">
+
+                                Iluminação
+
+                            </span>
+
+                            <strong>
+
+                                15%
+
+                            </strong>
+
+                        </div>
+
+                        <div class="legend-item">
+
+                            <span class="legend-color gray-three"></span>
+
+                            <span class="legend-name">
+
+                                Freios
+
+                            </span>
+
+                            <strong>
+
+                                10%
+
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <button class="outline-button full-width">
+
+                    Ver todas as categorias
+
+                </button>
+
+            </aside>
+
+        </section>
+
+        <!-- ===================================================== -->
+        <!-- PEDIDOS E AÇÕES -->
+        <!-- ===================================================== -->
+
+        <section class="bottom-section">
+
+            <section class="orders-table-panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h2>
+
+                            Pedidos Recentes
+
+                        </h2>
+
+                    </div>
+
+                    <button class="outline-button small">
+
+                        Ver Todos
+
+                    </button>
+
+                </div>
+
+                <table class="orders-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Pedido</th>
+
+                            <th>Cliente</th>
+
+                            <th>Data</th>
+
+                            <th>Status</th>
+
+                            <th>Total</th>
+
+                            <th></th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>#ORD-001</td>
+
+                            <td>Alex Johnson</td>
+
+                            <td>24/10/2023</td>
+
+                            <td>
+
+                                <span class="status paid">
+
+                                    Pago
+
+                                </span>
+
+                            </td>
+
+                            <td>
+
+                                R$ 450,00
+
+                            </td>
+
+                            <td>
+
+                                <button class="table-button">
+
+                                    <i class="fa-regular fa-eye"></i>
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>#ORD-002</td>
+
+                            <td>Maria Silva</td>
+
+                            <td>24/10/2023</td>
+
+                            <td>
+
+                                <span class="status pending">
+
+                                    Pendente
+
+                                </span>
+
+                            </td>
+
+                            <td>
+
+                                R$ 320,00
+
+                            </td>
+
+                            <td>
+
+                                <button class="table-button">
+
+                                    <i class="fa-regular fa-eye"></i>
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>#ORD-003</td>
+
+                            <td>João Santos</td>
+
+                            <td>23/10/2023</td>
+
+                            <td>
+
+                                <span class="status shipped">
+
+                                    Enviado
+
+                                </span>
+
+                            </td>
+
+                            <td>
+
+                                R$ 680,00
+
+                            </td>
+
+                            <td>
+
+                                <button class="table-button">
+
+                                    <i class="fa-regular fa-eye"></i>
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+                                                <tr>
+
+                            <td>#ORD-004</td>
+
+                            <td>Ana Costa</td>
+
+                            <td>23/10/2023</td>
+
+                            <td>
+
+                                <span class="status paid">
+
+                                    Pago
+
+                                </span>
+
+                            </td>
+
+                            <td>
+
+                                R$ 150,00
+
+                            </td>
+
+                            <td>
+
+                                <button class="table-button">
+
+                                    <i class="fa-regular fa-eye"></i>
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>#ORD-005</td>
+
+                            <td>Carlos Lima</td>
+
+                            <td>22/10/2023</td>
+
+                            <td>
+
+                                <span class="status cancelled">
+
+                                    Cancelado
+
+                                </span>
+
+                            </td>
+
+                            <td>
+
+                                R$ 220,00
+
+                            </td>
+
+                            <td>
+
+                                <button class="table-button">
+
+                                    <i class="fa-regular fa-eye"></i>
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </section>
+
+            <aside class="quick-actions">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h2>
+
+                            Ações Rápidas
+
+                        </h2>
+
+                    </div>
+
+                </div>
+
+                <div class="actions-list">
+
+                    <a
+                        href="#"
+                        class="action-card">
+
+                        <div class="action-left">
+
+                            <div class="action-icon">
+
+                                <i class="fa-solid fa-plus"></i>
+
+                            </div>
+
+                            <div>
+
+                                <h3>
+
+                                    Adicionar novo produto
+
+                                </h3>
+
+                                <p>
+
+                                    Cadastre um novo produto na sua loja.
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <i class="fa-solid fa-chevron-right"></i>
+
+                    </a>
+
+                    <a
+                        href="#"
+                        class="action-card">
+
+                        <div class="action-left">
+
+                            <div class="action-icon">
+
+                                <i class="fa-solid fa-tags"></i>
+
+                            </div>
+
+                            <div>
+
+                                <h3>
+
+                                    Criar promoção
+
+                                </h3>
+
+                                <p>
+
+                                    Crie ofertas e campanhas promocionais.
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <i class="fa-solid fa-chevron-right"></i>
+
+                    </a>
+
+                    <a
+                        href="#"
+                        class="action-card">
+
+                        <div class="action-left">
+
+                            <div class="action-icon">
+
+                                <i class="fa-solid fa-boxes-stacked"></i>
+
+                            </div>
+
+                            <div>
+
+                                <h3>
+
+                                    Gerenciar estoque
+
+                                </h3>
+
+                                <p>
+
+                                    Atualize seu inventário rapidamente.
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <i class="fa-solid fa-chevron-right"></i>
+
+                    </a>
+
+                    <a
+                        href="#"
+                        class="action-card">
+
+                        <div class="action-left">
+
+                            <div class="action-icon">
+
+                                <i class="fa-solid fa-chart-column"></i>
+
+                            </div>
+
+                            <div>
+
+                                <h3>
+
+                                    Ver relatórios
+
+                                </h3>
+
+                                <p>
+
+                                    Acompanhe indicadores e desempenho.
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <i class="fa-solid fa-chevron-right"></i>
+
+                    </a>
+
+                    <a
+                        href="#"
+                        class="action-card">
+
+                        <div class="action-left">
+
+                            <div class="action-icon">
+
+                                <i class="fa-solid fa-envelope"></i>
+
+                            </div>
+
+                            <div>
+
+                                <h3>
+
+                                    Enviar campanha
+
+                                </h3>
+
+                                <p>
+
+                                    Comunique promoções aos seus clientes.
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <i class="fa-solid fa-chevron-right"></i>
+
+                    </a>
+
+                </div>
+
+            </aside>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="dashboard.js"></script>
+
+</body>
+
+</html>

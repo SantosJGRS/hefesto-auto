@@ -25,6 +25,5 @@ router.delete("/:id", ClienteController.excluir);
 module.exports = router;
 
 
-const clienteRoutes = require("../routes/cliente_routes.js");
-app.use("/clientes", clienteRoutes);
+
 

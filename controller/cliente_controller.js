@@ -14,14 +14,17 @@ function cadastrar(req, res) {
     const cliente = req.body;
 
     // Validação dos campos obrigatórios
+     // Caso não seja enviado o código da loja
+    if (!cliente.Loja_idLoja) {
+
+        cliente.Loja_idLoja = 1;
+
+    }
 
     if (
         !cliente.nome ||
-        !cliente.cpf ||
-        !cliente.telefone ||
         !cliente.email ||
         !cliente.senha ||
-        !cliente.data_nascimento ||
         !cliente.Loja_idLoja
     ) {
 
@@ -32,12 +35,7 @@ function cadastrar(req, res) {
 
     }
 
-    // Caso não seja enviado o código da loja
-    if (!cliente.Loja_idLoja) {
-
-        cliente.Loja_idLoja = 1;
-
-    }
+   
 
     // Verifica se já existe um usuário com o mesmo e-mail
 

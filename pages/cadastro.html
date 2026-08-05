@@ -2,137 +2,761 @@
 <html lang="pt-BR">
 
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <title>Criar Conta | Hefesto Autopeças</title>
 
-    <title>Cadastro</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
 
+    <!-- Font Awesome -->
     <link
         rel="stylesheet"
-        href="../style/cadastro.css">
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
 
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
 
+        /* ==============================
+           RESET
+        ============================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        /* ==============================
+           VARIÁVEIS
+        ============================== */
+
+        :root {
+            --bg: #050505;
+            --card: #0d0d0d;
+            --input: #151515;
+
+            --red: #ed0000;
+            --red-hover: #ff1717;
+
+            --white: #ffffff;
+            --gray: #a8a8a8;
+            --border: #353535;
+        }
+
+
+        /* ==============================
+           BODY
+        ============================== */
+
+        body {
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    #101010 0%,
+                    #050505 50%,
+                    #000000 100%
+                );
+
+            color: var(--white);
+
+            font-family: "Roboto Condensed", Arial, sans-serif;
+        }
+
+
+        /* ==============================
+           HEADER
+        ============================== */
+
+        header {
+            height: 93px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 48px;
+
+            border-bottom: 1px solid var(--red);
+
+            background: rgba(5, 5, 5, 0.96);
+        }
+
+
+        /* LOGO */
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+
+            line-height: 1;
+        }
+
+        .logo-principal {
+            color: var(--red);
+
+            font-size: 40px;
+            font-weight: 800;
+            font-style: italic;
+
+            letter-spacing: -2px;
+        }
+
+        .logo-sub {
+            margin-left: 14px;
+            margin-top: 4px;
+
+            color: white;
+
+            font-size: 16px;
+            font-weight: 700;
+
+            letter-spacing: 5px;
+        }
+
+
+        /* BOTÃO ENTRAR */
+
+        .btn-entrar {
+            height: 50px;
+
+            display: flex;
+            align-items: center;
+            gap: 15px;
+
+            padding: 0 25px;
+
+            border: 1px solid var(--red);
+            border-radius: 6px;
+
+            background: transparent;
+
+            color: var(--red);
+
+            font-family: inherit;
+            font-size: 20px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .btn-entrar i {
+            font-size: 25px;
+        }
+
+        .btn-entrar:hover {
+            background: var(--red);
+            color: white;
+        }
+
+
+        /* ==============================
+           ÁREA PRINCIPAL
+        ============================== */
+
+        main {
+            min-height: calc(100vh - 93px);
+
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+
+            padding: 23px 20px 40px;
+        }
+
+
+        /* ==============================
+           CARD
+        ============================== */
+
+        .cadastro-card {
+            width: 733px;
+            max-width: 100%;
+
+            padding: 22px 78px 25px;
+
+            border: 1px solid #353535;
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(20, 20, 20, 0.97),
+                    rgba(10, 10, 10, 0.97)
+                );
+
+            box-shadow:
+                0 15px 40px rgba(0, 0, 0, 0.5),
+                0 8px 25px rgba(237, 0, 0, 0.08);
+        }
+
+
+        /* ==============================
+           ÍCONE DO TOPO
+        ============================== */
+
+        .icone-cadastro {
+            width: 58px;
+            height: 58px;
+
+            margin: 0 auto 9px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border: 3px solid var(--red);
+            border-radius: 50%;
+
+            color: var(--red);
+
+            font-size: 30px;
+        }
+
+
+        /* ==============================
+           TÍTULO
+        ============================== */
+
+        .titulo {
+            text-align: center;
+
+            font-size: 36px;
+            font-weight: 800;
+
+            line-height: 1;
+
+            text-transform: uppercase;
+        }
+
+        .titulo span {
+            color: var(--red);
+        }
+
+
+        /* LINHA ABAIXO DO TÍTULO */
+
+        .linha-titulo {
+            width: 110px;
+            height: 3px;
+
+            margin: 13px auto 10px;
+
+            background: var(--red);
+        }
+
+
+        /* TEXTO */
+
+        .descricao {
+            margin-bottom: 21px;
+
+            text-align: center;
+
+            color: #b7b7b7;
+
+            font-size: 17px;
+        }
+
+
+        /* ==============================
+           FORMULÁRIO
+        ============================== */
+
+        form {
+            width: 100%;
+        }
+
+
+        /* GRUPO */
+
+        .campo {
+            margin-bottom: 17px;
+        }
+
+
+        /* LABEL */
+
+        .campo label {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+
+            margin-bottom: 7px;
+
+            color: #eeeeee;
+
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .campo label i {
+            width: 18px;
+
+            color: var(--red);
+
+            font-size: 17px;
+
+            text-align: center;
+        }
+
+
+        /* INPUT */
+
+        .input-container {
+            position: relative;
+        }
+
+        .input-container input {
+            width: 100%;
+            height: 48px;
+
+            padding: 0 20px;
+
+            border: 1px solid var(--border);
+            border-radius: 6px;
+
+            outline: none;
+
+            background: var(--input);
+
+            color: white;
+
+            font-family: inherit;
+            font-size: 16px;
+
+            transition: 0.2s;
+        }
+
+        .input-container input::placeholder {
+            color: #8d8d8d;
+        }
+
+        .input-container input:focus {
+            border-color: var(--red);
+
+            box-shadow:
+                0 0 0 1px rgba(237, 0, 0, 0.15);
+        }
+
+
+        /* INPUT COM ÍCONE */
+
+        .input-com-icone {
+            padding-right: 52px !important;
+        }
+
+
+        /* BOTÃO MOSTRAR SENHA */
+
+        .mostrar-senha {
+            position: absolute;
+
+            right: 15px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            border: none;
+
+            background: transparent;
+
+            color: #999;
+
+            font-size: 17px;
+
+            cursor: pointer;
+        }
+
+        .mostrar-senha:hover {
+            color: white;
+        }
+
+
+        /* ==============================
+           BOTÃO CADASTRO
+        ============================== */
+
+        .btn-cadastro {
+            width: 100%;
+            height: 50px;
+
+            margin-top: -1px;
+
+            border: none;
+            border-radius: 6px;
+
+            background: var(--red);
+
+            color: white;
+
+            font-family: inherit;
+            font-size: 20px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .btn-cadastro:hover {
+            background: var(--red-hover);
+
+            box-shadow:
+                0 5px 20px rgba(237, 0, 0, 0.25);
+        }
+
+
+        /* ==============================
+           DIVISOR
+        ============================== */
+
+        .ou {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            margin: 18px 0 13px;
+
+            color: #777;
+
+            font-size: 14px;
+        }
+
+        .ou::before,
+        .ou::after {
+            content: "";
+
+            flex: 1;
+
+            height: 1px;
+
+            background: #3b3b3b;
+        }
+
+        .ou span {
+            padding: 0 2px;
+        }
+
+
+        /* ==============================
+           LOGIN
+        ============================== */
+
+        .login {
+            text-align: center;
+
+            color: #bcbcbc;
+
+            font-size: 16px;
+        }
+
+        .login a {
+            margin-left: 10px;
+
+            color: var(--red);
+
+            text-decoration: none;
+
+            font-weight: 700;
+        }
+
+        .login a:hover {
+            color: var(--red-hover);
+            text-decoration: underline;
+        }
+
+
+        /* ==============================
+           RESPONSIVIDADE
+        ============================== */
+
+        @media (max-width: 800px) {
+
+            header {
+                height: 80px;
+
+                padding: 0 25px;
+            }
+
+            .logo-principal {
+                font-size: 32px;
+            }
+
+            .logo-sub {
+                font-size: 12px;
+                letter-spacing: 4px;
+            }
+
+            .btn-entrar {
+                height: 45px;
+
+                padding: 0 17px;
+
+                font-size: 17px;
+            }
+
+            .btn-entrar i {
+                font-size: 21px;
+            }
+
+            main {
+                min-height: calc(100vh - 80px);
+
+                padding: 20px 15px 30px;
+            }
+
+            .cadastro-card {
+                padding: 25px 35px;
+            }
+
+            .titulo {
+                font-size: 31px;
+            }
+        }
+
+
+        @media (max-width: 550px) {
+
+            header {
+                padding: 0 15px;
+            }
+
+            .logo-principal {
+                font-size: 27px;
+            }
+
+            .logo-sub {
+                margin-left: 7px;
+
+                font-size: 10px;
+                letter-spacing: 3px;
+            }
+
+            .btn-entrar {
+                padding: 0 13px;
+
+                gap: 8px;
+
+                font-size: 15px;
+            }
+
+            .btn-entrar i {
+                font-size: 19px;
+            }
+
+            .cadastro-card {
+                padding: 25px 20px;
+
+                border-radius: 15px;
+            }
+
+            .icone-cadastro {
+                width: 53px;
+                height: 53px;
+
+                font-size: 26px;
+            }
+
+            .titulo {
+                font-size: 27px;
+            }
+
+            .descricao {
+                font-size: 15px;
+            }
+
+            .campo label {
+                font-size: 15px;
+            }
+
+            .input-container input {
+                height: 47px;
+            }
+        }
+
+    </style>
 </head>
+
 
 <body>
 
-    <main class="register-page">
 
-        <section class="register-container">
+    <!-- ==============================
+         CABEÇALHO
+    ============================== -->
 
-            <!-- ===================================== -->
-            <!-- COLUNA ESQUERDA -->
-            <!-- ===================================== -->
+    <header>
 
-            <div class="register-left">
+        <div class="logo">
 
-                <div class="brand-area">
+            <div class="logo-principal">
+                HEFESTO
+            </div>
 
-                    <img
-                        id="logo"
-                        src=""
-                        alt="Logo">
+            <div class="logo-sub">
+                AUTOPEÇAS
+            </div>
 
-                </div>
+        </div>
 
-                <h1 id="tituloCadastro"></h1>
 
-                <p id="descricaoLinha1"></p>
+        <button
+            class="btn-entrar"
+            type="button"
+            onclick="window.location.href='login.html'"
+        >
 
-                <p id="descricaoLinha2"></p>
+            <i class="fa-regular fa-user"></i>
+
+            ENTRAR
+
+        </button>
+
+    </header>
+
+
+
+    <!-- ==============================
+         CONTEÚDO
+    ============================== -->
+
+    <main>
+
+        <section class="cadastro-card">
+
+
+            <!-- ÍCONE -->
+
+            <div class="icone-cadastro">
+
+                <i class="fa-regular fa-user"></i>
 
             </div>
 
-            <!-- ===================================== -->
-            <!-- DIVISOR -->
-            <!-- ===================================== -->
 
-            <div class="divider"></div>
+            <!-- TÍTULO -->
 
-            <!-- ===================================== -->
-            <!-- COLUNA DIREITA -->
-            <!-- ===================================== -->
+            <h1 class="titulo">
 
-            <div class="register-right">
+                CRIAR <span>CONTA</span>
 
-                <div class="form-header">
+            </h1>
 
-                    <h2 id="tituloFormulario"></h2>
 
-                    <p id="descricaoFormulario"></p>
+            <div class="linha-titulo"></div>
 
-                </div>
 
-                <!-- NOME -->
+            <p class="descricao">
 
-                <div class="form-group">
+                Preencha os dados abaixo para se cadastrar
 
-                    <label
-                        id="labelNome"
-                        for="nome">
+            </p>
+
+
+
+            <!-- ==============================
+                 FORMULÁRIO
+            ============================== -->
+
+            <form id="formCadastro">
+
+
+                <!-- CPF -->
+
+                <div class="campo">
+
+                    <label for="cpf">
+
+                        <i class="fa-regular fa-id-card"></i>
+
+                        CPF
+
                     </label>
 
-                    <div class="input-wrapper">
-
-                        <i class="fa-regular fa-user"></i>
+                    <div class="input-container">
 
                         <input
                             type="text"
-                            id="nome">
+                            id="cpf"
+                            name="cpf"
+                            placeholder="000.000.000-00"
+                            maxlength="14"
+                            required
+                        >
 
                     </div>
 
                 </div>
 
-                <!-- EMAIL -->
 
-                <div class="form-group">
 
-                    <label
-                        id="labelEmail"
-                        for="email">
-                    </label>
+                <!-- E-MAIL -->
 
-                    <div class="input-wrapper">
+                <div class="campo">
+
+                    <label for="email">
 
                         <i class="fa-regular fa-envelope"></i>
 
+                        E-MAIL
+
+                    </label>
+
+                    <div class="input-container">
+
                         <input
                             type="email"
-                            id="email">
+                            id="email"
+                            name="email"
+                            placeholder="seuemail@email.com"
+                            required
+                        >
 
                     </div>
 
                 </div>
+
+
 
                 <!-- SENHA -->
 
-                <div class="form-group">
+                <div class="campo">
 
-                    <label
-                        id="labelSenha"
-                        for="senha">
-                    </label>
-
-                    <div class="input-wrapper">
+                    <label for="senha">
 
                         <i class="fa-solid fa-lock"></i>
 
+                        SENHA
+
+                    </label>
+
+                    <div class="input-container">
+
                         <input
                             type="password"
-                            id="senha">
+                            id="senha"
+                            name="senha"
+                            class="input-com-icone"
+                            placeholder="Digite sua senha"
+                            required
+                        >
 
                         <button
                             type="button"
-                            id="toggleSenha"
-                            class="icon-button">
+                            class="mostrar-senha"
+                            onclick="mostrarSenha('senha', this)"
+                        >
 
                             <i class="fa-regular fa-eye"></i>
 
@@ -141,28 +765,37 @@
                     </div>
 
                 </div>
+
+
 
                 <!-- CONFIRMAR SENHA -->
 
-                <div class="form-group">
+                <div class="campo">
 
-                    <label
-                        id="labelConfirmarSenha"
-                        for="confirmarSenha">
-                    </label>
-
-                    <div class="input-wrapper">
+                    <label for="confirmarSenha">
 
                         <i class="fa-solid fa-lock"></i>
 
+                        CONFIRMAR SENHA
+
+                    </label>
+
+                    <div class="input-container">
+
                         <input
                             type="password"
-                            id="confirmarSenha">
+                            id="confirmarSenha"
+                            name="confirmarSenha"
+                            class="input-com-icone"
+                            placeholder="Confirme sua senha"
+                            required
+                        >
 
                         <button
                             type="button"
-                            id="toggleConfirmarSenha"
-                            class="icon-button">
+                            class="mostrar-senha"
+                            onclick="mostrarSenha('confirmarSenha', this)"
+                        >
 
                             <i class="fa-regular fa-eye"></i>
 
@@ -172,91 +805,274 @@
 
                 </div>
 
-                <!-- BOTÃO CADASTRO -->
+
+
+                <!-- TELEFONE -->
+
+                <div class="campo">
+
+                    <label for="telefone">
+
+                        <i class="fa-solid fa-phone"></i>
+
+                        TELEFONE
+
+                    </label>
+
+                    <div class="input-container">
+
+                        <input
+                            type="tel"
+                            id="telefone"
+                            name="telefone"
+                            placeholder="(63) 99999-9999"
+                            maxlength="15"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- DATA DE NASCIMENTO -->
+
+                <div class="campo">
+
+                    <label for="dataNascimento">
+
+                        <i class="fa-regular fa-calendar"></i>
+
+                        DATA DE NASCIMENTO
+
+                    </label>
+
+                    <div class="input-container">
+
+                        <input
+                            type="date"
+                            id="dataNascimento"
+                            name="dataNascimento"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- BOTÃO -->
 
                 <button
-                    id="btnCriarConta"
-                    type="button"
-                    class="btn-primary">
-                </button>
+                    type="submit"
+                    class="btn-cadastro"
+                >
 
-                <!-- SEPARADOR -->
-
-                <div class="separator">
-
-                    <div class="line"></div>
-
-                    <span id="textoSeparador"></span>
-
-                    <div class="line"></div>
-
-                </div>
-
-                <!-- GOOGLE -->
-
-                <button
-                    id="btnGoogle"
-                    type="button"
-                    class="google-button">
-
-                    <img
-                        id="googleIcon"
-                        src=""
-                        alt="Google">
-
-                    <span id="googleTexto"></span>
+                    CRIAR CONTA
 
                 </button>
 
-                <!-- LOGIN -->
 
-                <div class="login-area">
+            </form>
 
-                    <span id="textoLogin"></span>
 
-                    <button
-                        id="btnEntrar"
-                        type="button">
-                    </button>
 
-                </div>
+            <!-- DIVISOR -->
 
-                <!-- TERMOS -->
+            <div class="ou">
 
-                <div class="terms-area">
-
-                    <p>
-
-                        <span id="textoTermos1"></span>
-
-                        <button
-                            id="btnTermos"
-                            type="button">
-                        </button>
-
-                    </p>
-
-                    <p>
-
-                        <span id="textoTermos2"></span>
-
-                        <button
-                            id="btnPrivacidade"
-                            type="button">
-                        </button>
-
-                    </p>
-
-                </div>
+                <span>OU</span>
 
             </div>
+
+
+
+            <!-- LOGIN -->
+
+            <div class="login">
+
+                Já tem uma conta?
+
+                <a href="login.html">
+                    Entrar
+                </a>
+
+            </div>
+
 
         </section>
 
     </main>
 
-    <script src="../js/cadastro.js"></script>
 
+
+    <!-- ==============================
+         JAVASCRIPT
+    ============================== -->
+
+    <script>
+
+
+        /* ==============================
+           MOSTRAR / OCULTAR SENHA
+        ============================== */
+
+        function mostrarSenha(id, botao) {
+
+            const input = document.getElementById(id);
+
+            const icone = botao.querySelector("i");
+
+
+            if (input.type === "password") {
+
+                input.type = "text";
+
+                icone.classList.remove("fa-eye");
+
+                icone.classList.add("fa-eye-slash");
+
+            } else {
+
+                input.type = "password";
+
+                icone.classList.remove("fa-eye-slash");
+
+                icone.classList.add("fa-eye");
+
+            }
+
+        }
+
+
+
+        /* ==============================
+           MÁSCARA CPF
+        ============================== */
+
+        document
+            .getElementById("cpf")
+            .addEventListener("input", function () {
+
+                let valor = this.value.replace(/\D/g, "");
+
+                valor = valor.substring(0, 11);
+
+                valor = valor.replace(
+                    /(\d{3})(\d)/,
+                    "$1.$2"
+                );
+
+                valor = valor.replace(
+                    /(\d{3})(\d)/,
+                    "$1.$2"
+                );
+
+                valor = valor.replace(
+                    /(\d{3})(\d{1,2})$/,
+                    "$1-$2"
+                );
+
+                this.value = valor;
+
+            });
+
+
+
+        /* ==============================
+           MÁSCARA TELEFONE
+        ============================== */
+
+        document
+            .getElementById("telefone")
+            .addEventListener("input", function () {
+
+                let valor = this.value.replace(/\D/g, "");
+
+                valor = valor.substring(0, 11);
+
+                if (valor.length > 2) {
+
+                    valor = "(" +
+                        valor.substring(0, 2) +
+                        ") " +
+                        valor.substring(2);
+
+                }
+
+                if (valor.length > 10) {
+
+                    valor =
+                        valor.substring(0, 10) +
+                        "-" +
+                        valor.substring(10);
+
+                }
+
+                this.value = valor;
+
+            });
+
+
+
+        /* ==============================
+           ENVIO DO FORMULÁRIO
+        ============================== */
+
+        document
+            .getElementById("formCadastro")
+            .addEventListener("submit", function (event) {
+
+                event.preventDefault();
+
+
+                const senha =
+                    document.getElementById("senha").value;
+
+                const confirmarSenha =
+                    document.getElementById("confirmarSenha").value;
+
+
+                if (senha !== confirmarSenha) {
+
+                    alert("As senhas não coincidem!");
+
+                    return;
+
+                }
+
+
+                /*
+                    Aqui você poderá futuramente
+                    enviar os dados para o backend.
+
+                    Exemplo:
+
+                    fetch("/clientes", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            cpf: document.getElementById("cpf").value,
+                            email: document.getElementById("email").value,
+                            senha: senha,
+                            telefone: document.getElementById("telefone").value,
+                            data_nascimento:
+                                document.getElementById("dataNascimento").value
+                        })
+                    });
+                */
+
+
+                alert("Conta criada com sucesso!");
+
+            });
+
+    </script>
+   <script src="cadastro.js"></script>
 </body>
 
 </html>
