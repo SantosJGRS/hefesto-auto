@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -27,6 +28,7 @@
 
         <section class="register-container">
 
+
             <!-- ===================================== -->
             <!-- COLUNA ESQUERDA -->
             <!-- ===================================== -->
@@ -34,11 +36,6 @@
             <div class="register-left">
 
                 <div class="brand-area">
-
-                    <img
-                        id="logo"
-                        src=""
-                        alt="Logo">
 
                 </div>
 
@@ -50,17 +47,24 @@
 
             </div>
 
+
             <!-- ===================================== -->
             <!-- DIVISOR -->
             <!-- ===================================== -->
 
             <div class="divider"></div>
 
+
             <!-- ===================================== -->
             <!-- COLUNA DIREITA -->
             <!-- ===================================== -->
 
             <div class="register-right">
+
+
+                <!-- ================================= -->
+                <!-- CABEÇALHO -->
+                <!-- ================================= -->
 
                 <div class="form-header">
 
@@ -70,7 +74,10 @@
 
                 </div>
 
+
+                <!-- ================================= -->
                 <!-- NOME -->
+                <!-- ================================= -->
 
                 <div class="form-group">
 
@@ -85,13 +92,96 @@
 
                         <input
                             type="text"
-                            id="nome">
+                            id="nome"
+                            autocomplete="name">
 
                     </div>
 
                 </div>
 
+
+                <!-- ================================= -->
+                <!-- CPF -->
+                <!-- ================================= -->
+
+                <div class="form-group">
+
+                    <label
+                        id="labelCpf"
+                        for="cpf">
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-regular fa-id-card"></i>
+
+                        <input
+                            type="text"
+                            id="cpf"
+                            maxlength="14"
+                            inputmode="numeric"
+                            autocomplete="off">
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================= -->
+                <!-- TELEFONE -->
+                <!-- ================================= -->
+
+                <div class="form-group">
+
+                    <label
+                        id="labelTelefone"
+                        for="telefone">
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-solid fa-phone"></i>
+
+                        <input
+                            type="tel"
+                            id="telefone"
+                            maxlength="15"
+                            inputmode="tel"
+                            autocomplete="tel">
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================= -->
+                <!-- DATA DE NASCIMENTO -->
+                <!-- ================================= -->
+
+                <div class="form-group">
+
+                    <label
+                        id="labelDataNascimento"
+                        for="dataNascimento">
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-regular fa-calendar"></i>
+
+                        <input
+                            type="date"
+                            id="dataNascimento"
+                            autocomplete="bday">
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================= -->
                 <!-- EMAIL -->
+                <!-- ================================= -->
 
                 <div class="form-group">
 
@@ -106,13 +196,17 @@
 
                         <input
                             type="email"
-                            id="email">
+                            id="email"
+                            autocomplete="email">
 
                     </div>
 
                 </div>
 
+
+                <!-- ================================= -->
                 <!-- SENHA -->
+                <!-- ================================= -->
 
                 <div class="form-group">
 
@@ -127,12 +221,14 @@
 
                         <input
                             type="password"
-                            id="senha">
+                            id="senha"
+                            autocomplete="new-password">
 
                         <button
                             type="button"
                             id="toggleSenha"
-                            class="icon-button">
+                            class="icon-button"
+                            aria-label="Mostrar senha">
 
                             <i class="fa-regular fa-eye"></i>
 
@@ -142,7 +238,10 @@
 
                 </div>
 
+
+                <!-- ================================= -->
                 <!-- CONFIRMAR SENHA -->
+                <!-- ================================= -->
 
                 <div class="form-group">
 
@@ -157,12 +256,14 @@
 
                         <input
                             type="password"
-                            id="confirmarSenha">
+                            id="confirmarSenha"
+                            autocomplete="new-password">
 
                         <button
                             type="button"
                             id="toggleConfirmarSenha"
-                            class="icon-button">
+                            class="icon-button"
+                            aria-label="Mostrar confirmação da senha">
 
                             <i class="fa-regular fa-eye"></i>
 
@@ -172,7 +273,10 @@
 
                 </div>
 
+
+                <!-- ================================= -->
                 <!-- BOTÃO CADASTRO -->
+                <!-- ================================= -->
 
                 <button
                     id="btnCriarConta"
@@ -180,7 +284,10 @@
                     class="btn-primary">
                 </button>
 
+
+                <!-- ================================= -->
                 <!-- SEPARADOR -->
+                <!-- ================================= -->
 
                 <div class="separator">
 
@@ -192,7 +299,10 @@
 
                 </div>
 
+
+                <!-- ================================= -->
                 <!-- GOOGLE -->
+                <!-- ================================= -->
 
                 <button
                     id="btnGoogle"
@@ -208,7 +318,10 @@
 
                 </button>
 
+
+                <!-- ================================= -->
                 <!-- LOGIN -->
+                <!-- ================================= -->
 
                 <div class="login-area">
 
@@ -221,7 +334,10 @@
 
                 </div>
 
+
+                <!-- ================================= -->
                 <!-- TERMOS -->
+                <!-- ================================= -->
 
                 <div class="terms-area">
 
@@ -255,8 +371,10 @@
 
     </main>
 
+
     <script src="../js/cadastro.js"></script>
 
 </body>
 
 </html>
+

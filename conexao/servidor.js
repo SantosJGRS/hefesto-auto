@@ -15,21 +15,22 @@ app.use(cors());
 app.use(express.json());
  
 // importar a conexão com o banco de dados
-const conexao = require("./networking");
+const conexao = require("./conexao");
 
 
 // Criar uma rota para testar a conexão com o banco de dados
-const clienteRoutes = require("../routes/cliente_routes.js");
+const clienteRoutes = require("../routes//cliente_routes");
+
+
 app.use("/clientes", clienteRoutes);
 
-
-
-
-// importar as rotas da aplicação
-app.listen(3000, () => {
-    console.log("Servidor iniciado!");
+app.get("/teste", (req, res) => {
+    res.json({
+        mensagem: "Servidor funcionando!"
+    });
 });
- 
+
+console.log("Rotas de clientes carregadas!");
 
 
  

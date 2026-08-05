@@ -1,282 +1,354 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 
 <head>
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
+    <meta
+        name="viewport"
         content="width=device-width, initial-scale=1.0">
 
-    <link rel="shortcut icon"
-        href="assets/logoico.png"
-        type="image/x-icon">
+    <title>Login | Hefesto Autopeças</title>
 
-    <title>Login - Hefesto Auto</title>
 
-    <link rel="stylesheet"
-        href="style/login.css">
+    <!-- CSS -->
 
-    <link rel="stylesheet"
+    <link
+        rel="stylesheet"
+        href="../style/login.css">
+
+
+    <!-- FONT AWESOME -->
+
+    <link
+        rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
 
+
 <body>
 
-    <!-- CABEÇALHO -->
 
-    <header>
+    <!-- ==========================================
+         PÁGINA DE LOGIN
+    =========================================== -->
 
-        <div class="topo">
+    <main class="login-page">
 
-            <div class="logo">
 
-                <img src="assets/logoico.png"
-                    alt="logo hefesto auto">
+        <!-- ======================================
+             CONTAINER PRINCIPAL
+        ======================================= -->
 
-                <h2>HEFESTO AUTO</h2>
+        <section class="login-container">
 
-            </div>
 
-        </div>
+            <!-- ==================================
+                 LADO DO FORMULÁRIO
+            =================================== -->
 
-    </header>
+            <div class="login-right">
 
-    <!-- CONTEÚDO -->
 
-    <main class="container-login">
+                <!-- ==============================
+                     CABEÇALHO
+                =============================== -->
 
-        <!-- LADO ESQUERDO -->
+                <div class="form-header">
 
-        <section class="apresentacao">
+                    <h2>
+                        Entrar
+                    </h2>
 
-            <div class="texto-apresentacao">
-
-                <h1 id="tituloBoasVindas"></h1>
-
-                <p id="descricaoBoasVindas"></p>
-
-            </div>
-
-            <div class="imagem-login">
-
-                <img id="imagemCadeado"
-                    src="assets/lock.png"
-                    alt="segurança">
-
-            </div>
-
-            <div class="vantagens">
-
-                <div class="item-vantagem">
-
-                    <div class="icone">
-
-                        <i class="fa-solid fa-shield-halved"></i>
-
-                    </div>
-
-                    <div>
-
-                        <h3 id="vantagemTitulo1"></h3>
-
-                        <p id="vantagemTexto1"></p>
-
-                    </div>
+                    <div class="title-line"></div>
 
                 </div>
 
-                <div class="item-vantagem">
 
-                    <div class="icone">
+                <!-- ==============================
+                     FORMULÁRIO
+                =============================== -->
 
-                        <i class="fa-solid fa-bolt"></i>
+                <form
+                    id="loginForm"
+                    class="login-form"
+                    novalidate>
 
-                    </div>
 
-                    <div>
+                    <!-- ==========================
+                         E-MAIL
+                    =========================== -->
 
-                        <h3 id="vantagemTitulo2"></h3>
+                    <div class="form-group">
 
-                        <p id="vantagemTexto2"></p>
+                        <label for="email">
+                            E-mail
+                        </label>
 
-                    </div>
+                        <div class="input-wrapper">
 
-                </div>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="seuemail@exemplo.com"
+                                autocomplete="email"
+                                required>
 
-                <div class="item-vantagem">
-
-                    <div class="icone">
-
-                        <i class="fa-solid fa-user"></i>
-
-                    </div>
-
-                    <div>
-
-                        <h3 id="vantagemTitulo3"></h3>
-
-                        <p id="vantagemTexto3"></p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-        <!-- ÁREA LOGIN -->
-
-        <section class="area-login">
-
-            <div class="card-login">
-
-                <div class="titulo-login">
-
-                    <h2 id="tituloLogin"></h2>
-
-                    <p id="descricaoLogin"></p>
-
-                </div>
-
-                <!-- EMAIL -->
-
-                <div class="campo">
-
-                    <label id="labelEmail"
-                        for="email"></label>
-
-                    <div class="input-box">
-
-                        <i class="fa-regular fa-envelope"></i>
-
-                        <input type="email"
-                            id="email">
+                        </div>
 
                     </div>
 
-                </div>
 
-                <!-- SENHA -->
+                    <!-- ==========================
+                         SENHA
+                    =========================== -->
 
-                <div class="campo">
+                    <div class="form-group">
 
-                    <label id="labelSenha"
-                        for="senha"></label>
+                        <label for="senha">
+                            Senha
+                        </label>
 
-                    <div class="input-box">
+                        <div class="input-wrapper">
 
-                        <i class="fa-solid fa-lock"></i>
+                            <input
+                                type="password"
+                                id="senha"
+                                name="senha"
+                                placeholder="Digite sua senha"
+                                autocomplete="current-password"
+                                required>
 
-                        <input type="password"
-                            id="senha">
 
-                        <button type="button"
-                            id="toggleSenha">
+                            <!-- MOSTRAR SENHA -->
 
-                            <i class="fa-regular fa-eye"></i>
+                            <button
+                                type="button"
+                                id="toggleSenha"
+                                class="password-toggle"
+                                aria-label="Mostrar senha">
+
+                                <i
+                                    class="fa-regular fa-eye">
+                                </i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ==========================
+                         OPÇÕES
+                    =========================== -->
+
+                    <div class="login-options">
+
+
+                        <!-- LEMBRAR DE MIM -->
+
+                        <label class="remember-me">
+
+                            <input
+                                type="checkbox"
+                                id="lembrar"
+                                name="lembrar">
+
+                            <span class="checkmark"></span>
+
+                            <span>
+                                Lembrar de mim
+                            </span>
+
+                        </label>
+
+
+                        <!-- ESQUECI A SENHA -->
+
+                        <button
+                            type="button"
+                            id="btnEsqueciSenha"
+                            class="forgot-password">
+
+                            Esqueceu a senha?
 
                         </button>
 
                     </div>
 
-                </div>
 
-                <!-- OPÇÕES -->
+                    <!-- ==========================
+                         BOTÃO ENTRAR
+                    =========================== -->
 
-                <div class="opcoes-login">
+                    <button
+                        type="submit"
+                        id="btnEntrar"
+                        class="btn-primary">
 
-                    <div class="lembrar">
+                        Entrar
 
-                        <input type="checkbox"
-                            id="lembrar">
-
-                        <label id="textoLembrar"
-                            for="lembrar"></label>
-
-                    </div>
-
-                    <button type="button"
-                        id="btnEsqueciSenha">
                     </button>
 
-                </div>
+                </form>
 
-                <!-- BOTÃO LOGIN -->
 
-                <button type="button"
-                    id="btnEntrar">
+                <!-- ==============================
+                     SEPARADOR
+                =============================== -->
 
-                </button>
+                <div class="separator">
 
-                <!-- SEPARADOR -->
+                    <div class="line"></div>
 
-                <div class="separador">
+                    <span>
+                        ou
+                    </span>
 
-                    <div class="linha"></div>
-
-                    <span id="textoSeparador"></span>
-
-                    <div class="linha"></div>
+                    <div class="line"></div>
 
                 </div>
 
-                <!-- GOOGLE -->
 
-                <button type="button"
-                    id="btnGoogle">
+                <!-- ==============================
+                     GOOGLE
+                =============================== -->
 
-                    <img src="assets/google.png"
-                        alt="logo google">
+                <button
+                    type="button"
+                    id="btnGoogle"
+                    class="google-button">
 
-                    <span id="textoGoogle"></span>
+                    <img
+                        src="../assets/google.png"
+                        alt="Google">
+
+                    <span>
+                        Continuar com Google
+                    </span>
 
                 </button>
 
-                <!-- CADASTRO -->
 
-                <div class="cadastro">
+                <!-- ==============================
+                     CRIAR CONTA
+                =============================== -->
 
-                    <p id="textoCadastro"></p>
+                <div class="register-area">
 
-                    <button type="button"
-                        id="btnCadastro">
+                    <span>
+                        Ainda não possui uma conta?
+                    </span>
+
+                    <button
+                        type="button"
+                        id="btnCriarConta">
+
+                        Criar conta
 
                     </button>
 
                 </div>
 
             </div>
+
+
+            <!-- ==================================
+                 LADO DA MARCA
+            =================================== -->
+
+            <div class="login-brand">
+
+
+                <!-- LOGO -->
+
+                <img
+                    src="../assets/hefesto_auto_logo.ico"
+                    alt="Hefesto Autopeças"
+                    class="brand-logo">
+
+
+                <!-- NOME -->
+
+                <h1>
+
+                    Hefesto
+
+                    <span>
+                        Autopeças
+                    </span>
+
+                </h1>
+
+
+                <!-- DESCRIÇÃO -->
+
+                <p>
+
+                    Peças de qualidade para manter
+                    seu veículo sempre em movimento.
+
+                </p>
+
+            </div>
+
 
         </section>
 
+
+        <!-- ======================================
+             RODAPÉ
+        ======================================= -->
+
+        <footer class="login-footer">
+
+            <span>
+                © 2026 Hefesto Autopeças
+            </span>
+
+
+            <button
+                type="button"
+                id="btnPrivacidade">
+
+                Privacidade
+
+            </button>
+
+
+            <button
+                type="button"
+                id="btnTermos">
+
+                Termos
+
+            </button>
+
+
+            <button
+                type="button"
+                id="btnSuporte">
+
+                Suporte
+
+            </button>
+
+        </footer>
+
+
     </main>
 
-    <!-- RODAPÉ -->
 
-    <footer>
+    <!-- ==========================================
+         JAVASCRIPT
+    =========================================== -->
 
-        <div class="rodape">
+    <script src="../js/login.js"></script>
 
-            <p id="copyright"></p>
-
-            <div class="links-rodape">
-
-                <button id="btnPrivacidade"></button>
-
-                <button id="btnTermos"></button>
-
-                <button id="btnSuporte"></button>
-
-            </div>
-
-        </div>
-
-    </footer>
-
-    <script src="js/login.js"></script>
 
 </body>
 

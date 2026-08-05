@@ -1,76 +1,27 @@
+
 /* ==========================================
-   CONFIGURAÇÃO DA PÁGINA
+   CONFIGURAÇÕES
 ========================================== */
 
-const pageData = {
+const API_URL = "http://localhost:3000";
 
-    logo: "../assets/logo.png",
-
-    googleIcon:
-        "../assets/google.png",
-
-    tituloBoasVindas:
-        "Bem-vindo",
-
-    descricaoBoasVindas:
-        "Faça login para acessar sua conta.",
-
-    labelEmail:
-        "E-mail",
-
-    labelSenha:
-        "Senha",
-
-    placeholderEmail:
-        "seuemail@exemplo.com",
-
-    placeholderSenha:
-        "Sua senha",
-
-    textoRecuperacao:
-        "Esqueceu a senha?",
-
-    textoEntrar:
-        "Entrar",
-
-    textoSeparador:
-        "ou continue com",
-
-    googleTexto:
-        "Continuar com Google",
-
-    textoCadastro:
-        "Não possui conta?",
-
-    botaoCadastro:
-        "Criar conta"
-
-};
 
 /* ==========================================
    ELEMENTOS
 ========================================== */
 
-const logo =
-    document.getElementById("logo");
+const loginForm = document.getElementById("loginForm");
 
-const tituloBoasVindas =
-    document.getElementById("tituloBoasVindas");
+const email = document.getElementById("email");
 
-const descricaoBoasVindas =
-    document.getElementById("descricaoBoasVindas");
+const senha = document.getElementById("senha");
 
-const labelEmail =
-    document.getElementById("labelEmail");
+const lembrar = document.getElementById("lembrar");
 
-const labelSenha =
-    document.getElementById("labelSenha");
+const toggleSenha = document.getElementById("toggleSenha");
 
-const email =
-    document.getElementById("email");
-
-const senha =
-    document.getElementById("senha");
+const btnEsqueciSenha =
+    document.getElementById("btnEsqueciSenha");
 
 const btnEntrar =
     document.getElementById("btnEntrar");
@@ -81,72 +32,28 @@ const btnGoogle =
 const btnCriarConta =
     document.getElementById("btnCriarConta");
 
-const btnRecuperarSenha =
-    document.getElementById("btnRecuperarSenha");
+const btnPrivacidade =
+    document.getElementById("btnPrivacidade");
 
-const textoSeparador =
-    document.getElementById("textoSeparador");
+const btnTermos =
+    document.getElementById("btnTermos");
 
-const googleTexto =
-    document.getElementById("googleTexto");
+const btnSuporte =
+    document.getElementById("btnSuporte");
 
-const googleIcon =
-    document.getElementById("googleIcon");
-
-const textoCadastro =
-    document.getElementById("textoCadastro");
-
-const toggleSenha =
-    document.getElementById("toggleSenha");
 
 /* ==========================================
-   PREENCHER CONTEÚDO
+   VALIDAR E-MAIL
 ========================================== */
 
-function preencherConteudo() {
+function emailValido(emailTexto) {
 
-    logo.src =
-        pageData.logo;
+    const regex =
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    googleIcon.src =
-        pageData.googleIcon;
-
-    tituloBoasVindas.textContent =
-        pageData.tituloBoasVindas;
-
-    descricaoBoasVindas.textContent =
-        pageData.descricaoBoasVindas;
-
-    labelEmail.textContent =
-        pageData.labelEmail;
-
-    labelSenha.textContent =
-        pageData.labelSenha;
-
-    email.placeholder =
-        pageData.placeholderEmail;
-
-    senha.placeholder =
-        pageData.placeholderSenha;
-
-    btnRecuperarSenha.textContent =
-        pageData.textoRecuperacao;
-
-    btnEntrar.textContent =
-        pageData.textoEntrar;
-
-    textoSeparador.textContent =
-        pageData.textoSeparador;
-
-    googleTexto.textContent =
-        pageData.googleTexto;
-
-    textoCadastro.textContent =
-        pageData.textoCadastro;
-
-    btnCriarConta.textContent =
-        pageData.botaoCadastro;
+    return regex.test(emailTexto);
 }
+
 
 /* ==========================================
    MOSTRAR / OCULTAR SENHA
@@ -157,61 +64,91 @@ function alternarSenha() {
     const icon =
         toggleSenha.querySelector("i");
 
+
     if (senha.type === "password") {
 
         senha.type = "text";
 
-        icon.classList.remove(
-            "fa-eye"
-        );
+        icon.classList.remove("fa-eye");
 
-        icon.classList.add(
-            "fa-eye-slash"
+        icon.classList.add("fa-eye-slash");
+
+        toggleSenha.setAttribute(
+            "aria-label",
+            "Ocultar senha"
         );
 
     } else {
 
         senha.type = "password";
 
-        icon.classList.remove(
-            "fa-eye-slash"
-        );
+        icon.classList.remove("fa-eye-slash");
 
-        icon.classList.add(
-            "fa-eye"
-        );
+        icon.classList.add("fa-eye");
 
+        toggleSenha.setAttribute(
+            "aria-label",
+            "Mostrar senha"
+        );
     }
-
 }
 
+
 /* ==========================================
-   VALIDAR LOGIN
+   VALIDAR FORMULÁRIO
 ========================================== */
 
-function validarLogin() {
+function validarFormulario() {
 
     const emailValor =
         email.value.trim();
 
     const senhaValor =
-        senha.value.trim();
+        senha.value;
+
+
+    /* E-MAIL VAZIO */
 
     if (emailValor === "") {
 
-        alert(
-            "Informe seu e-mail."
-        );
+        alert("Informe seu e-mail.");
 
         email.focus();
 
         return false;
     }
 
+
+    /* E-MAIL INVÁLIDO */
+
+    if (!emailValido(emailValor)) {
+
+        alert("Informe um e-mail válido.");
+
+        email.focus();
+
+        return false;
+    }
+
+
+    /* SENHA VAZIA */
+
     if (senhaValor === "") {
 
+        alert("Informe sua senha.");
+
+        senha.focus();
+
+        return false;
+    }
+
+
+    /* SENHA MUITO CURTA */
+
+    if (senhaValor.length < 8) {
+
         alert(
-            "Informe sua senha."
+            "A senha deve possuir no mínimo 8 caracteres."
         );
 
         senha.focus();
@@ -219,18 +156,79 @@ function validarLogin() {
         return false;
     }
 
+
     return true;
 }
 
+
 /* ==========================================
-   LOGIN
+   SALVAR LOGIN
 ========================================== */
 
-function realizarLogin() {
+function salvarLogin() {
 
-    if (!validarLogin()) {
+    const emailValor =
+        email.value.trim();
+
+
+    if (lembrar.checked) {
+
+        localStorage.setItem(
+            "emailLogin",
+            emailValor
+        );
+
+    } else {
+
+        localStorage.removeItem(
+            "emailLogin"
+        );
+    }
+}
+
+
+/* ==========================================
+   CARREGAR LOGIN SALVO
+========================================== */
+
+function carregarLoginSalvo() {
+
+    const emailSalvo =
+        localStorage.getItem("emailLogin");
+
+
+    if (emailSalvo) {
+
+        email.value =
+            emailSalvo;
+
+        lembrar.checked =
+            true;
+    }
+}
+
+
+/* ==========================================
+   REALIZAR LOGIN
+========================================== */
+
+async function realizarLogin(event) {
+
+    event.preventDefault();
+
+
+    /* ======================================
+       VALIDAR
+    ====================================== */
+
+    if (!validarFormulario()) {
         return;
     }
+
+
+    /* ======================================
+       DADOS DO LOGIN
+    ====================================== */
 
     const dadosLogin = {
 
@@ -238,128 +236,424 @@ function realizarLogin() {
             email.value.trim(),
 
         senha:
-            senha.value.trim()
+            senha.value
 
     };
 
-    console.log(
-        "LOGIN:",
-        dadosLogin
-    );
 
-    alert(
-        "Login realizado com sucesso!"
-    );
+    /* ======================================
+       DESABILITAR BOTÃO
+    ====================================== */
+
+    btnEntrar.disabled = true;
+
+    btnEntrar.textContent =
+        "Entrando...";
+
+
+    try {
+
+        /* ==================================
+           ENVIAR PARA O BACKEND
+        ================================== */
+
+        const resposta =
+            await fetch(
+                `${API_URL}/clientes/login`,
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:
+                        JSON.stringify(
+                            dadosLogin
+                        )
+                }
+            );
+
+
+        /* ==================================
+           LER RESPOSTA
+        ================================== */
+
+        let dados = {};
+
+        try {
+
+            dados =
+                await resposta.json();
+
+        } catch {
+
+            dados = {};
+        }
+
+
+        /* ==================================
+           VERIFICAR ERRO
+        ================================== */
+
+        if (!resposta.ok) {
+
+            throw new Error(
+
+                dados.mensagem ||
+
+                dados.message ||
+
+                "E-mail ou senha incorretos."
+            );
+        }
+
+
+        /* ==================================
+           SALVAR E-MAIL
+        ================================== */
+
+        salvarLogin();
+
+
+        /* ==================================
+           SALVAR CLIENTE
+        ================================== */
+
+        if (dados.cliente) {
+
+            localStorage.setItem(
+                "cliente",
+                JSON.stringify(
+                    dados.cliente
+                )
+            );
+        }
+
+
+        /* ==================================
+           SALVAR USUÁRIO
+        ================================== */
+
+        if (dados.usuario) {
+
+            localStorage.setItem(
+                "usuario",
+                JSON.stringify(
+                    dados.usuario
+                )
+            );
+        }
+
+
+        /* ==================================
+           SALVAR TOKEN
+        ================================== */
+
+        if (dados.token) {
+
+            localStorage.setItem(
+                "token",
+                dados.token
+            );
+        }
+
+
+        /* ==================================
+           SUCESSO
+        ================================== */
+
+        alert(
+            "Login realizado com sucesso!"
+        );
+
+
+        /* ==================================
+           REDIRECIONAR
+        ================================== */
+
+        window.location.href =
+            "../index.html";
+
+
+    } catch (erro) {
+
+        console.error(
+            "Erro ao realizar login:",
+            erro
+        );
+
+
+        /* ==================================
+           ERRO DE CONEXÃO
+        ================================== */
+
+        if (
+            erro instanceof TypeError
+        ) {
+
+            alert(
+                "Não foi possível conectar ao servidor. Verifique se o backend está funcionando."
+            );
+
+        } else {
+
+            alert(
+                erro.message ||
+                "Não foi possível realizar o login."
+            );
+        }
+
+    } finally {
+
+        /* ==================================
+           RESTAURAR BOTÃO
+        ================================== */
+
+        btnEntrar.disabled = false;
+
+        btnEntrar.textContent =
+            "Entrar";
+    }
 }
+
 
 /* ==========================================
-   GOOGLE
+   ESQUECI A SENHA
 ========================================== */
 
-function loginGoogle() {
+function esqueciSenha() {
+
+    const emailValor =
+        email.value.trim();
+
+
+    if (emailValor === "") {
+
+        alert(
+            "Informe seu e-mail primeiro para recuperar sua senha."
+        );
+
+        email.focus();
+
+        return;
+    }
+
+
+    if (!emailValido(emailValor)) {
+
+        alert(
+            "Informe um e-mail válido."
+        );
+
+        email.focus();
+
+        return;
+    }
+
 
     console.log(
-        "Login Google"
+        "Solicitação de recuperação:",
+        emailValor
+    );
+
+
+    alert(
+        "A recuperação de senha será configurada em breve."
+    );
+}
+
+
+/* ==========================================
+   LOGIN COM GOOGLE
+========================================== */
+
+function continuarGoogle() {
+
+    console.log(
+        "Login com Google"
     );
 
     alert(
-        "Continuar com Google"
+        "Login com Google ainda não configurado."
     );
 }
+
 
 /* ==========================================
    CRIAR CONTA
 ========================================== */
 
-function criarConta() {
+function abrirCadastro() {
 
-    console.log(
-        "Criar Conta"
-    );
-
-    alert(
-        "Redirecionar para cadastro"
-    );
+    window.location.href =
+        "cadastro.html";
 }
 
+
 /* ==========================================
-   RECUPERAR SENHA
+   PRIVACIDADE
 ========================================== */
 
-function recuperarSenha() {
+function abrirPrivacidade() {
 
     console.log(
-        "Recuperar senha"
+        "Abrir Política de Privacidade"
     );
 
     alert(
-        "Redirecionar para recuperação de senha"
+        "Página de Política de Privacidade."
     );
 }
 
+
 /* ==========================================
-   ENTER PARA LOGIN
+   TERMOS
+========================================== */
+
+function abrirTermos() {
+
+    console.log(
+        "Abrir Termos de Uso"
+    );
+
+    alert(
+        "Página de Termos de Uso."
+    );
+}
+
+
+/* ==========================================
+   SUPORTE
+========================================== */
+
+function abrirSuporte() {
+
+    console.log(
+        "Abrir Suporte"
+    );
+
+    alert(
+        "Página de Suporte."
+    );
+}
+
+
+/* ==========================================
+   CONFIGURAR EVENTOS
+========================================== */
+
+function configurarEventos() {
+
+    /* FORMULÁRIO */
+
+    loginForm.addEventListener(
+        "submit",
+        realizarLogin
+    );
+
+
+    /* MOSTRAR SENHA */
+
+    toggleSenha.addEventListener(
+        "click",
+        alternarSenha
+    );
+
+
+    /* ESQUECI A SENHA */
+
+    btnEsqueciSenha.addEventListener(
+        "click",
+        esqueciSenha
+    );
+
+
+    /* GOOGLE */
+
+    btnGoogle.addEventListener(
+        "click",
+        continuarGoogle
+    );
+
+
+    /* CRIAR CONTA */
+
+    btnCriarConta.addEventListener(
+        "click",
+        abrirCadastro
+    );
+
+
+    /* PRIVACIDADE */
+
+    btnPrivacidade.addEventListener(
+        "click",
+        abrirPrivacidade
+    );
+
+
+    /* TERMOS */
+
+    btnTermos.addEventListener(
+        "click",
+        abrirTermos
+    );
+
+
+    /* SUPORTE */
+
+    btnSuporte.addEventListener(
+        "click",
+        abrirSuporte
+    );
+}
+
+
+/* ==========================================
+   ENTER
 ========================================== */
 
 function configurarEnter() {
 
     document.addEventListener(
         "keydown",
-        function (event) {
+        function(event) {
 
-            if (
-                event.key === "Enter"
-            ) {
-
-                realizarLogin();
-
+            if (event.key !== "Enter") {
+                return;
             }
 
+
+            /*
+             * Se o usuário estiver digitando
+             * e pressionar Enter, envia o formulário.
+             */
+
+            if (
+                document.activeElement === email ||
+                document.activeElement === senha
+            ) {
+
+                event.preventDefault();
+
+                loginForm.requestSubmit();
+            }
         }
     );
 }
 
-/* ==========================================
-   EVENTOS
-========================================== */
-
-function configurarEventos() {
-
-    btnEntrar.addEventListener(
-        "click",
-        realizarLogin
-    );
-
-    btnGoogle.addEventListener(
-        "click",
-        loginGoogle
-    );
-
-    btnCriarConta.addEventListener(
-        "click",
-        criarConta
-    );
-
-    btnRecuperarSenha.addEventListener(
-        "click",
-        recuperarSenha
-    );
-
-    toggleSenha.addEventListener(
-        "click",
-        alternarSenha
-    );
-}
 
 /* ==========================================
-   INIT
+   INICIALIZAÇÃO
 ========================================== */
 
 document.addEventListener(
     "DOMContentLoaded",
-    () => {
+    function() {
 
-        preencherConteudo();
+        carregarLoginSalvo();
 
         configurarEventos();
 
@@ -367,3 +661,4 @@ document.addEventListener(
 
     }
 );
+

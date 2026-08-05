@@ -1,364 +1,631 @@
 CREATE DATABASE hefestoauto;
+USE hefestoauto;
 
-DROP database hefestoauto;
 
-use hefestoauto;
+-- =========================================================
+-- TABELA: LOJISTA
+-- =========================================================
 
--- cria tabela sem chave estrangeira --
 CREATE TABLE Lojista(
-idLojista INT primary key auto_increment,
-nome VARCHAR(200) not null,
-cpf MEDIUMINT(11) not null unique,
-cnpj MEDIUMINT(14) unique,
-email VARCHAR(120) not null,
-senha VARCHAR(20) not null,
-telefone MEDIUMINT(14)
-);
+    idLojista INT PRIMARY KEY AUTO_INCREMENT,
 
-drop table lojista;
-
-CREATE table Endereco(
-idEndereco INT primary key auto_increment, 
-
-rua VARCHAR(50) not null,
-
-cep MEDIUMINT(10) not null ,
-
-setor VARCHAR(50) not null,
-
-numero mediumint not null,
-
-complemento VARCHAR(100) not null,
-
-tipo VARCHAR(45)
-);
-
-create table Formas_pagamento(
-idFormas_Pagamento INT primary key auto_increment,
-
-nome VARCHAR(45)
-);
-
-drop table Forma_Pagamento;
-
-
-create table Pedidos(
-
-idPedidos INT primary key auto_increment,
-
-data_pedido   DATE not null,
-
-nota_fiscal LONGBLOB not null,
-
-data_entrega DATE not null,
-
-status_entrega VARCHAR(45) not null,
-
-status_pagamento VARCHAR(45) not null,
-
-codigo VARCHAR(45),
-
-Cliente_idCliente INT,
-
-Loja_idLoja INT,
-
-Endereco_idEndereco INT,
-
-Formas_Pagamento_idFormas_Pagamento INT,
-
-foreign key (Cliente_idCliente) references Cliente (idCliente),
-
-foreign key (Loja_idLoja) references Loja (idLoja),
-
-foreign key (Endereco_idEndereco) references Endereco (idEndereco),
-
-foreign key (Formas_Pagamento_idFormas_Pagamento) references Formas_Pagamento (idFormas_Pagamento)
- 
- 
-);
-
-create table categoria(
-IdCategoria int primary key auto_increment,
-nome VARCHAR(100) not null
-);
-
-create table Marca(
-IdMarca int primary key auto_increment,
-nome varchar(100) not null,
-logo longblob
-);
-
-create table Loja(
-idLoja INT primary key auto_increment,
-
-nome VARCHAR(120) not null,
-
-whatsapp VARCHAR(50) not null,
-
-instagram VARCHAR(100),
-
-facebook VARCHAR(100),
-
-linkedin VARCHAR(100),
-
-telefone MEDIUMINT(13) not null,
-
-email VARCHAR(100),
-
-Lojista_idLojista INT,
- 
- Endereco_idEndereco INT,
-foreign key (Endereco_idEndereco) references Endereco (IdEndereco),
- foreign key  (Lojista_idLojista) references Lojista (IdLojista)
- );
- 
- 
- 
- 
- create table Cliente(
- idCliente INT primary key auto_increment,
-
-nome VARCHAR(250),
-
-cpf MEDIUMINT(11),
-
-telefone MEDIUMINT(13),
-
-email VARCHAR(120),
-
-senha VARCHAR(12),
-
-data_nascimento DATE,
-
-Loja_idLoja INT  
-  );
-  
-  
-  drop table Cliente;
-  
-  create table Cupom(
-
-idCupom INT primary key auto_increment,
-
-nome VARCHAR(45) not null,
-
-data_validade DATE not null,
-
-quantidade mediumint not null,
-
-desconto FLOAT not null,
-
-Loja_idLoja INT
-);
-
-create table Avaliacao_Produto(
-
-idAvaliacao_Produto INT primary key auto_increment,
-
-data_avaliacao DATE not null,
-
-nota FLOAT,
-
-descricao TEXT(250),
-
-Produto_idProduto INT,
-
-foreign key (Produto_idProduto) references Produto (idProduto)
+    nome VARCHAR(200) NOT NULL,
+    cpf VARCHAR(11) UNIQUE,
+    cnpj VARCHAR(14) UNIQUE,
+    email VARCHAR(120) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL,
+    telefone VARCHAR(20) NOT NULL
 );
 
 
-create table Imagem_Produto (
+-- =========================================================
+-- TABELA: ENDERECO
+-- =========================================================
 
-idImagem_Produto INT primary key auto_increment,
+CREATE TABLE Endereco(
+    idEndereco INT PRIMARY KEY AUTO_INCREMENT,
 
-arquivo LONGBLOB not null,
-
-Produto_idProduto INT,
-
-foreign key (Produto_idProduto) references Produto (idProduto)
-
+    rua VARCHAR(50) NOT NULL,
+    cep VARCHAR(10) NOT NULL,
+    setor VARCHAR(50) NOT NULL,
+    numero INT NOT NULL,
+    complemento VARCHAR(100),
+    tipo VARCHAR(45) NOT NULL
 );
 
 
-create table Frete(
+-- =========================================================
+-- TABELA: LOJA
+-- =========================================================
 
-idFrete INT primary key auto_increment,
+CREATE TABLE Loja(
+    idLoja INT PRIMARY KEY AUTO_INCREMENT,
 
-valor FLOAT not null,
+    nome VARCHAR(120) NOT NULL,
+    whatsapp VARCHAR(20) NOT NULL,
+    instagram VARCHAR(100),
+    facebook VARCHAR(100),
+    linkedin VARCHAR(100),
+    telefone VARCHAR(20) NOT NULL,
+    email VARCHAR(100) NOT NULL,
 
-tipo VARCHAR(45) not null,
+    Lojista_idLojista INT,
+    Endereco_idEndereco INT,
 
-bairro VARCHAR(45),
+    FOREIGN KEY (Lojista_idLojista)
+        REFERENCES Lojista(idLojista),
 
-entrega_full TINYINT,
-
-codigo_rastreio VARCHAR(100),
-
-Pedidos_idPedidos INT,
-
-Pedidos_Cliente_idCliente INT,
-
-pedidos_loja_idloja int,
-
-pedidos_endereco_idendereco int, 
-
-foreign key (Pedidos_idPedidos) references Pedidos (idPedidos),
-
-foreign key (Pedidos_Cliente_idCliente) references Cliente (idCliente),
-
-foreign key (pedidos_loja_idloja) references Loja (idLoja),
-
-foreign key (pedidos_endereco_idendereco) references Endereco (idEndereco)
-
-
-);
-
-drop table frete;
- 
- create table Carrinho(
- 
-
-idCarrinho INT primary key auto_increment,
-
-quantidade_produto INT not null,
-
-preco_total FLOAT not null,
-
-Cliente_idCliente Int,
-
-foreign key (Cliente_idCliente) references Cliente (idCliente)
-
-);
-
-create table Produto(
-
-idProduto INT primary key auto_increment,
-
-nome VARCHAR(100) not null,
-
-descricao TEXT(100) not null,
-
-codigo VARCHAR(45) not null,
-
-preco_antigo FLOAT not null,
-
-preco_promocional FLOAT,
-
-quantidade_estoque INT not null,
-
-ativo TINYINT,
-
-Loja_idLoja INT,
-
-Marca_idMarca INT,
-
-Categoria_idCategoria INT,
-
-foreign key (Loja_idLoja) references Loja (idLoja),
-
-foreign key (Categoria_idCategoria) references Categoria (idCategoria),
-
-foreign key (Marca_idMarca) references Marca (idMarca)
-
-
-);
-
-drop table produto;
-
-create table Categoria_has_Cupom(
-
-Categoria_idCategoria INT,
-
-Cupom_idCupom INT,
-
-foreign key (Categoria_idCategoria) references Categoria (IdCategoria),
- foreign key  (Cupom_idCupom) references Cupom (Idcupom)
+    FOREIGN KEY (Endereco_idEndereco)
+        REFERENCES Endereco(idEndereco)
 );
 
 
-create table Banner(
+-- =========================================================
+-- TABELA: CLIENTE
+-- =========================================================
 
-idBanner INT primary key auto_increment,
+CREATE TABLE Cliente(
+    idCliente INT PRIMARY KEY AUTO_INCREMENT,
 
-imagem LONGBLOB not null,
+    nome VARCHAR(250) NOT NULL,
+    cpf VARCHAR(11) UNIQUE,
+    telefone VARCHAR(20),
+    email VARCHAR(120) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL,
+    data_nascimento DATE,
 
-data_inicio DATE not null,
+    Loja_idLoja INT,
 
-data_final DATE not null,
-
-status_visibilidade TINYINT ,
-
-Loja_idLoja INT,
-foreign key (loja_idLoja) references Loja (idLoja)
+    FOREIGN KEY (Loja_idLoja)
+        REFERENCES Loja(idLoja)
 );
 
-create table Promocao(
 
-idPromocao INT primary key auto_increment,
+-- =========================================================
+-- TABELA: CATEGORIA
+-- =========================================================
 
-data_inicio DATE not null,
+CREATE TABLE Categoria(
+    idCategoria INT PRIMARY KEY AUTO_INCREMENT,
 
-data_final DATE not null,
-
-valor_promocao FLOAT not null,
-
-nome VARCHAR(45),
-
-Banner_idBanner INT,
-
-foreign key (Banner_idBanner) references Banner (idBanner)
+    nome VARCHAR(45) NOT NULL UNIQUE
 );
 
-create table Cartao_Pagamento(
 
-idCartao_Pagamento INT primary key auto_increment,
+-- =========================================================
+-- TABELA: MARCA
+-- =========================================================
 
-numero MEDIUMINT(40) not null,
+CREATE TABLE Marca(
+    idMarca INT PRIMARY KEY AUTO_INCREMENT,
 
-data_vencimento VARCHAR(45) not null,
-
-cvc INT not null,
-
-cpf MEDIUMINT(12) not null,
-
-nome_proprietario VARCHAR(200) not null,
-
-nome_identificacao VARCHAR(45) not null,
-
-bandeira VARCHAR(45) not null,
-
-tipo VARCHAR(45) not null,
-
-ativo TINYINT,
-
-Cliente_idCliente INT, 
-
-foreign key (Cliente_idCliente) references Cliente (idCliente)
+    nome VARCHAR(45) NOT NULL UNIQUE,
+    logo LONGBLOB
 );
 
+
+-- =========================================================
+-- TABELA: TAMANHO
+-- =========================================================
+
+CREATE TABLE Tamanho(
+    idTamanho INT PRIMARY KEY AUTO_INCREMENT,
+
+    tamanho VARCHAR(45) NOT NULL UNIQUE
+);
+
+
+-- =========================================================
+-- TABELA: CORES
+-- =========================================================
+
+CREATE TABLE Cores(
+    idCores INT PRIMARY KEY AUTO_INCREMENT,
+
+    nome VARCHAR(45) NOT NULL,
+    codigo_cor VARCHAR(45) NOT NULL
+);
+
+
+-- =========================================================
+-- TABELA: FORMAS DE PAGAMENTO
+-- =========================================================
+
+CREATE TABLE Formas_Pagamento(
+    idFormas_Pagamento INT PRIMARY KEY AUTO_INCREMENT,
+
+    nome VARCHAR(45) NOT NULL UNIQUE
+);
+
+
+-- =========================================================
+-- TABELA: PRODUTO
+-- =========================================================
+
+CREATE TABLE Produto(
+    idProduto INT PRIMARY KEY AUTO_INCREMENT,
+
+    nome VARCHAR(100) NOT NULL,
+    descricao TEXT,
+    codigo VARCHAR(45) NOT NULL UNIQUE,
+
+    preco_antigo DECIMAL(10,2) NOT NULL,
+    preco_promocional DECIMAL(10,2),
+
+    quantidade_estoque INT NOT NULL,
+    ativo TINYINT NOT NULL DEFAULT 1,
+
+    Loja_idLoja INT,
+    Categoria_idCategoria INT,
+    Marca_idMarca INT,
+
+    FOREIGN KEY (Loja_idLoja)
+        REFERENCES Loja(idLoja),
+
+    FOREIGN KEY (Categoria_idCategoria)
+        REFERENCES Categoria(idCategoria),
+
+    FOREIGN KEY (Marca_idMarca)
+        REFERENCES Marca(idMarca)
+);
+
+
+-- =========================================================
+-- TABELA: BANNER
+-- =========================================================
+
+CREATE TABLE Banner(
+    idBanner INT PRIMARY KEY AUTO_INCREMENT,
+
+    imagem LONGBLOB NOT NULL,
+    data_inicio DATE NOT NULL,
+    data_final DATE NOT NULL,
+    status_visibilidade TINYINT NOT NULL DEFAULT 1,
+
+    Loja_idLoja INT,
+
+    FOREIGN KEY (Loja_idLoja)
+        REFERENCES Loja(idLoja)
+);
+
+
+-- =========================================================
+-- TABELA: PROMOCAO
+-- =========================================================
+
+CREATE TABLE Promocao(
+    idPromocao INT PRIMARY KEY AUTO_INCREMENT,
+
+    data_inicio DATE NOT NULL,
+    data_final DATE NOT NULL,
+    valor_promocao DECIMAL(10,2) NOT NULL,
+    nome VARCHAR(45) NOT NULL,
+
+    Banner_idBanner INT,
+
+    FOREIGN KEY (Banner_idBanner)
+        REFERENCES Banner(idBanner)
+);
+
+
+-- =========================================================
+-- TABELA: CUPOM
+-- =========================================================
+
+CREATE TABLE Cupom(
+    idCupom INT PRIMARY KEY AUTO_INCREMENT,
+
+    nome VARCHAR(45) NOT NULL,
+    data_validade DATE NOT NULL,
+    quantidade INT NOT NULL,
+    desconto DECIMAL(10,2) NOT NULL,
+
+    Loja_idLoja INT,
+
+    FOREIGN KEY (Loja_idLoja)
+        REFERENCES Loja(idLoja)
+);
+
+
+-- =========================================================
+-- TABELA: CARRINHO
+-- =========================================================
+
+CREATE TABLE Carrinho(
+    idCarrinho INT PRIMARY KEY AUTO_INCREMENT,
+
+    quantidade_produto INT NOT NULL DEFAULT 0,
+    preco_total DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+
+    Cliente_idCliente INT,
+
+    FOREIGN KEY (Cliente_idCliente)
+        REFERENCES Cliente(idCliente)
+);
+
+
+-- =========================================================
+-- TABELA: CARTAO DE PAGAMENTO
+-- =========================================================
+
+CREATE TABLE Cartao_Pagamento(
+    idCartao_Pagamento INT PRIMARY KEY AUTO_INCREMENT,
+
+    numero VARCHAR(19) NOT NULL,
+    data_vencimento VARCHAR(7) NOT NULL,
+    cvc INT NOT NULL,
+    cpf VARCHAR(11) NOT NULL,
+    nome_proprietario VARCHAR(200) NOT NULL,
+    nome_identificacao VARCHAR(45) NOT NULL,
+    bandeira VARCHAR(45) NOT NULL,
+    tipo VARCHAR(45) NOT NULL,
+    ativo TINYINT NOT NULL DEFAULT 1,
+
+    Cliente_idCliente INT,
+
+    FOREIGN KEY (Cliente_idCliente)
+        REFERENCES Cliente(idCliente)
+);
+
+
+-- =========================================================
+-- TABELA: PEDIDOS
+-- =========================================================
+
+CREATE TABLE Pedidos(
+    idPedidos INT PRIMARY KEY AUTO_INCREMENT,
+
+    data DATE NOT NULL,
+    nota_fiscal LONGBLOB,
+    data_entrega DATE,
+
+    status_entrega VARCHAR(45) NOT NULL,
+    status_pagamento VARCHAR(45) NOT NULL,
+    codigo VARCHAR(45) NOT NULL UNIQUE,
+
+    Cliente_idCliente INT,
+    Loja_idLoja INT,
+    Endereco_idEndereco INT,
+    Formas_Pagamento_idFormas_Pagamento INT,
+
+    FOREIGN KEY (Cliente_idCliente)
+        REFERENCES Cliente(idCliente),
+
+    FOREIGN KEY (Loja_idLoja)
+        REFERENCES Loja(idLoja),
+
+    FOREIGN KEY (Endereco_idEndereco)
+        REFERENCES Endereco(idEndereco),
+
+    FOREIGN KEY (Formas_Pagamento_idFormas_Pagamento)
+        REFERENCES Formas_Pagamento(idFormas_Pagamento)
+);
+
+
+-- =========================================================
+-- TABELA: FRETE
+-- =========================================================
+
+CREATE TABLE Frete(
+    idFrete INT PRIMARY KEY AUTO_INCREMENT,
+
+    valor DECIMAL(10,2) NOT NULL,
+    tipo VARCHAR(45) NOT NULL,
+    bairro VARCHAR(45) NOT NULL,
+    entrega_full TINYINT NOT NULL DEFAULT 0,
+    codigo_rastreio VARCHAR(100),
+
+    Pedidos_idPedidos INT,
+
+    FOREIGN KEY (Pedidos_idPedidos)
+        REFERENCES Pedidos(idPedidos)
+);
+
+
+-- =========================================================
+-- TABELA: IMAGEM DO PRODUTO
+-- =========================================================
+
+CREATE TABLE Imagem_Produto(
+    idImagem_Produto INT PRIMARY KEY AUTO_INCREMENT,
+
+    arquivo LONGBLOB NOT NULL,
+
+    Produto_idProduto INT,
+
+    FOREIGN KEY (Produto_idProduto)
+        REFERENCES Produto(idProduto)
+);
+
+
+-- =========================================================
+-- TABELA: AVALIACAO DO PRODUTO
+-- =========================================================
+
+CREATE TABLE Avaliacao_Produto(
+    idAvaliacao_Produto INT PRIMARY KEY AUTO_INCREMENT,
+
+    data DATE NOT NULL,
+    nota DECIMAL(2,1) NOT NULL,
+    descricao TEXT,
+
+    Produto_idProduto INT,
+    Cliente_idCliente INT,
+
+    FOREIGN KEY (Produto_idProduto)
+        REFERENCES Produto(idProduto),
+
+    FOREIGN KEY (Cliente_idCliente)
+        REFERENCES Cliente(idCliente),
+
+    CHECK (nota >= 0 AND nota <= 5)
+);
+
+
+-- =========================================================
+-- RELACIONAMENTO: PRODUTO x CORES
+-- =========================================================
+
+CREATE TABLE Produto_has_Cores(
+    Produto_idProduto INT,
+    Cores_idCores INT,
+
+    PRIMARY KEY (Produto_idProduto, Cores_idCores),
+
+    FOREIGN KEY (Produto_idProduto)
+        REFERENCES Produto(idProduto),
+
+    FOREIGN KEY (Cores_idCores)
+        REFERENCES Cores(idCores)
+);
+
+
+-- =========================================================
+-- RELACIONAMENTO: PRODUTO x TAMANHO
+-- =========================================================
+
+CREATE TABLE Produto_has_Tamanho(
+    Produto_idProduto INT,
+    Tamanho_idTamanho INT,
+
+    PRIMARY KEY (Produto_idProduto, Tamanho_idTamanho),
+
+    FOREIGN KEY (Produto_idProduto)
+        REFERENCES Produto(idProduto),
+
+    FOREIGN KEY (Tamanho_idTamanho)
+        REFERENCES Tamanho(idTamanho)
+);
+
+
+-- =========================================================
+-- RELACIONAMENTO: PRODUTO x PROMOCAO
+-- =========================================================
+
+CREATE TABLE Produto_has_Promocao(
+    Produto_idProduto INT,
+    Promocao_idPromocao INT,
+
+    PRIMARY KEY (Produto_idProduto, Promocao_idPromocao),
+
+    FOREIGN KEY (Produto_idProduto)
+        REFERENCES Produto(idProduto),
+
+    FOREIGN KEY (Promocao_idPromocao)
+        REFERENCES Promocao(idPromocao)
+);
+
+
+-- =========================================================
+-- RELACIONAMENTO: PRODUTO x CARRINHO
+-- =========================================================
+
+CREATE TABLE Produto_has_Carrinho(
+    Produto_idProduto INT,
+    Carrinho_idCarrinho INT,
+
+    quantidade INT NOT NULL,
+    preco_unitario DECIMAL(10,2) NOT NULL,
+
+    PRIMARY KEY (Produto_idProduto, Carrinho_idCarrinho),
+
+    FOREIGN KEY (Produto_idProduto)
+        REFERENCES Produto(idProduto),
+
+    FOREIGN KEY (Carrinho_idCarrinho)
+        REFERENCES Carrinho(idCarrinho)
+);
+
+
+-- =========================================================
+-- RELACIONAMENTO: PEDIDOS x PRODUTO
+-- =========================================================
+
+CREATE TABLE Pedidos_has_Produto(
+    Pedidos_idPedidos INT,
+    Produto_idProduto INT,
+
+    quantidade INT NOT NULL,
+    preco_unitario DECIMAL(10,2) NOT NULL,
+
+    PRIMARY KEY (Pedidos_idPedidos, Produto_idProduto),
+
+    FOREIGN KEY (Pedidos_idPedidos)
+        REFERENCES Pedidos(idPedidos),
+
+    FOREIGN KEY (Produto_idProduto)
+        REFERENCES Produto(idProduto)
+);
+
+
+-- =========================================================
+-- RELACIONAMENTO: BANNER x PRODUTO
+-- =========================================================
+
+CREATE TABLE Banner_has_Produto(
+    Banner_idBanner INT,
+    Produto_idProduto INT,
+
+    PRIMARY KEY (Banner_idBanner, Produto_idProduto),
+
+    FOREIGN KEY (Banner_idBanner)
+        REFERENCES Banner(idBanner),
+
+    FOREIGN KEY (Produto_idProduto)
+        REFERENCES Produto(idProduto)
+);
+
+
+-- =========================================================
+-- RELACIONAMENTO: CATEGORIA x CUPOM
+-- =========================================================
+
+CREATE TABLE Categoria_has_Cupom(
+    Categoria_idCategoria INT,
+    Cupom_idCupom INT,
+
+    PRIMARY KEY (Categoria_idCategoria, Cupom_idCupom),
+
+    FOREIGN KEY (Categoria_idCategoria)
+        REFERENCES Categoria(idCategoria),
+
+    FOREIGN KEY (Cupom_idCupom)
+        REFERENCES Cupom(idCupom)
+);
+
+
+-- =========================================================
+-- RELACIONAMENTO: CATEGORIA x PROMOCAO
+-- =========================================================
+
+CREATE TABLE Categoria_has_Promocao(
+    Categoria_idCategoria INT,
+    Promocao_idPromocao INT,
+
+    PRIMARY KEY (Categoria_idCategoria, Promocao_idPromocao),
+
+    FOREIGN KEY (Categoria_idCategoria)
+        REFERENCES Categoria(idCategoria),
+
+    FOREIGN KEY (Promocao_idPromocao)
+        REFERENCES Promocao(idPromocao)
+);
+
+
+-- =========================================================
+-- RELACIONAMENTO: CUPOM x PRODUTO
+-- =========================================================
 
 CREATE TABLE Cupom_has_Produto(
     Cupom_idCupom INT,
     Produto_idProduto INT,
 
-    FOREIGN KEY (Produto_idProduto) REFERENCES Produto (idProduto),
-    FOREIGN KEY (Cupom_idCupom) REFERENCES Cupom (idCupom)
+    PRIMARY KEY (Cupom_idCupom, Produto_idProduto),
+
+    FOREIGN KEY (Cupom_idCupom)
+        REFERENCES Cupom(idCupom),
+
+    FOREIGN KEY (Produto_idProduto)
+        REFERENCES Produto(idProduto)
 );
 
-create table Produto_has_Carrinho(
 
-Produto_idProduto INT,
+-- =========================================================
+-- RELACIONAMENTO: ENDERECO x CLIENTE
+-- =========================================================
 
-Carrinho_idCarrinho INT,
+CREATE TABLE Endereco_has_Cliente(
+    Endereco_idEndereco INT,
+    Cliente_idCliente INT,
 
+    PRIMARY KEY (Endereco_idEndereco, Cliente_idCliente),
 
+    FOREIGN KEY (Endereco_idEndereco)
+        REFERENCES Endereco(idEndereco),
+
+    FOREIGN KEY (Cliente_idCliente)
+        REFERENCES Cliente(idCliente)
 );
 
-create table Pedidos_has_Produto
 
-Pedidos_idPedidos INT
+-- =========================================================
+-- INSERINDO ENDERECO
+-- =========================================================
 
-Produto_idProduto INT
+INSERT INTO Endereco
+(
+    rua,
+    cep,
+    setor,
+    numero,
+    complemento,
+    tipo
+)
+VALUES
+(
+    'Rodoviário',
+    '77781708',
+    'Rodoviário',
+    1230,
+    'Ao lado do Senac',
+    'Comercial'
+);
 
 
-create table 
+-- =========================================================
+-- INSERINDO LOJISTA
+-- =========================================================
+
+INSERT INTO Lojista
+(
+    nome,
+    cpf,
+    cnpj,
+    email,
+    senha,
+    telefone
+)
+VALUES
+(
+    'João',
+    '09012209022',
+    NULL,
+    'joao@gmail.com',
+    '123abc',
+    '63992129510'
+);
+
+
+-- =========================================================
+-- INSERINDO LOJA
+-- =========================================================
+
+INSERT INTO Loja
+(
+    nome,
+    whatsapp,
+    telefone,
+    email,
+    Endereco_idEndereco,
+    Lojista_idLojista
+)
+VALUES
+(
+    'Hefesto Auto',
+    '63992129510',
+    '63992129510',
+    'hefestoauto@gmail.com',
+    1,
+    1
+);
+
+
+-- =========================================================
+-- CONSULTAS
+-- =========================================================
+
+SELECT * FROM Endereco;
+
+SELECT * FROM Lojista;
+
+SELECT * FROM Loja;

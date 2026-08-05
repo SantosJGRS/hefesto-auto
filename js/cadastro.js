@@ -1,11 +1,9 @@
+
 /* ==========================================
    DADOS DA PÁGINA
 ========================================== */
 
 const pageData = {
-
-    logo:
-        "assets",
 
     googleIcon:
         "../assets/google.png",
@@ -28,6 +26,15 @@ const pageData = {
     labelNome:
         "Nome",
 
+    labelCpf:
+        "CPF",
+
+    labelTelefone:
+        "Telefone",
+
+    labelDataNascimento:
+        "Data de nascimento",
+
     labelEmail:
         "E-mail",
 
@@ -39,6 +46,12 @@ const pageData = {
 
     placeholderNome:
         "Seu nome completo",
+
+    placeholderCpf:
+        "000.000.000-00",
+
+    placeholderTelefone:
+        "(00) 00000-0000",
 
     placeholderEmail:
         "voce@exemplo.com",
@@ -82,9 +95,6 @@ const pageData = {
    ELEMENTOS
 ========================================== */
 
-const logo =
-    document.getElementById("logo");
-
 const googleIcon =
     document.getElementById("googleIcon");
 
@@ -106,6 +116,15 @@ const descricaoFormulario =
 const labelNome =
     document.getElementById("labelNome");
 
+const labelCpf =
+    document.getElementById("labelCpf");
+
+const labelTelefone =
+    document.getElementById("labelTelefone");
+
+const labelDataNascimento =
+    document.getElementById("labelDataNascimento");
+
 const labelEmail =
     document.getElementById("labelEmail");
 
@@ -117,6 +136,15 @@ const labelConfirmarSenha =
 
 const nome =
     document.getElementById("nome");
+
+const cpf =
+    document.getElementById("cpf");
+
+const telefone =
+    document.getElementById("telefone");
+
+const dataNascimento =
+    document.getElementById("dataNascimento");
 
 const email =
     document.getElementById("email");
@@ -170,9 +198,6 @@ const textoTermos2 =
 
 function preencherConteudo() {
 
-    logo.src =
-        pageData.logo;
-
     googleIcon.src =
         pageData.googleIcon;
 
@@ -194,6 +219,15 @@ function preencherConteudo() {
     labelNome.textContent =
         pageData.labelNome;
 
+    labelCpf.textContent =
+        pageData.labelCpf;
+
+    labelTelefone.textContent =
+        pageData.labelTelefone;
+
+    labelDataNascimento.textContent =
+        pageData.labelDataNascimento;
+
     labelEmail.textContent =
         pageData.labelEmail;
 
@@ -205,6 +239,12 @@ function preencherConteudo() {
 
     nome.placeholder =
         pageData.placeholderNome;
+
+    cpf.placeholder =
+        pageData.placeholderCpf;
+
+    telefone.placeholder =
+        pageData.placeholderTelefone;
 
     email.placeholder =
         pageData.placeholderEmail;
@@ -245,28 +285,206 @@ function preencherConteudo() {
 
 
 /* ==========================================
-   MOSTRAR / OCULTAR SENHA
+   MÁSCARA CPF
 ========================================== */
 
-function alternarSenha(campo, botao) {
+function aplicarMascaraCPF() {
 
-    const icon =
-        botao.querySelector("i");
+    let valor =
+        cpf.value.replace(/\D/g, "");
 
-    if (campo.type === "password") {
+    if (valor.length > 11) {
 
-        campo.type = "text";
+        valor =
+            valor.substring(0, 11);
+    }
 
-        icon.classList.remove("fa-eye");
-        icon.classList.add("fa-eye-slash");
+    valor =
+        valor.replace(
+            /(\d{3})(\d)/,
+            "$1.$2"
+        );
+
+    valor =
+        valor.replace(
+            /(\d{3})(\d)/,
+            "$1.$2"
+        );
+
+    valor =
+        valor.replace(
+            /(\d{3})(\d{1,2})$/,
+            "$1-$2"
+        );
+
+    cpf.value =
+        valor;
+}
+
+
+/* ==========================================
+   MÁSCARA TELEFONE
+========================================== */
+
+function aplicarMascaraTelefone() {
+
+    let valor =
+        telefone.value.replace(/\D/g, "");
+
+    if (valor.length > 11) {
+
+        valor =
+            valor.substring(0, 11);
+    }
+
+    if (valor.length <= 10) {
+
+        valor =
+            valor.replace(
+                /^(\d{2})(\d)/,
+                "($1) $2"
+            );
+
+        valor =
+            valor.replace(
+                /(\d{4})(\d)/,
+                "$1-$2"
+            );
 
     } else {
 
-        campo.type = "password";
+        valor =
+            valor.replace(
+                /^(\d{2})(\d)/,
+                "($1) $2"
+            );
 
-        icon.classList.remove("fa-eye-slash");
-        icon.classList.add("fa-eye");
+        valor =
+            valor.replace(
+                /(\d{5})(\d)/,
+                "$1-$2"
+            );
     }
+
+    telefone.value =
+        valor;
+}
+
+
+/* ==========================================
+   LIMPAR CPF
+========================================== */
+
+function limparCPF(valor) {
+
+    return valor.replace(
+        /\D/g,
+        ""
+    );
+}
+
+
+/* ==========================================
+   LIMPAR TELEFONE
+========================================== */
+
+function limparTelefone(valor) {
+
+    return valor.replace(
+        /\D/g,
+        ""
+    );
+}
+
+
+/* ==========================================
+   VALIDAR CPF
+========================================== */
+
+function cpfValido(cpfTexto) {
+
+    const cpfLimpo =
+        limparCPF(cpfTexto);
+
+
+    if (
+        cpfLimpo.length !== 11
+    ) {
+
+        return false;
+    }
+
+
+    /* CPFs com todos os números iguais */
+
+    if (
+        /^(\d)\1{10}$/.test(cpfLimpo)
+    ) {
+
+        return false;
+    }
+
+
+    /* Primeiro dígito */
+
+    let soma = 0;
+
+    for (
+        let i = 0;
+        i < 9;
+        i++
+    ) {
+
+        soma +=
+            Number(cpfLimpo[i]) *
+            (10 - i);
+    }
+
+    let resto =
+        (soma * 10) % 11;
+
+    if (resto === 10) {
+
+        resto = 0;
+    }
+
+    if (
+        resto !==
+        Number(cpfLimpo[9])
+    ) {
+
+        return false;
+    }
+
+
+    /* Segundo dígito */
+
+    soma = 0;
+
+    for (
+        let i = 0;
+        i < 10;
+        i++
+    ) {
+
+        soma +=
+            Number(cpfLimpo[i]) *
+            (11 - i);
+    }
+
+    resto =
+        (soma * 10) % 11;
+
+    if (resto === 10) {
+
+        resto = 0;
+    }
+
+
+    return (
+        resto ===
+        Number(cpfLimpo[10])
+    );
 }
 
 
@@ -279,7 +497,59 @@ function emailValido(emailTexto) {
     const regex =
         /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    return regex.test(emailTexto);
+    return regex.test(
+        emailTexto
+    );
+}
+
+
+/* ==========================================
+   VALIDAR DATA
+========================================== */
+
+function dataNascimentoValida(data) {
+
+    if (!data) {
+
+        return false;
+    }
+
+    const dataInformada =
+        new Date(
+            data + "T00:00:00"
+        );
+
+    const hoje =
+        new Date();
+
+    if (
+        dataInformada >
+        hoje
+    ) {
+
+        return false;
+    }
+
+
+    /* Verificar idade mínima de 13 anos */
+
+    const limite =
+        new Date();
+
+    limite.setFullYear(
+        limite.getFullYear() - 13
+    );
+
+    if (
+        dataInformada >
+        limite
+    ) {
+
+        return false;
+    }
+
+
+    return true;
 }
 
 
@@ -289,31 +559,207 @@ function emailValido(emailTexto) {
 
 function validarFormulario() {
 
-    if (nome.value.trim() === "") {
+    const nomeValor =
+        nome.value.trim();
 
-        alert("Informe seu nome.");
+    const cpfValor =
+        cpf.value.trim();
+
+    const telefoneValor =
+        telefone.value.trim();
+
+    const dataValor =
+        dataNascimento.value;
+
+    const emailValor =
+        email.value.trim();
+
+    const senhaValor =
+        senha.value;
+
+    const confirmarSenhaValor =
+        confirmarSenha.value;
+
+
+    /* NOME */
+
+    if (
+        nomeValor === ""
+    ) {
+
+        alert(
+            "Informe seu nome."
+        );
+
         nome.focus();
 
         return false;
     }
 
-    if (email.value.trim() === "") {
 
-        alert("Informe seu e-mail.");
+    if (
+        nomeValor.length < 3
+    ) {
+
+        alert(
+            "Informe seu nome completo."
+        );
+
+        nome.focus();
+
+        return false;
+    }
+
+
+    /* CPF */
+
+    if (
+        cpfValor === ""
+    ) {
+
+        alert(
+            "Informe seu CPF."
+        );
+
+        cpf.focus();
+
+        return false;
+    }
+
+
+    if (
+        !cpfValido(cpfValor)
+    ) {
+
+        alert(
+            "Informe um CPF válido."
+        );
+
+        cpf.focus();
+
+        return false;
+    }
+
+
+    /* TELEFONE */
+
+    if (
+        telefoneValor === ""
+    ) {
+
+        alert(
+            "Informe seu telefone."
+        );
+
+        telefone.focus();
+
+        return false;
+    }
+
+
+    const telefoneLimpo =
+        limparTelefone(
+            telefoneValor
+        );
+
+
+    if (
+        telefoneLimpo.length < 10
+    ) {
+
+        alert(
+            "Informe um telefone válido."
+        );
+
+        telefone.focus();
+
+        return false;
+    }
+
+
+    /* DATA DE NASCIMENTO */
+
+    if (
+        dataValor === ""
+    ) {
+
+        alert(
+            "Informe sua data de nascimento."
+        );
+
+        dataNascimento.focus();
+
+        return false;
+    }
+
+
+    if (
+        !dataNascimentoValida(
+            dataValor
+        )
+    ) {
+
+        alert(
+            "Informe uma data de nascimento válida."
+        );
+
+        dataNascimento.focus();
+
+        return false;
+    }
+
+
+    /* EMAIL */
+
+    if (
+        emailValor === ""
+    ) {
+
+        alert(
+            "Informe seu e-mail."
+        );
+
         email.focus();
 
         return false;
     }
 
-    if (!emailValido(email.value.trim())) {
 
-        alert("E-mail inválido.");
+    if (
+        !emailValido(
+            emailValor
+        )
+    ) {
+
+        alert(
+            "Informe um e-mail válido."
+        );
+
         email.focus();
 
         return false;
     }
 
-    if (senha.value.length < 8) {
+
+    /* SENHA */
+
+    if (
+        senhaValor === ""
+    ) {
+
+        alert(
+            "Informe uma senha."
+        );
+
+        senha.focus();
+
+        return false;
+    }
+
+
+    if (
+        senhaValor.length < 8
+    ) {
 
         alert(
             "A senha deve possuir no mínimo 8 caracteres."
@@ -324,7 +770,12 @@ function validarFormulario() {
         return false;
     }
 
-    if (confirmarSenha.value.trim() === "") {
+
+    /* CONFIRMAR SENHA */
+
+    if (
+        confirmarSenhaValor === ""
+    ) {
 
         alert(
             "Confirme sua senha."
@@ -335,9 +786,10 @@ function validarFormulario() {
         return false;
     }
 
+
     if (
-        senha.value !==
-        confirmarSenha.value
+        senhaValor !==
+        confirmarSenhaValor
     ) {
 
         alert(
@@ -349,6 +801,7 @@ function validarFormulario() {
         return false;
     }
 
+
     return true;
 }
 
@@ -357,32 +810,261 @@ function validarFormulario() {
    CADASTRAR
 ========================================== */
 
-function criarConta() {
+async function criarConta() {
 
-    if (!validarFormulario()) {
+    /* ======================================
+       VALIDAR FORMULÁRIO
+    ====================================== */
+
+    if (
+        !validarFormulario()
+    ) {
+
         return;
     }
+
+
+    /* ======================================
+       PREPARAR DADOS
+    ====================================== */
 
     const usuario = {
 
         nome:
             nome.value.trim(),
 
+        cpf:
+            limparCPF(
+                cpf.value
+            ),
+
+        telefone:
+            limparTelefone(
+                telefone.value
+            ),
+
         email:
             email.value.trim(),
 
         senha:
-            senha.value
+            senha.value,
+
+        data_nascimento:
+            dataNascimento.value,
+
+            Loja_idLoja:1
     };
 
+
     console.log(
-        "NOVO USUÁRIO",
+        "Dados enviados:",
         usuario
     );
 
-    alert(
-        "Conta criada com sucesso!"
-    );
+
+    /* ======================================
+       DESABILITAR BOTÃO
+    ====================================== */
+
+    btnCriarConta.disabled =
+        true;
+
+    btnCriarConta.textContent =
+        "Criando conta...";
+
+
+    try {
+
+        /* ==================================
+           ENVIAR PARA API
+        ================================== */
+
+        const resposta =
+            await fetch(
+                "http://localhost:3000/clientes",
+                {
+
+                    method:
+                        "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:
+                        JSON.stringify(
+                            usuario
+                        )
+                }
+            );
+
+
+        /* ==================================
+           LER RESPOSTA
+        ================================== */
+
+        let dados = {};
+
+        try {
+
+            dados =
+                await resposta.json();
+
+        } catch {
+
+            dados = {};
+        }
+
+
+        /* ==================================
+           VERIFICAR RESPOSTA
+        ================================== */
+
+        if (
+            !resposta.ok
+        ) {
+
+            throw new Error(
+
+                dados.mensagem ||
+
+                dados.message ||
+
+                "Não foi possível realizar o cadastro."
+            );
+        }
+
+
+        /* ==================================
+           SUCESSO
+        ================================== */
+
+        console.log(
+            "Cliente cadastrado:",
+            dados
+        );
+
+
+        alert(
+            "Conta criada com sucesso!"
+        );
+
+
+        /* ==================================
+           LIMPAR FORMULÁRIO
+        ================================== */
+
+        nome.value = "";
+
+        cpf.value = "";
+
+        telefone.value = "";
+
+        dataNascimento.value = "";
+
+        email.value = "";
+
+        senha.value = "";
+
+        confirmarSenha.value = "";
+
+
+        /* ==================================
+           IR PARA LOGIN
+        ================================== */
+
+        window.location.href =
+            "../pages/login.html";
+
+
+    } catch (erro) {
+
+        console.error(
+            "Erro no cadastro:",
+            erro
+        );
+
+
+        /* ==================================
+           ERRO DE CONEXÃO
+        ================================== */
+
+        if (
+            erro instanceof
+            TypeError
+        ) {
+
+            alert(
+                "Não foi possível conectar ao servidor. Verifique se o backend está funcionando."
+            );
+
+        } else {
+
+            alert(
+                erro.message ||
+                "Ocorreu um erro ao criar a conta."
+            );
+        }
+
+    } finally {
+
+        /* ==================================
+           REATIVAR BOTÃO
+        ================================== */
+
+        btnCriarConta.disabled =
+            false;
+
+        btnCriarConta.textContent =
+            pageData.textoBotaoCadastro;
+    }
+}
+
+
+/* ==========================================
+   MOSTRAR / OCULTAR SENHA
+========================================== */
+
+function alternarSenha(
+    campo,
+    botao
+) {
+
+    const icon =
+        botao.querySelector("i");
+
+
+    if (
+        campo.type ===
+        "password"
+    ) {
+
+        campo.type =
+            "text";
+
+        icon.classList.remove(
+            "fa-eye"
+        );
+
+        icon.classList.add(
+            "fa-eye-slash"
+        );
+
+    } else {
+
+        campo.type =
+            "password";
+
+        icon.classList.remove(
+            "fa-eye-slash"
+        );
+
+        icon.classList.add(
+            "fa-eye"
+        );
+    }
 }
 
 
@@ -392,12 +1074,8 @@ function criarConta() {
 
 function continuarGoogle() {
 
-    console.log(
-        "Login Google"
-    );
-
     alert(
-        "Continuar com Google"
+        "Login com Google ainda não configurado."
     );
 }
 
@@ -408,13 +1086,8 @@ function continuarGoogle() {
 
 function abrirLogin() {
 
-    console.log(
-        "Abrir tela de login"
-    );
-
-    alert(
-        "Redirecionar para login"
-    );
+    window.location.href =
+        "login.html";
 }
 
 
@@ -424,15 +1097,16 @@ function abrirLogin() {
 
 function abrirTermos() {
 
-    console.log(
-        "Abrir Termos de Uso"
+    alert(
+        "Página de Termos de Uso."
     );
 }
 
+
 function abrirPrivacidade() {
 
-    console.log(
-        "Abrir Política de Privacidade"
+    alert(
+        "Página de Política de Privacidade."
     );
 }
 
@@ -445,9 +1119,14 @@ function configurarEnter() {
 
     document.addEventListener(
         "keydown",
-        function(event){
+        function(event) {
 
-            if(event.key === "Enter"){
+            if (
+                event.key ===
+                "Enter"
+            ) {
+
+                event.preventDefault();
 
                 criarConta();
             }
@@ -462,47 +1141,87 @@ function configurarEnter() {
 
 function configurarEventos() {
 
+    /* CRIAR CONTA */
+
     btnCriarConta.addEventListener(
         "click",
         criarConta
     );
+
+
+    /* GOOGLE */
 
     btnGoogle.addEventListener(
         "click",
         continuarGoogle
     );
 
+
+    /* LOGIN */
+
     btnEntrar.addEventListener(
         "click",
         abrirLogin
     );
+
+
+    /* TERMOS */
 
     btnTermos.addEventListener(
         "click",
         abrirTermos
     );
 
+
+    /* PRIVACIDADE */
+
     btnPrivacidade.addEventListener(
         "click",
         abrirPrivacidade
     );
 
+
+    /* MOSTRAR SENHA */
+
     toggleSenha.addEventListener(
         "click",
-        () =>
+        function() {
+
             alternarSenha(
                 senha,
                 toggleSenha
-            )
+            );
+        }
     );
+
+
+    /* MOSTRAR CONFIRMAÇÃO */
 
     toggleConfirmarSenha.addEventListener(
         "click",
-        () =>
+        function() {
+
             alternarSenha(
                 confirmarSenha,
                 toggleConfirmarSenha
-            )
+            );
+        }
+    );
+
+
+    /* MÁSCARA CPF */
+
+    cpf.addEventListener(
+        "input",
+        aplicarMascaraCPF
+    );
+
+
+    /* MÁSCARA TELEFONE */
+
+    telefone.addEventListener(
+        "input",
+        aplicarMascaraTelefone
     );
 }
 
@@ -513,13 +1232,13 @@ function configurarEventos() {
 
 document.addEventListener(
     "DOMContentLoaded",
-    () => {
+    function() {
 
         preencherConteudo();
 
         configurarEventos();
 
         configurarEnter();
-
     }
 );
+

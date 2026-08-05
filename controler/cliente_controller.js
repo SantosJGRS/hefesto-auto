@@ -203,6 +203,148 @@ function excluir(req, res) {
 
 }
 
+
+//==========================================
+// LOGIN DO CLIENTE
+//==========================================
+
+
+function login(req, res) {
+
+    const { email, senha } = req.body;
+
+    console.log("=================================");
+    console.log("TENTATIVA DE LOGIN");
+    console.log("E-mail recebido:", email);
+    console.log("Senha recebida:", senha);
+    console.log("=================================");
+
+
+    if (!email || !senha) {
+
+        return res.status(400).json({
+            sucesso: false,
+            mensagem: "E-mail e senha são obrigatórios."
+        });
+
+    }
+
+
+    clienteModel.buscarPorEmail(
+        email.trim(),
+        (erro, resultado) => {
+
+            if (erro) {
+
+                console.error(
+                    "ERRO MYSQL:",
+                    erro
+                );
+
+                return res.status(500).json({
+                    sucesso: false,
+                    mensagem: "Erro interno do servidor."
+                });
+
+            }
+
+
+            console.log(
+                "Resultado encontrado:",
+                resultado
+            );
+
+
+            if (
+                !resultado ||
+                resultado.length === 0
+            ) {
+
+                console.log(
+                    "NENHUM CLIENTE ENCONTRADO"
+                );
+
+                return res.status(401).json({
+                    sucesso: false,
+                    mensagem: "E-mail ou senha inválidos."
+                });
+
+            }
+
+
+            const cliente = resultado[0];
+
+
+            console.log(
+                "Cliente encontrado:",
+                cliente.email
+            );
+
+            console.log(
+                "Senha no banco:",
+                cliente.senha
+            );
+
+            console.log(
+                "Senha recebida:",
+                senha
+            );
+
+            console.log(
+                "Senhas são iguais:",
+                cliente.senha === senha
+            );
+
+
+            if (cliente.senha !== senha) {
+
+                console.log(
+                    "SENHA DIFERENTE"
+                );
+
+                return res.status(401).json({
+                    sucesso: false,
+                    mensagem: "E-mail ou senha inválidos."
+                });
+
+            }
+
+
+            console.log(
+                "LOGIN REALIZADO COM SUCESSO"
+            );
+
+
+            return res.status(200).json({
+
+                sucesso: true,
+
+                mensagem:
+                    "Login realizado com sucesso.",
+
+                cliente: {
+
+                    id: cliente.idCliente,
+
+                    nome: cliente.nome,
+
+                    email: cliente.email,
+
+                    telefone: cliente.telefone,
+
+                    cpf: cliente.cpf
+
+                }
+
+            });
+
+        }
+    );
+
+}
+
+
+
 //==========================================
 // EXPORTAÇÃO
 //==========================================
@@ -213,6 +355,7 @@ module.exports = {
     listar,
     buscarPorId,
     atualizar,
-    excluir
+    excluir,
+    login
 
 };

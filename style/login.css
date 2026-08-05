@@ -1,498 +1,951 @@
-/* ========================================
+/* ==========================================
    RESET
-======================================== */
+========================================== */
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-:root{
-    --bg:#050505;
-    --card:#080808;
-    --red:#e50914;
-    --red-hover:#ff1f2d;
-    --white:#ffffff;
-    --gray:#bdbdbd;
-    --border:#252525;
+
+/* ==========================================
+   VARIÁVEIS
+========================================== */
+
+:root {
+    --bg: #050505;
+    --container: #090909;
+    --brand-bg: #080808;
+
+    --input: #141414;
+    --input-hover: #191919;
+
+    --red: #ed111b;
+    --red-hover: #ff202a;
+
+    --white: #ffffff;
+    --gray: #a8a8a8;
+    --gray-light: #d0d0d0;
+    --gray-dark: #707070;
+
+    --border: #272727;
+    --border-hover: #3a3a3a;
 }
 
-body{
-    min-height:100vh;
-    font-family:Arial, Helvetica, sans-serif;
-    background:var(--bg);
-    color:var(--white);
-    overflow-x:hidden;
+
+/* ==========================================
+   BODY
+========================================== */
+
+body {
+    min-height: 100vh;
+
+    background: var(--bg);
+    color: var(--white);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    -webkit-font-smoothing: antialiased;
 }
 
-/* ========================================
-   BACKGROUND
-======================================== */
 
-.login-page{
-    min-height:100vh;
+/* ==========================================
+   PÁGINA
+========================================== */
 
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
+.login-page {
+    width: 100%;
+    min-height: 100vh;
 
-    padding:40px;
+    display: flex;
+    flex-direction: column;
 
-    position:relative;
+    align-items: center;
+    justify-content: center;
 
-    background:
-        radial-gradient(circle at top left,
-        rgba(229,9,20,.45),
-        transparent 35%),
-
-        radial-gradient(circle at bottom right,
-        rgba(229,9,20,.25),
-        transparent 30%),
-
-        #000;
+    padding: 40px 20px;
 }
 
-/* ========================================
-   CARD PRINCIPAL
-======================================== */
 
-.login-container{
+/* ==========================================
+   CONTAINER PRINCIPAL
+========================================== */
 
-    width:100%;
-    max-width:1200px;
+.login-container {
+    width: 100%;
+    max-width: 980px;
+    min-height: 650px;
 
-    min-height:700px;
+    display: grid;
 
-    display:grid;
-    grid-template-columns:1fr 1px 1.2fr;
+    /*
+       Esquerda = formulário
+       Direita = logo
+    */
 
-    align-items:center;
+    grid-template-columns: 1.1fr 0.9fr;
 
-    background:rgba(0,0,0,.35);
+    background: var(--container);
 
-    backdrop-filter:blur(4px);
+    border: 1px solid var(--border);
+    border-radius: 16px;
 
-    border-radius:30px;
+    overflow: hidden;
 
-    padding:80px;
-
-    position:relative;
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.35);
 }
 
-/* ========================================
-   COLUNA ESQUERDA
-======================================== */
 
-.login-left{
+/* ==========================================
+   LADO DO FORMULÁRIO
+========================================== */
 
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
+.login-right {
+    display: flex;
+    flex-direction: column;
 
-    padding-right:60px;
+    justify-content: center;
+
+    padding: 55px 65px;
 }
 
-.brand-area{
 
-    margin-bottom:40px;
+/* ==========================================
+   CABEÇALHO DO FORMULÁRIO
+========================================== */
+
+.form-header {
+    margin-bottom: 35px;
 }
 
-#logo{
 
-    width:110px;
-    height:110px;
+.form-header h2 {
+    margin-bottom: 13px;
 
-    object-fit:contain;
+    font-size: 34px;
+    line-height: 1.2;
+
+    font-weight: 700;
 }
 
-#tituloBoasVindas{
 
-    font-size:4rem;
-    font-weight:700;
+.title-line {
+    width: 55px;
+    height: 4px;
 
-    margin-bottom:20px;
+    background: var(--red);
+
+    border-radius: 3px;
 }
 
-#descricaoBoasVindas{
 
-    color:var(--gray);
+/* ==========================================
+   FORMULÁRIO
+========================================== */
 
-    font-size:1.8rem;
-
-    line-height:1.6;
+.login-form {
+    width: 100%;
 }
 
-/* ========================================
-   DIVISOR
-======================================== */
 
-.divider{
+/* ==========================================
+   GRUPO DO FORMULÁRIO
+========================================== */
 
-    width:1px;
-    height:600px;
+.form-group {
+    width: 100%;
 
-    background:#2c2c2c;
+    margin-bottom: 25px;
 }
 
-/* ========================================
-   COLUNA DIREITA
-======================================== */
 
-.login-right{
+.form-group label {
+    display: block;
 
-    width:100%;
+    margin-bottom: 9px;
 
-    padding-left:60px;
+    color: var(--white);
+
+    font-size: 14px;
+    font-weight: 600;
 }
 
-/* ========================================
-   FORM
-======================================== */
 
-.form-group{
+/* ==========================================
+   INPUT WRAPPER
+========================================== */
 
-    margin-bottom:35px;
+.input-wrapper {
+    position: relative;
+
+    width: 100%;
 }
 
-.form-group label{
 
-    display:block;
+/* ==========================================
+   INPUT
+========================================== */
 
-    margin-bottom:15px;
+.input-wrapper input {
+    width: 100%;
+    height: 56px;
 
-    font-size:1.4rem;
+    padding: 0 18px;
+
+    background: var(--input);
+
+    border: 1px solid var(--border-hover);
+    border-radius: 7px;
+
+    outline: none;
+
+    color: var(--white);
+
+    font-family: inherit;
+    font-size: 15px;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
-.input-wrapper{
 
-    height:70px;
-
-    display:flex;
-    align-items:center;
-
-    border:2px solid var(--red);
-
-    border-radius:16px;
-
-    padding:0 20px;
-
-    background:rgba(255,255,255,.02);
+.input-wrapper input::placeholder {
+    color: #777;
 }
 
-.input-wrapper i{
 
-    color:var(--red);
-
-    font-size:1.3rem;
+.input-wrapper input:hover {
+    background: var(--input-hover);
 }
 
-.input-wrapper input{
 
-    flex:1;
+.input-wrapper input:focus {
+    border-color: var(--red);
 
-    height:100%;
+    background: var(--input-hover);
 
-    border:none;
-    outline:none;
-
-    background:transparent;
-
-    color:#fff;
-
-    font-size:1.2rem;
-
-    padding-left:15px;
+    box-shadow:
+        0 0 0 3px rgba(237, 17, 27, 0.10);
 }
 
-.input-wrapper input::placeholder{
 
-    color:#7d7d7d;
+/* ==========================================
+   BOTÃO MOSTRAR SENHA
+========================================== */
+
+.password-toggle {
+    position: absolute;
+
+    top: 50%;
+    right: 12px;
+
+    transform: translateY(-50%);
+
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+
+    background: transparent;
+
+    color: var(--gray);
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+    border-radius: 5px;
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease;
 }
 
-/* ========================================
-   BOTÃO OLHO
-======================================== */
 
-.icon-button{
+.password-toggle:hover {
+    color: var(--white);
 
-    background:none;
-    border:none;
-
-    color:#8f8f8f;
-
-    font-size:1.1rem;
-
-    cursor:pointer;
+    background: #202020;
 }
 
-/* ========================================
-   AÇÕES
-======================================== */
 
-.login-actions{
+/* ==========================================
+   OPÇÕES DO LOGIN
+========================================== */
 
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+.login-options {
+    width: 100%;
 
-    margin-top:20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-top: 4px;
+    margin-bottom: 28px;
 }
 
-#btnRecuperarSenha{
 
-    background:none;
-    border:none;
+/* ==========================================
+   LEMBRAR DE MIM
+========================================== */
 
-    color:#d0d0d0;
+.remember-me {
+    position: relative;
 
-    font-size:1rem;
+    display: flex;
+    align-items: center;
 
-    cursor:pointer;
+    gap: 9px;
+
+    color: var(--gray-light);
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    user-select: none;
 }
 
-#btnRecuperarSenha:hover{
 
-    color:var(--red);
+.remember-me input {
+    position: absolute;
+
+    opacity: 0;
+
+    width: 0;
+    height: 0;
 }
 
-#btnEntrar{
 
-    width:240px;
-    height:65px;
+.checkmark {
+    width: 19px;
+    height: 19px;
 
-    border:none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    border-radius:12px;
+    border: 1px solid #666;
 
-    background:var(--red);
+    border-radius: 4px;
 
-    color:#fff;
+    background: transparent;
 
-    font-size:1.4rem;
-    font-weight:700;
-
-    cursor:pointer;
-
-    transition:.3s;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
 }
 
-#btnEntrar:hover{
 
-    background:var(--red-hover);
+.remember-me input:checked + .checkmark {
+    background: var(--red);
+
+    border-color: var(--red);
 }
 
-/* ========================================
+
+.remember-me input:checked + .checkmark::after {
+    content: "✓";
+
+    color: var(--white);
+
+    font-size: 12px;
+    font-weight: bold;
+}
+
+
+/* ==========================================
+   ESQUECI A SENHA
+========================================== */
+
+.forgot-password {
+    padding: 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: var(--red);
+
+    font-family: inherit;
+    font-size: 14px;
+
+    cursor: pointer;
+
+    transition:
+        color 0.2s ease;
+}
+
+
+.forgot-password:hover {
+    color: var(--red-hover);
+
+    text-decoration: underline;
+}
+
+
+/* ==========================================
+   BOTÃO ENTRAR
+========================================== */
+
+.btn-primary {
+    width: 100%;
+    height: 56px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: var(--red);
+
+    color: var(--white);
+
+    font-family: inherit;
+    font-size: 17px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.15s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.btn-primary:hover {
+    background: var(--red-hover);
+
+    box-shadow:
+        0 8px 25px rgba(237, 17, 27, 0.18);
+}
+
+
+.btn-primary:active {
+    transform: scale(0.99);
+}
+
+
+.btn-primary:disabled {
+    opacity: 0.6;
+
+    cursor: not-allowed;
+}
+
+
+/* ==========================================
    SEPARADOR
-======================================== */
+========================================== */
 
-.separator{
+.separator {
+    width: 100%;
 
-    display:flex;
-    align-items:center;
+    display: flex;
+    align-items: center;
 
-    gap:20px;
+    gap: 15px;
 
-    margin:50px 0;
+    margin: 28px 0;
 }
 
-.line{
 
-    flex:1;
+.separator .line {
+    flex: 1;
 
-    height:1px;
+    height: 1px;
 
-    background:#2a2a2a;
+    background: var(--border);
 }
 
-#textoSeparador{
 
-    color:#9f9f9f;
+.separator span {
+    color: #777;
 
-    white-space:nowrap;
+    font-size: 13px;
 }
 
-/* ========================================
-   GOOGLE
-======================================== */
 
-.google-button{
+/* ==========================================
+   BOTÃO GOOGLE
+========================================== */
 
-    width:100%;
-    height:70px;
+.google-button {
+    width: 100%;
+    height: 54px;
 
-    border:2px solid var(--red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    border-radius:16px;
+    gap: 11px;
 
-    background:transparent;
+    border: 1px solid var(--border-hover);
 
-    color:#fff;
+    border-radius: 7px;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    background: transparent;
 
-    gap:15px;
+    color: var(--white);
 
-    cursor:pointer;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
 
-    transition:.3s;
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.15s ease;
 }
 
-.google-button:hover{
 
-    background:rgba(229,9,20,.08);
+.google-button:hover {
+    background: #111;
+
+    border-color: #4a4a4a;
 }
 
-#googleIcon{
 
-    width:32px;
-    height:32px;
-
-    object-fit:contain;
+.google-button:active {
+    transform: scale(0.99);
 }
 
-#googleTexto{
 
-    font-size:1.3rem;
-    font-weight:600;
+.google-button img {
+    width: 20px;
+    height: 20px;
+
+    object-fit: contain;
 }
 
-/* ========================================
-   RODAPÉ LOGIN
-======================================== */
 
-.register-area{
+/* ==========================================
+   CRIAR CONTA
+========================================== */
 
-    margin-top:50px;
+.register-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    display:flex;
-    align-items:center;
-    gap:10px;
+    gap: 7px;
 
-    font-size:1.4rem;
+    margin-top: 27px;
+
+    color: var(--gray);
+
+    font-size: 14px;
 }
 
-#textoCadastro{
 
-    color:#d5d5d5;
+.register-area button {
+    padding: 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: var(--red);
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
 }
 
-#btnCriarConta{
 
-    background:none;
-    border:none;
+.register-area button:hover {
+    color: var(--red-hover);
 
-    color:var(--red);
-
-    font-size:1.4rem;
-    font-weight:700;
-
-    cursor:pointer;
+    text-decoration: underline;
 }
 
-#btnCriarConta:hover{
 
-    color:var(--red-hover);
+/* ==========================================
+   LADO DA MARCA
+========================================== */
+
+.login-brand {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 50px;
+
+    text-align: center;
+
+    background: var(--brand-bg);
+
+    border-left: 1px solid var(--border);
 }
 
-/* ========================================
+
+/* ==========================================
+   LOGO
+========================================== */
+
+.brand-logo {
+    width: 210px;
+
+    max-width: 80%;
+
+    height: auto;
+
+    display: block;
+
+    margin-bottom: 30px;
+
+    object-fit: contain;
+}
+
+
+/* ==========================================
+   NOME DA EMPRESA
+========================================== */
+
+.login-brand h1 {
+    margin-bottom: 15px;
+
+    font-size: 34px;
+
+    line-height: 1.1;
+
+    font-weight: 700;
+
+    letter-spacing: -1px;
+}
+
+
+.login-brand h1 span {
+    display: block;
+
+    color: var(--red);
+}
+
+
+/* ==========================================
+   DESCRIÇÃO DA MARCA
+========================================== */
+
+.login-brand p {
+    max-width: 280px;
+
+    color: var(--gray);
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* ==========================================
+   RODAPÉ
+========================================== */
+
+.login-footer {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 28px;
+
+    margin-top: 28px;
+
+    color: #666;
+
+    font-size: 13px;
+}
+
+
+.login-footer button {
+    padding: 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: #666;
+
+    font-family: inherit;
+    font-size: 13px;
+
+    cursor: pointer;
+
+    transition:
+        color 0.2s ease;
+}
+
+
+.login-footer button:hover {
+    color: var(--white);
+}
+
+
+/* ==========================================
    TABLET
-======================================== */
+========================================== */
 
-@media(max-width:1024px){
+@media (max-width: 850px) {
 
-    .login-container{
+    .login-container {
+        max-width: 650px;
 
-        padding:50px;
-
-        grid-template-columns:1fr;
-        gap:50px;
+        grid-template-columns: 1fr;
     }
 
-    .divider{
 
-        display:none;
+    .login-brand {
+        order: -1;
+
+        min-height: 300px;
+
+        padding: 40px 30px;
+
+        border-left: none;
+
+        border-bottom: 1px solid var(--border);
     }
 
-    .login-left{
 
-        padding-right:0;
-        text-align:center;
-        align-items:center;
+    .brand-logo {
+        width: 160px;
+
+        margin-bottom: 20px;
     }
 
-    .login-right{
 
-        padding-left:0;
+    .login-brand h1 {
+        font-size: 28px;
     }
 
-    #tituloBoasVindas{
 
-        font-size:3rem;
+    .login-brand p {
+        font-size: 13px;
+    }
+
+
+    .login-right {
+        padding: 45px 50px;
     }
 }
 
-/* ========================================
-   MOBILE
-======================================== */
 
-@media(max-width:768px){
+/* ==========================================
+   CELULAR GRANDE
+========================================== */
 
-    .login-page{
+@media (max-width: 600px) {
 
-        padding:20px;
+    .login-page {
+        padding: 25px 15px;
     }
 
-    .login-container{
 
-        padding:30px;
-        min-height:auto;
+    .login-container {
+        border-radius: 12px;
     }
 
-    #logo{
 
-        width:80px;
-        height:80px;
+    .login-brand {
+        min-height: 270px;
+
+        padding: 35px 25px;
     }
 
-    #tituloBoasVindas{
 
-        font-size:2.3rem;
+    .brand-logo {
+        width: 140px;
+
+        margin-bottom: 18px;
     }
 
-    #descricaoBoasVindas{
 
-        font-size:1.1rem;
+    .login-brand h1 {
+        font-size: 26px;
     }
 
-    .form-group label{
 
-        font-size:1rem;
+    .login-right {
+        padding: 40px 30px;
     }
 
-    .input-wrapper{
 
-        height:60px;
+    .form-header h2 {
+        font-size: 30px;
+    }
+}
+
+
+/* ==========================================
+   CELULAR
+========================================== */
+
+@media (max-width: 450px) {
+
+    .login-page {
+        padding: 15px 10px;
     }
 
-    .login-actions{
 
-        flex-direction:column;
-        gap:20px;
-        align-items:stretch;
+    .login-container {
+        min-height: auto;
+
+        border-radius: 10px;
     }
 
-    #btnEntrar{
 
-        width:100%;
+    .login-brand {
+        min-height: 240px;
+
+        padding: 30px 20px;
     }
 
-    .register-area{
 
-        flex-direction:column;
-        text-align:center;
+    .brand-logo {
+        width: 120px;
+
+        margin-bottom: 15px;
     }
+
+
+    .login-brand h1 {
+        font-size: 24px;
+    }
+
+
+    .login-brand p {
+        max-width: 250px;
+
+        font-size: 12px;
+    }
+
+
+    .login-right {
+        padding: 32px 23px;
+    }
+
+
+    .form-header {
+        margin-bottom: 28px;
+    }
+
+
+    .form-header h2 {
+        font-size: 28px;
+    }
+
+
+    .form-group {
+        margin-bottom: 22px;
+    }
+
+
+    .input-wrapper input {
+        height: 53px;
+
+        font-size: 14px;
+    }
+
+
+    .login-options {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 13px;
+
+        margin-bottom: 24px;
+    }
+
+
+    .remember-me {
+        font-size: 13px;
+    }
+
+
+    .forgot-password {
+        font-size: 13px;
+    }
+
+
+    .btn-primary {
+        height: 54px;
+
+        font-size: 16px;
+    }
+
+
+    .separator {
+        margin: 25px 0;
+    }
+
+
+    .google-button {
+        height: 53px;
+
+        font-size: 14px;
+    }
+
+
+    .register-area {
+        flex-direction: column;
+
+        gap: 5px;
+
+        margin-top: 24px;
+
+        font-size: 13px;
+    }
+
+
+    .register-area button {
+        font-size: 13px;
+    }
+
+
+    .login-footer {
+        gap: 15px;
+
+        margin-top: 22px;
+
+        font-size: 12px;
+    }
+
+
+    .login-footer button {
+        font-size: 12px;
+    }
+}
+
+
+/* ==========================================
+   ACESSIBILIDADE
+========================================== */
+
+button:focus-visible,
+input:focus-visible {
+    outline: 2px solid var(--red);
+
+    outline-offset: 2px;
 }
