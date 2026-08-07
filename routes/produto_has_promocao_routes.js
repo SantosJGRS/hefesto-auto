@@ -17,13 +17,6 @@ router.post("/", ProdutoHasPromocaoController.cadastrar);
 
 router.get("/", ProdutoHasPromocaoController.listar);
 
-router.get("/:id", ProdutoHasPromocaoController.buscarPorId);
-
-router.put("/:id", ProdutoHasPromocaoController.atualizar);
-
 router.delete("/:id", ProdutoHasPromocaoController.excluir);
 
 module.exports = router;
-
-const produtoHasPromocaoRoutes = require("../routes/produto_has_promocao_routes.js");
-app.use("/produto-has-promocao", produtoHasPromocaoRoutes);

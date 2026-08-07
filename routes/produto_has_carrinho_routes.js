@@ -11,7 +11,7 @@ const express = require("express");
 const router = express.Router();
 // Criando um objeto router para definir as rotas relacionadas ao relacionamento entre produtos e carrinhos.
 
-const ProdutoHasCarrinhoController = require("../controller/produto_has_carrinho_controller.js");
+const ProdutoHasCarrinhoController = require("../controller/carrinho_controller.js");
 
 router.post("/", ProdutoHasCarrinhoController.cadastrar);
 
@@ -24,6 +24,3 @@ router.put("/:id", ProdutoHasCarrinhoController.atualizar);
 router.delete("/:id", ProdutoHasCarrinhoController.excluir);
 
 module.exports = router;
-
-const produtoHasCarrinhoRoutes = require("../routes/produto_has_carrinho_routes.js");
-app.use("/produto-has-carrinho", produtoHasCarrinhoRoutes);

@@ -24,6 +24,3 @@ router.put("/:id", FormasPagamentoController.atualizar);
 router.delete("/:id", FormasPagamentoController.excluir);
 
 module.exports = router;
-
-const formasPagamentoRoutes = require("../routes/formas_pagamento_routes.js");
-app.use("/formas-pagamento", formasPagamentoRoutes);

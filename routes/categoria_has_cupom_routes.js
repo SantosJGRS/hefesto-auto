@@ -24,6 +24,3 @@ router.put("/:id", CategoriaHasCupomController.atualizar);
 router.delete("/:id", CategoriaHasCupomController.excluir);
 
 module.exports = router;
-
-const categoriaHasCupomRoutes = require("../routes/categoria_has_cupom_routes.js");
-app.use("/categoria-has-cupom", categoriaHasCupomRoutes);

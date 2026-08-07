@@ -25,5 +25,3 @@ router.delete("/:id", BannerController.excluir);
 
 module.exports = router;
 
-const bannerRoutes = require("../routes/banner_routes.js");
-app.use("/banners", bannerRoutes);

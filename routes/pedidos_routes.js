@@ -24,6 +24,3 @@ router.put("/:id", PedidosController.atualizar);
 router.delete("/:id", PedidosController.excluir);
 
 module.exports = router;
-
-const pedidosRoutes = require("../routes/pedidos_routes.js");
-app.use("/pedidos", pedidosRoutes);

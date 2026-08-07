@@ -11,7 +11,7 @@ const express = require("express");
 const router = express.Router();
 // Criando um objeto router para definir as rotas relacionadas ao relacionamento entre endereços e clientes.
 
-const EnderecoHasClienteController = require("../controller/endereco_has_cliente_controller.js");
+const EnderecoHasClienteController = require("../controller/frete_controller.js");
 
 router.post("/", EnderecoHasClienteController.cadastrar);
 
@@ -24,6 +24,3 @@ router.put("/:id", EnderecoHasClienteController.atualizar);
 router.delete("/:id", EnderecoHasClienteController.excluir);
 
 module.exports = router;
-
-const enderecoHasClienteRoutes = require("../routes/endereco_has_cliente_routes.js");
-app.use("/endereco-has-cliente", enderecoHasClienteRoutes);

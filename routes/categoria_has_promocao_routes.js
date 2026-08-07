@@ -11,7 +11,7 @@ const express = require("express");
 const router = express.Router();
 // Criando um objeto router para definir as rotas relacionadas ao relacionamento entre categorias e promoções.
 
-const CategoriaHasPromocaoController = require("../controller/categoria_has_promocao_controller.js");
+const CategoriaHasPromocaoController = require("../controller/avaliacao_Produto_controller.js");
 
 router.post("/", CategoriaHasPromocaoController.cadastrar);
 
@@ -24,6 +24,3 @@ router.put("/:id", CategoriaHasPromocaoController.atualizar);
 router.delete("/:id", CategoriaHasPromocaoController.excluir);
 
 module.exports = router;
-
-const categoriaHasPromocaoRoutes = require("../routes/categoria_has_promocao_routes.js");
-app.use("/categoria-has-promocao", categoriaHasPromocaoRoutes);

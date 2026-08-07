@@ -24,6 +24,3 @@ router.put("/:id", CupomController.atualizar);
 router.delete("/:id", CupomController.excluir);
 
 module.exports = router;
-
-const cupomRoutes = require("../routes/cupom_routes.js");
-app.use("/cupons", cupomRoutes);

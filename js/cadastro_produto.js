@@ -1,163 +1,223 @@
-/* =========================================
-   cadastro_produto.js
-   ========================================= */
+/* ==============================================
+   ESTADO DA APLICAÇÃO E INICIALIZAÇÃO
+============================================== */
 
-// Aguarda o HTML carregar completamente antes de rodar os scripts
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // ==========================================
-    // 1. LÓGICA DO BOTÃO "ACTIVE" (TOGGLE SWITCH)
-    // ==========================================
-    const toggleBtn = document.getElementById('toggle-active');
-    
-    if (toggleBtn) {
-        const toggleDot = toggleBtn.querySelector('div');
-        let isActive = true; // Estado inicial igual ao da imagem (Ativo)
-
-        toggleBtn.addEventListener('click', () => {
-            isActive = !isActive; // Inverte o estado
-            
-            if (isActive) {
-                // Fica Vermelho (Ativo)
-                toggleBtn.classList.replace('bg-gray-600', 'bg-brandRed');
-                // Move a bolinha para a direita
-                toggleDot.classList.replace('right-5', 'right-1');
-            } else {
-                // Fica Cinza (Inativo)
-                toggleBtn.classList.replace('bg-brandRed', 'bg-gray-600');
-                // Move a bolinha para a esquerda
-                toggleDot.classList.replace('right-1', 'right-5'); 
-            }
-        });
-    }
-
-    // ==========================================
-    // 2. REMOVER TAGS DE VEÍCULOS
-    // ==========================================
-    const removeTagBtns = document.querySelectorAll('.fa-xmark');
-    
-    removeTagBtns.forEach(btn => {
-        // Evita remover o ícone do modal que também usa fa-xmark
-        if (!btn.closest('#modal-adicionar')) {
-            btn.addEventListener('click', (e) => {
-                const tag = e.target.closest('span');
-                if (tag) {
-                    tag.remove();
-                }
-            });
-        }
-    });
-
-    // ==========================================
-    // 3. AÇÕES DOS BOTÕES SALVAR E CANCELAR
-    // ==========================================
-    const btnSave = document.getElementById('btn-save');
-    const btnCancel = document.getElementById('btn-cancel');
-    const formProduto = document.getElementById('form-produto');
-
-    // Ação do Botão "Salvar Produto"
-    if (btnSave) {
-        btnSave.addEventListener('click', (e) => {
-            e.preventDefault(); // Evita que a página recarregue ao clicar
-            
-            const nomePeca = document.getElementById('nome_peca').value;
-            
-            if (nomePeca.trim() === '') {
-                alert("Por favor, preencha pelo menos o Nome da Peça para testar o salvamento.");
-                return;
-            }
-
-            console.log("Dados prontos para envio ao servidor.");
-            alert(`Sucesso! O produto "${nomePeca}" foi salvo (Simulação).`);
-        });
-    }
-
-    // Ação do Botão "Cancelar"
-    if (btnCancel) {
-        btnCancel.addEventListener('click', () => {
-            const confirmar = confirm("Tem certeza que deseja cancelar? Todos os dados digitados serão perdidos.");
-            
-            if (confirmar) {
-                formProduto.reset(); 
-            }
-        });
-    }
-
-    // ==========================================
-    // 4. LÓGICA DO MODAL (ADICIONAR CATEGORIA E MARCA)
-    // ==========================================
-    const modal = document.getElementById('modal-adicionar');
-    const modalTitulo = document.getElementById('modal-titulo');
-    const inputNovoItem = document.getElementById('input-novo-item');
-    const btnFecharModal = document.getElementById('btn-fechar-modal');
-    const btnCancelarModal = document.getElementById('btn-cancelar-modal');
-    const btnSalvarModal = document.getElementById('btn-salvar-modal');
-    
-    let tipoAtual = ''; // Guarda se estamos mexendo em 'categoria' ou 'marca'
-
-    // Função global chamada pelo botão "+" no HTML
-    window.abrirModal = function(tipo) {
-        tipoAtual = tipo;
-        
-        // Altera os textos dependendo de qual botão clicou
-        if (tipo === 'categoria') {
-            modalTitulo.innerText = 'Nova Categoria';
-            inputNovoItem.placeholder = 'Ex: Suspensão';
-        } else {
-            modalTitulo.innerText = 'Nova Marca';
-            inputNovoItem.placeholder = 'Ex: Michelin';
-        }
-        
-        inputNovoItem.value = ''; // Limpa o input
-        
-        // Mostra o modal na tela
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-        
-        // Foca no campo de texto automaticamente
-        setTimeout(() => inputNovoItem.focus(), 100); 
-    };
-
-    // Função para fechar o modal
-    function fecharModal() {
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
-    }
-
-    // Eventos para fechar o modal
-    if (btnFecharModal) btnFecharModal.addEventListener('click', fecharModal);
-    if (btnCancelarModal) btnCancelarModal.addEventListener('click', fecharModal);
-
-    // Fecha se apertar a tecla "Esc"
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
-            fecharModal();
-        }
-    });
-
-    // Salvar o novo item digitado no Modal
-    if (btnSalvarModal) {
-        btnSalvarModal.addEventListener('click', () => {
-            const novoValor = inputNovoItem.value.trim();
-            
-            if (novoValor !== '') {
-                // Pega o select correspondente (id="categoria" ou id="marca")
-                const selectAlvo = document.getElementById(tipoAtual);
-                
-                // Cria uma nova opção HTML
-                const novaOption = document.createElement('option');
-                novaOption.value = novoValor;
-                novaOption.textContent = novoValor;
-                
-                // Adiciona na lista e já deixa selecionado
-                selectAlvo.appendChild(novaOption);
-                selectAlvo.value = novoValor; 
-                
-                fecharModal(); // Fecha o modal
-            } else {
-                alert('Por favor, digite um nome válido.');
-            }
-        });
-    }
-
+    initFormEvents();
+    initUploadEvents();
+    initTagsEvents();
+    initModalEvents();
 });
+
+/* ==============================================
+   GERENCIAMENTO DOS MODAIS (CATEGORIA / MARCA)
+============================================== */
+
+const btnModalCategoria = document.getElementById('btnModalCategoria');
+const btnModalMarca = document.getElementById('btnModalMarca');
+const formNovaCategoria = document.getElementById('formNovaCategoria');
+const formNovaMarca = document.getElementById('formNovaMarca');
+
+function abrirModal(modalId) {
+    document.getElementById(modalId).classList.add('active');
+}
+
+function fecharModal(modalId) {
+    document.getElementById(modalId).classList.remove('active');
+}
+
+function initModalEvents() {
+    // Abrir Modais
+    btnModalCategoria.addEventListener('click', () => abrirModal('modalCategoria'));
+    btnModalMarca.addEventListener('click', () => abrirModal('modalMarca'));
+
+    // Salvar Nova Categoria Dinamicamente
+    formNovaCategoria.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const inputNome = document.getElementById('nomeNovaCategoria');
+        const valor = inputNome.value.trim();
+
+        if (valor) {
+            const selectCategoria = document.getElementById('selectCategoria');
+            const novaOpcao = document.createElement('option');
+            novaOpcao.value = valor.toLowerCase().replace(/\s+/g, '_');
+            novaOpcao.textContent = valor;
+            novaOpcao.selected = true;
+
+            selectCategoria.appendChild(novaOpcao);
+            inputNome.value = '';
+            fecharModal('modalCategoria');
+        }
+    });
+
+    // Salvar Nova Marca Dinamicamente
+    formNovaMarca.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const inputNome = document.getElementById('nomeNovaMarca');
+        const valor = inputNome.value.trim();
+
+        if (valor) {
+            const selectMarca = document.getElementById('selectMarca');
+            const novaOpcao = document.createElement('option');
+            novaOpcao.value = valor.toLowerCase().replace(/\s+/g, '_');
+            novaOpcao.textContent = valor;
+            novaOpcao.selected = true;
+
+            selectMarca.appendChild(novaOpcao);
+            inputNome.value = '';
+            fecharModal('modalMarca');
+        }
+    });
+}
+
+/* ==============================================
+   TOGGLE DE STATUS (DISPONIBILIDADE)
+============================================== */
+
+const statusCheckbox = document.getElementById('statusAtivo');
+const toggleText = document.getElementById('toggleText');
+
+if (statusCheckbox && toggleText) {
+    statusCheckbox.addEventListener('change', () => {
+        toggleText.textContent = statusCheckbox.checked ? 'Ativo' : 'Inativo';
+    });
+}
+
+/* ==============================================
+   COMPATIBILIDADE DE VEÍCULOS (TAGS)
+============================================== */
+
+const compatibilidadeInput = document.getElementById('compatibilidadeInput');
+const tagsList = document.getElementById('tagsList');
+
+function initTagsEvents() {
+    if (!compatibilidadeInput) return;
+
+    compatibilidadeInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            const tagText = compatibilidadeInput.value.trim();
+
+            if (tagText !== '') {
+                criarTag(tagText);
+                compatibilidadeInput.value = '';
+            }
+        }
+    });
+}
+
+function criarTag(texto) {
+    const span = document.createElement('span');
+    span.className = 'tag-chip';
+    span.innerHTML = `
+        ${texto}
+        <i class="fa-solid fa-xmark" onclick="removeTag(this)"></i>
+    `;
+    tagsList.appendChild(span);
+}
+
+function removeTag(element) {
+    element.parentElement.remove();
+}
+
+/* ==============================================
+   PREVIEW DE UPLOAD DE IMAGENS
+============================================== */
+
+function initUploadEvents() {
+    const dropzone = document.getElementById('dropzone');
+    const inputImagens = document.getElementById('inputImagens');
+    const previewContainer = document.getElementById('previewContainer');
+
+    if (!dropzone || !inputImagens) return;
+
+    dropzone.addEventListener('click', () => inputImagens.click());
+
+    inputImagens.addEventListener('change', (e) => {
+        const files = Array.from(e.target.files);
+        files.forEach(file => {
+            if (file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    const img = document.createElement('img');
+                    img.src = event.target.result;
+                    img.className = 'preview-thumb';
+                    previewContainer.appendChild(img);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    });
+}
+
+/* ==============================================
+   VALIDAÇÃO DO FORMULÁRIO DE PRODUTO
+============================================== */
+
+function initFormEvents() {
+    const productForm = document.getElementById('productForm');
+
+    if (!productForm) return;
+
+    productForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const nomePeca = document.getElementById('nomePeca').value;
+        const skuNumber = document.getElementById('skuNumber').value;
+
+        if (!nomePeca || !skuNumber) {
+            alert('Por favor, preencha os campos obrigatórios (Nome da Peça e SKU).');
+            return;
+        }
+
+        alert('Produto salvo com sucesso!');
+    });
+}
+
+
+
+//======================================================
+// CADASTRO categorias
+//======================================================
+
+document.getElementById("btnSalvarCategoria").
+    addEventListener("click", function () {
+        //capturar os dados do input
+        const categoriaNome
+            = document.getElementById("nomeNovaCategoria").value;
+
+        // criar um if para validar se o campo está vazio    
+        if (categoriaNome === "") {
+            alert("Por favor, preencha o nome da categoria.");
+            return;
+        }
+
+        // criar um objeto com os dados da categoria
+        const categoria = {
+            nome: categoriaNome
+
+        };
+
+        // enviar os dados para o servidor
+        fetch("http://localhost:3000/categorias", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(categoria)
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Categoria cadastrada:", data);
+                alert("Categoria cadastrada com sucesso!");
+            })
+            .catch(error => {
+                console.error("Erro ao cadastrar categoria:", error);
+                alert("Erro ao cadastrar categoria.");
+            });
+    });
+
+
+//======================================================
+// CADASTRO MARCAS
+//======================================================

@@ -24,6 +24,3 @@ router.put("/:id", PromocaoController.atualizar);
 router.delete("/:id", PromocaoController.excluir);
 
 module.exports = router;
-
-const promocaoRoutes = require("../routes/promocao_routes.js");
-app.use("/promocoes", promocaoRoutes);

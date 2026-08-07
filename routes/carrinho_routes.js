@@ -24,6 +24,3 @@ router.put("/:id", CarrinhoController.atualizar);
 router.delete("/:id", CarrinhoController.excluir);
 
 module.exports = router;
-
-const carrinhoRoutes = require("../routes/carrinho_routes.js");
-app.use("/carrinhos", carrinhoRoutes);

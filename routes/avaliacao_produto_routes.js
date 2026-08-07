@@ -25,8 +25,3 @@ router.delete("/:id", AvaliacaoProdutoController.excluir);
 
 module.exports = router;
 
-const clienteRoutes = require("../routes/cliente_routes.js");
-app.use("/clientes", clienteRoutes);
-
-const avaliacaoRoutes = require("../routes/avaliacao_produto_routes.js");
-app.use("/avaliacoes", avaliacaoRoutes);

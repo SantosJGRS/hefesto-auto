@@ -24,6 +24,3 @@ router.put("/:id", CartaoPagamentoController.atualizar);
 router.delete("/:id", CartaoPagamentoController.excluir);
 
 module.exports = router;
-
-const cartaoPagamentoRoutes = require("../routes/cartao_pagamento_routes.js");
-app.use("/cartoes-pagamento", cartaoPagamentoRoutes);
