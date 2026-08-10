@@ -1,245 +1,363 @@
 /* ==========================================
-   RESET BÁSICO
-========================================== */
+   RESET & VARIÁVEIS
+=========================================== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --bg-main: #0a0a0a;
+    --bg-container: #121212;
+    --bg-input: #1a1a1a;
+    --border-color: #262626;
+    --primary-red: #e10600;
+    --primary-red-hover: #c50500;
+    --text-primary: #ffffff;
+    --text-secondary: #a3a3a3;
+    --text-muted: #737373;
 }
 
 body {
-    background-color: #050505;
-    color: #ffffff;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
-}
-
-/* ==========================================
-   CABEÇALHO (HEADER)
-========================================== */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 40px;
-    border-bottom: 2px solid #fd1111;
-    background-color: #000000;
-}
-
-.logo {
-    display: flex;
-    flex-direction: column;
-}
-
-.logo-principal {
-    color: #fd1111;
-    font-size: 32px;
-    font-weight: 900;
-    font-style: italic;
-    letter-spacing: -1px;
-}
-
-.logo-sub {
-    color: #ffffff;
-    font-size: 14px;
-    font-weight: bold;
-    letter-spacing: 4px;
-    margin-left: 5px;
-}
-
-.btn-entrar {
-    background: transparent;
-    border: 2px solid #fd1111;
-    color: #fd1111;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 5px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: 0.3s;
-}
-
-.btn-entrar:hover {
-    background-color: #fd1111;
-    color: #ffffff;
-}
-
-/* ==========================================
-   ÁREA DO CARTÃO (MAIN)
-========================================== */
-main {
-    flex: 1;
-    display: flex;
     justify-content: center;
     align-items: center;
-    padding: 40px 20px;
 }
 
-.cadastro-card {
-    background-color: #0d0d0d;
-    border: 1px solid #222;
-    border-radius: 15px;
-    padding: 40px;
+/* ==========================================
+   LAYOUT PRINCIPAL
+=========================================== */
+.login-page {
     width: 100%;
-    max-width: 500px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-    text-align: center;
+    max-width: 1200px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-container {
+    width: 100%;
+    background-color: var(--bg-container);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 /* ==========================================
-   TEXTOS E ÍCONE DO TOPO
-========================================== */
-.icone-topo {
-    width: 60px;
-    height: 60px;
-    border: 2px solid #fd1111;
-    border-radius: 50%;
+   LADO DA MARCA (ESQUERDA)
+=========================================== */
+.login-brand {
+    background: linear-gradient(135deg, #141414 0%, #0a0a0a 100%);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 0 auto 15px auto;
-    font-size: 24px;
-    color: #fd1111;
+    padding: 60px 40px;
+    text-align: center;
+    border-right: 1px solid var(--border-color);
 }
 
-.titulo {
-    font-size: 28px;
-    text-transform: uppercase;
-    font-weight: bold;
-}
-
-.titulo span {
-    color: #fd1111;
-}
-
-.linha-vermelha {
-    width: 60px;
-    height: 3px;
-    background-color: #fd1111;
-    margin: 10px auto 20px auto;
-}
-
-.subtitulo {
-    color: #888;
-    font-size: 14px;
-    margin-bottom: 30px;
-}
-
-/* ==========================================
-   FORMULÁRIO E INPUTS
-========================================== */
-.campo {
-    text-align: left;
+.brand-logo {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
     margin-bottom: 20px;
 }
 
-.campo label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 14px;
-    font-weight: bold;
-    color: #ccc;
-    margin-bottom: 8px;
+.login-brand h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--text-primary);
+    margin-bottom: 15px;
 }
 
-.campo label i {
-    color: #fd1111;
+.login-brand h1 span {
+    color: var(--primary-red);
+    display: block;
+    font-size: 1.2rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-top: 5px;
 }
 
-.input-box {
-    position: relative;
-    width: 100%;
-}
-
-.input-box input {
-    width: 100%;
-    background-color: #1a1a1a;
-    border: 1px solid #333;
-    padding: 15px;
-    border-radius: 8px;
-    color: #fff;
-    font-size: 14px;
-    outline: none;
-    transition: 0.3s;
-}
-
-.input-box input:focus {
-    border-color: #fd1111;
-}
-
-.icone-senha {
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #666;
-    cursor: pointer;
-}
-
-.icone-senha:hover {
-    color: #fff;
+.login-brand p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    max-width: 320px;
+    line-height: 1.5;
 }
 
 /* ==========================================
-   BOTÃO CRIAR CONTA E RODAPÉ
-========================================== */
-.btn-criar {
-    width: 100%;
-    background-color: #fd1111;
-    color: #fff;
-    border: none;
-    padding: 15px;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 8px;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: 0.3s;
+   LADO DO FORMULÁRIO (DIREITA)
+=========================================== */
+.login-right {
+    padding: 50px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-height: 85vh;
+    overflow-y: auto;
 }
 
-.btn-criar:hover {
-    background-color: #d00f0f;
+/* Barra de rolagem personalizada para o formulário longo */
+.login-right::-webkit-scrollbar {
+    width: 6px;
+}
+.login-right::-webkit-scrollbar-track {
+    background: var(--bg-container);
+}
+.login-right::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 3px;
 }
 
-.divisor-ou {
+.form-header {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.form-header h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.form-subtitle {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+}
+
+.title-line {
+    width: 40px;
+    height: 3px;
+    background-color: var(--primary-red);
+    margin: 0 auto;
+    border-radius: 2px;
+}
+
+/* ==========================================
+   ESTRUTURA DO FORMULÁRIO
+=========================================== */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.input-wrapper {
+    position: relative;
     display: flex;
     align-items: center;
-    margin: 25px 0;
-    color: #555;
-    font-size: 12px;
-    font-weight: bold;
 }
 
-.divisor-ou::before,
-.divisor-ou::after {
-    content: "";
+.input-wrapper input {
+    width: 100%;
+    background-color: var(--bg-input);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 12px 16px;
+    color: var(--text-primary);
+    font-size: 0.95krem;
+    transition: all 0.3s ease;
+}
+
+.input-wrapper input:focus {
+    outline: none;
+    border-color: var(--primary-red);
+    box-shadow: 0 0 0 2px rgba(225, 6, 0, 0.15);
+}
+
+.input-wrapper input::placeholder {
+    color: var(--text-muted);
+}
+
+/* Botão de mostrar/esconder senha */
+.password-toggle {
+    position: absolute;
+    right: 14px;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 1rem;
+    transition: color 0.2s;
+}
+
+.password-toggle:hover {
+    color: var(--text-primary);
+}
+
+/* ==========================================
+   OPÇÕES (LEMBRAR / ESQUECI A SENHA)
+=========================================== */
+.login-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    margin: 4px 0;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    color: var(--text-secondary);
+}
+
+.remember-me input {
+    accent-color: var(--primary-red);
+    width: 16px;
+    height: 16px;
+}
+
+.forgot-password {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.forgot-password:hover {
+    color: var(--primary-red);
+    text-decoration: underline;
+}
+
+/* ==========================================
+   BOTÕES PRINCIPAIS
+=========================================== */
+.btn-primary {
+    background-color: var(--primary-red);
+    color: var(--text-primary);
+    border: none;
+    border-radius: 6px;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    margin-top: 10px;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-red-hover);
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+/* ==========================================
+   SEPARADOR E BOTÃO DE REGISTRO
+=========================================== */
+.separator {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 25px 0;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.separator .line {
     flex: 1;
     height: 1px;
-    background-color: #333;
+    background-color: var(--border-color);
 }
 
-.divisor-ou span {
-    padding: 0 10px;
+.register-area {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
 }
 
-.link-login {
-    color: #888;
-    font-size: 14px;
+.register-area button {
+    background: none;
+    border: none;
+    color: var(--primary-red);
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: 4px;
 }
 
-.link-login a {
-    color: #fd1111;
-    text-decoration: none;
-    font-weight: bold;
-    margin-left: 5px;
-}
-
-.link-login a:hover {
+.register-area button:hover {
     text-decoration: underline;
+}
+
+/* ==========================================
+   RODAPÉ DA PÁGINA
+=========================================== */
+.login-footer {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 25px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.login-footer button {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.login-footer button:hover {
+    color: var(--text-primary);
+}
+
+/* ==========================================
+   RESPONSIVIDADE (MOBILE)
+=========================================== */
+@media (max-width: 900px) {
+    .login-container {
+        grid-template-columns: 1fr;
+    }
+
+    .login-brand {
+        padding: 40px 20px;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .login-right {
+        padding: 30px 20px;
+        max-height: none;
+    }
+
+    .login-footer {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
 }
