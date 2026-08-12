@@ -1,9 +1,9 @@
 //==========================================
 // IMPORTA O MODEL
-// passe aqui o caminho correto do seu arquivo model
 //==========================================
 
-const marcaModel = require("../model/marca_model");
+const marcaModel = require("../model/marca_model.js");
+
 
 //==========================================
 // CADASTRAR MARCA
@@ -11,46 +11,96 @@ const marcaModel = require("../model/marca_model");
 
 function cadastrar(req, res) {
 
-    const marca = req.body;
+    const nome = req.body.nome;
 
-    // Validação dos campos obrigatórios
 
-    if (
-        !marca.nome ||
-        !marca.logo
-    ) {
+    //==========================================
+    // VALIDAÇÃO
+    //==========================================
+
+    if (!nome || nome.trim() === "") {
 
         return res.status(400).json({
+
             sucesso: false,
-            mensagem: "Preencha todos os campos."
+
+            mensagem: "Informe o nome da marca."
+
         });
 
     }
 
-    // Cadastra a marca
 
-    marcaModel.cadastrar(marca, (erro, resultado) => {
+    //==========================================
+    // OBJETO MARCA
+    //==========================================
 
-        if (erro) {
+    const marca = {
 
-            return res.status(500).json({
-                sucesso: false,
-                mensagem: "Erro ao cadastrar marca."
+        nome: nome.trim()
+
+    };
+
+
+    //==========================================
+    // CADASTRAR
+    //==========================================
+
+    marcaModel.cadastrar(
+        marca,
+        (erro, resultado) => {
+
+            if (erro) {
+
+                console.log(
+                    "Erro ao cadastrar marca:",
+                    erro
+                );
+
+
+                if (erro.code === "ER_DUP_ENTRY") {
+
+                    return res.status(409).json({
+
+                        sucesso: false,
+
+                        mensagem:
+                            "Essa marca já está cadastrada."
+
+                    });
+
+                }
+
+
+                return res.status(500).json({
+
+                    sucesso: false,
+
+                    mensagem:
+                        "Erro ao cadastrar marca."
+
+                });
+
+            }
+
+
+            return res.status(201).json({
+
+                sucesso: true,
+
+                mensagem:
+                    "Marca cadastrada com sucesso!",
+
+                idMarca:
+                    resultado.insertId
+
             });
 
         }
-
-        return res.status(201).json({
-
-            sucesso: true,
-            mensagem: "Marca cadastrada com sucesso!",
-            idMarca: resultado.insertId
-
-        });
-
-    });
+    );
 
 }
+
 
 //==========================================
 // LISTAR MARCAS
@@ -58,23 +108,38 @@ function cadastrar(req, res) {
 
 function listar(req, res) {
 
-    marcaModel.listar((erro, resultado) => {
+    marcaModel.listar(
+        (erro, resultado) => {
 
-        if (erro) {
+            if (erro) {
 
-            return res.status(500).json({
-                sucesso: false,
-                mensagem: "Erro ao listar marcas."
-            });
+                console.log(
+                    "Erro ao listar marcas:",
+                    erro
+                );
+
+
+                return res.status(500).json({
+
+                    sucesso: false,
+
+                    mensagem:
+                        "Erro ao listar marcas."
+
+                });
+
+            }
+
+
+            return res.status(200).json(
+                resultado
+            );
 
         }
-
-        // Retorna a lista de marcas em formato JSON
-        res.json(resultado);
-
-    });
+    );
 
 }
+
 
 //==========================================
 // BUSCAR MARCA POR ID
@@ -82,34 +147,59 @@ function listar(req, res) {
 
 function buscarPorId(req, res) {
 
-    const id = req.params.id;
+    const id =
+        req.params.id;
 
-    marcaModel.buscarPorId(id, (erro, resultado) => {
 
-        if (erro) {
+    marcaModel.buscarPorId(
+        id,
+        (erro, resultado) => {
 
-            return res.status(500).json({
-                sucesso: false,
-                mensagem: "Erro ao buscar marca."
-            });
+            if (erro) {
+
+                console.log(
+                    "Erro ao buscar marca:",
+                    erro
+                );
+
+
+                return res.status(500).json({
+
+                    sucesso: false,
+
+                    mensagem:
+                        "Erro ao buscar marca."
+
+                });
+
+            }
+
+
+            if (
+                resultado.length === 0
+            ) {
+
+                return res.status(404).json({
+
+                    sucesso: false,
+
+                    mensagem:
+                        "Marca não encontrada."
+
+                });
+
+            }
+
+
+            return res.status(200).json(
+                resultado[0]
+            );
 
         }
-
-        if (resultado.length === 0) {
-
-            return res.status(404).json({
-                sucesso: false,
-                mensagem: "Marca não encontrada."
-            });
-
-        }
-
-        // Retorna a marca encontrada em formato JSON
-        res.json(resultado[0]);
-
-    });
+    );
 
 }
+
 
 //==========================================
 // ATUALIZAR MARCA
@@ -117,31 +207,118 @@ function buscarPorId(req, res) {
 
 function atualizar(req, res) {
 
-    // Obtém o ID da marca a ser atualizada a partir dos parâmetros da URL
-    const id = req.params.id;
+    const id =
+        req.params.id;
 
-    // Obtém os dados atualizados da marca a partir do corpo da requisição
-    const marca = req.body;
+    const nome =
+        req.body.nome;
 
-    marcaModel.atualizar(id, marca, (erro, resultado) => {
 
-        if (erro) {
+    //==========================================
+    // VALIDAÇÃO
+    //==========================================
 
-            return res.status(500).json({
-                sucesso: false,
-                mensagem: "Erro ao atualizar marca."
+    if (!nome || nome.trim() === "") {
+
+        return res.status(400).json({
+
+            sucesso: false,
+
+            mensagem:
+                "Informe o nome da marca."
+
+        });
+
+    }
+
+
+    //==========================================
+    // OBJETO MARCA
+    //==========================================
+
+    const marca = {
+
+        nome: nome.trim()
+
+    };
+
+
+    //==========================================
+    // ATUALIZAR
+    //==========================================
+
+    marcaModel.atualizar(
+        id,
+        marca,
+        (erro, resultado) => {
+
+            if (erro) {
+
+                console.log(
+                    "Erro ao atualizar marca:",
+                    erro
+                );
+
+
+                if (
+                    erro.code ===
+                    "ER_DUP_ENTRY"
+                ) {
+
+                    return res.status(409).json({
+
+                        sucesso: false,
+
+                        mensagem:
+                            "Já existe uma marca com esse nome."
+
+                    });
+
+                }
+
+
+                return res.status(500).json({
+
+                    sucesso: false,
+
+                    mensagem:
+                        "Erro ao atualizar marca."
+
+                });
+
+            }
+
+
+            if (
+                resultado.affectedRows === 0
+            ) {
+
+                return res.status(404).json({
+
+                    sucesso: false,
+
+                    mensagem:
+                        "Marca não encontrada."
+
+                });
+
+            }
+
+
+            return res.status(200).json({
+
+                sucesso: true,
+
+                mensagem:
+                    "Marca atualizada com sucesso."
+
             });
 
         }
-
-        res.json({
-            sucesso: true,
-            mensagem: "Marca atualizada com sucesso."
-        });
-
-    });
+    );
 
 }
+
 
 //==========================================
 // EXCLUIR MARCA
@@ -149,28 +326,81 @@ function atualizar(req, res) {
 
 function excluir(req, res) {
 
-    // Obtém o ID da marca a ser excluída a partir dos parâmetros da URL
-    const id = req.params.id;
+    const id =
+        req.params.id;
 
-    marcaModel.excluir(id, (erro, resultado) => {
 
-        if (erro) {
+    marcaModel.excluir(
+        id,
+        (erro, resultado) => {
 
-            return res.status(500).json({
-                sucesso: false,
-                mensagem: "Erro ao excluir marca."
+            if (erro) {
+
+                console.log(
+                    "Erro ao excluir marca:",
+                    erro
+                );
+
+
+                if (
+                    erro.code ===
+                    "ER_ROW_IS_REFERENCED_2"
+                ) {
+
+                    return res.status(409).json({
+
+                        sucesso: false,
+
+                        mensagem:
+                            "Não é possível excluir esta marca porque ela está vinculada a um produto."
+
+                    });
+
+                }
+
+
+                return res.status(500).json({
+
+                    sucesso: false,
+
+                    mensagem:
+                        "Erro ao excluir marca."
+
+                });
+
+            }
+
+
+            if (
+                resultado.affectedRows === 0
+            ) {
+
+                return res.status(404).json({
+
+                    sucesso: false,
+
+                    mensagem:
+                        "Marca não encontrada."
+
+                });
+
+            }
+
+
+            return res.status(200).json({
+
+                sucesso: true,
+
+                mensagem:
+                    "Marca excluída com sucesso."
+
             });
 
         }
-
-        res.json({
-            sucesso: true,
-            mensagem: "Marca excluída com sucesso."
-        });
-
-    });
+    );
 
 }
+
 
 //==========================================
 // EXPORTAÇÃO

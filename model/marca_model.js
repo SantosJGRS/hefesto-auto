@@ -1,80 +1,93 @@
 const conexao = require("../conexao/conexao.js");
 
-// =========================
-// Cadastrar Marca
-// =========================
+
+//==========================================
+// CADASTRAR MARCA
+//==========================================
 
 function cadastrar(marca, callback) {
 
     const sql = `
         INSERT INTO Marca
         (
-            nome,
-            logo
+            nome
         )
-        VALUES (?, ?)
+        VALUES (?)
     `;
 
     conexao.query(
         sql,
         [
-            marca.nome,
-            marca.logo
+            marca.nome
         ],
         callback
     );
 
 }
 
-// =========================
-// Listar Marcas
-// =========================
+
+//==========================================
+// LISTAR MARCAS
+//==========================================
 
 function listar(callback) {
 
     const sql = `
-        SELECT * FROM Marca
+        SELECT
+            idMarca,
+            nome
+        FROM Marca
+        ORDER BY nome
     `;
 
-    conexao.query(sql, callback);
+    conexao.query(
+        sql,
+        callback
+    );
 
 }
 
-// =========================
-// Buscar por ID
-// =========================
+
+//==========================================
+// BUSCAR MARCA POR ID
+//==========================================
 
 function buscarPorId(id, callback) {
 
     const sql = `
-        SELECT *
+        SELECT
+            idMarca,
+            nome
         FROM Marca
-        WHERE IdMarca = ?
+        WHERE idMarca = ?
     `;
 
-    conexao.query(sql, [id], callback);
+    conexao.query(
+        sql,
+        [id],
+        callback
+    );
 
 }
 
-// =========================
-// Atualizar Marca
-// =========================
+
+//==========================================
+// ATUALIZAR MARCA
+//==========================================
 
 function atualizar(id, marca, callback) {
 
     const sql = `
         UPDATE Marca
         SET
-            nome = ?,
-            logo = ?
-        WHERE IdMarca = ?
+            nome = ?
+        WHERE idMarca = ?
     `;
 
     conexao.query(
         sql,
         [
             marca.nome,
-            marca.logo,
             id
         ],
         callback
@@ -82,20 +95,30 @@ function atualizar(id, marca, callback) {
 
 }
 
-// =========================
-// Excluir Marca
-// =========================
+
+//==========================================
+// EXCLUIR MARCA
+//==========================================
 
 function excluir(id, callback) {
 
     const sql = `
         DELETE FROM Marca
-        WHERE IdMarca = ?
+        WHERE idMarca = ?
     `;
 
-    conexao.query(sql, [id], callback);
+    conexao.query(
+        sql,
+        [id],
+        callback
+    );
 
 }
+
+
+//==========================================
+// EXPORTAR FUNÇÕES
+//==========================================
 
 module.exports = {
 

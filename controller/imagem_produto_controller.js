@@ -1,9 +1,10 @@
 //==========================================
 // IMPORTA O MODEL
-// passe aqui o caminho correto do seu arquivo model
 //==========================================
 
-const imagemProdutoModel = require("../model/imagem_produto_model");
+const imagemProdutoModel =
+    require("../model/imagem_produto_model.js");
+
 
 //==========================================
 // CADASTRAR IMAGEM
@@ -11,46 +12,150 @@ const imagemProdutoModel = require("../model/imagem_produto_model");
 
 function cadastrar(req, res) {
 
-    const imagem = req.body;
+    //==========================================
+    // PEGAR ID DO PRODUTO
+    //==========================================
 
-    // Validação dos campos obrigatórios
+    const Produto_idProduto =
+        req.body.Produto_idProduto;
 
-    if (
-        !imagem.arquivo ||
-        !imagem.Produto_idProduto
-    ) {
+
+    console.log(
+        "Produto recebido:",
+        Produto_idProduto
+    );
+
+
+    console.log(
+        "Arquivo recebido:",
+        req.file
+            ? req.file.originalname
+            : "Nenhum arquivo"
+    );
+
+
+    //==========================================
+    // VALIDAR ID DO PRODUTO
+    //==========================================
+
+    if (!Produto_idProduto) {
 
         return res.status(400).json({
+
             sucesso: false,
-            mensagem: "Preencha todos os campos."
+
+            mensagem:
+                "Informe o produto da imagem."
+
         });
 
     }
 
-    // Cadastra a imagem
 
-    imagemProdutoModel.cadastrar(imagem, (erro, resultado) => {
+    //==========================================
+    // VALIDAR ARQUIVO
+    //==========================================
 
-        if (erro) {
+    if (!req.file) {
 
-            return res.status(500).json({
-                sucesso: false,
-                mensagem: "Erro ao cadastrar imagem."
-            });
+        return res.status(400).json({
 
-        }
+            sucesso: false,
 
-        return res.status(201).json({
-
-            sucesso: true,
-            mensagem: "Imagem cadastrada com sucesso!",
-            idImagem_Produto: resultado.insertId
+            mensagem:
+                "Selecione uma imagem."
 
         });
 
-    });
+    }
+
+
+    //==========================================
+    // VALIDAR BUFFER
+    //==========================================
+
+    if (!req.file.buffer) {
+
+        return res.status(400).json({
+
+            sucesso: false,
+
+            mensagem:
+                "Não foi possível processar a imagem."
+
+        });
+
+    }
+
+
+    //==========================================
+    // MONTAR OBJETO
+    //==========================================
+
+    const imagem = {
+
+        arquivo:
+            req.file.buffer,
+
+        Produto_idProduto:
+            Number(
+                Produto_idProduto
+            )
+
+    };
+
+
+    //==========================================
+    // CADASTRAR
+    //==========================================
+
+    imagemProdutoModel.cadastrar(
+        imagem,
+        (erro, resultado) => {
+
+            if (erro) {
+
+                console.log(
+                    "Erro ao cadastrar imagem:",
+                    erro
+                );
+
+
+                return res.status(500).json({
+
+                    sucesso: false,
+
+                    mensagem:
+                        "Erro ao cadastrar imagem.",
+
+                    erro:
+                        erro.message
+
+                });
+
+            }
+
+
+            return res.status(201).json({
+
+                sucesso: true,
+
+                mensagem:
+                    "Imagem cadastrada com sucesso!",
+
+                idImagem_Produto:
+                    resultado.insertId,
+
+                Produto_idProduto:
+                    imagem.Produto_idProduto
+
+            });
+
+        }
+    );
 
 }
+
 
 //==========================================
 // LISTAR IMAGENS
@@ -58,23 +163,65 @@ function cadastrar(req, res) {
 
 function listar(req, res) {
 
-    imagemProdutoModel.listar((erro, resultado) => {
+    imagemProdutoModel.listar(
+        (erro, resultado) => {
 
-        if (erro) {
+            if (erro) {
 
-            return res.status(500).json({
-                sucesso: false,
-                mensagem: "Erro ao listar imagens."
-            });
+                console.log(
+                    "Erro ao listar imagens:",
+                    erro
+                );
+
+
+                return res.status(500).json({
+
+                    sucesso: false,
+
+                    mensagem:
+                        "Erro ao listar imagens."
+
+                });
+
+            }
+
+
+            //==========================================
+            // CONVERTER BLOB PARA BASE64
+            //==========================================
+
+            const imagens =
+                resultado.map(
+                    imagem => {
+
+                        if (
+                            imagem.arquivo
+                        ) {
+
+                            imagem.arquivo =
+                                imagem.arquivo
+                                    .toString(
+                                        "base64"
+                                    );
+
+                        }
+
+
+                        return imagem;
+
+                    }
+                );
+
+
+            return res.status(200).json(
+                imagens
+            );
 
         }
-
-        // Retorna a lista de imagens em formato JSON
-        res.json(resultado);
-
-    });
+    );
 
 }
+
 
 //==========================================
 // BUSCAR IMAGEM POR ID
@@ -82,34 +229,80 @@ function listar(req, res) {
 
 function buscarPorId(req, res) {
 
-    const id = req.params.id;
+    const id =
+        req.params.id;
 
-    imagemProdutoModel.buscarPorId(id, (erro, resultado) => {
 
-        if (erro) {
+    imagemProdutoModel.buscarPorId(
+        id,
+        (erro, resultado) => {
 
-            return res.status(500).json({
-                sucesso: false,
-                mensagem: "Erro ao buscar imagem."
-            });
+            if (erro) {
+
+                console.log(
+                    "Erro ao buscar imagem:",
+                    erro
+                );
+
+
+                return res.status(500).json({
+
+                    sucesso: false,
+
+                    mensagem:
+                        "Erro ao buscar imagem."
+
+                });
+
+            }
+
+
+            if (
+                resultado.length === 0
+            ) {
+
+                return res.status(404).json({
+
+                    sucesso: false,
+
+                    mensagem:
+                        "Imagem não encontrada."
+
+                });
+
+            }
+
+
+            const imagem =
+                resultado[0];
+
+
+            //==========================================
+            // CONVERTER PARA BASE64
+            //==========================================
+
+            if (
+                imagem.arquivo
+            ) {
+
+                imagem.arquivo =
+                    imagem.arquivo
+                        .toString(
+                            "base64"
+                        );
+
+            }
+
+
+            return res.status(200).json(
+                imagem
+            );
 
         }
-
-        if (resultado.length === 0) {
-
-            return res.status(404).json({
-                sucesso: false,
-                mensagem: "Imagem não encontrada."
-            });
-
-        }
-
-        // Retorna a imagem encontrada em formato JSON
-        res.json(resultado[0]);
-
-    });
+    );
 
 }
+
 
 //==========================================
 // ATUALIZAR IMAGEM
@@ -117,31 +310,122 @@ function buscarPorId(req, res) {
 
 function atualizar(req, res) {
 
-    // Obtém o ID da imagem a ser atualizada a partir dos parâmetros da URL
-    const id = req.params.id;
+    const id =
+        req.params.id;
 
-    // Obtém os dados atualizados da imagem a partir do corpo da requisição
-    const imagem = req.body;
 
-    imagemProdutoModel.atualizar(id, imagem, (erro, resultado) => {
+    const Produto_idProduto =
+        req.body.Produto_idProduto;
 
-        if (erro) {
 
-            return res.status(500).json({
-                sucesso: false,
-                mensagem: "Erro ao atualizar imagem."
+    //==========================================
+    // VALIDAR
+    //==========================================
+
+    if (!Produto_idProduto) {
+
+        return res.status(400).json({
+
+            sucesso: false,
+
+            mensagem:
+                "Informe o produto."
+
+        });
+
+    }
+
+
+    if (!req.file) {
+
+        return res.status(400).json({
+
+            sucesso: false,
+
+            mensagem:
+                "Selecione uma nova imagem."
+
+        });
+
+    }
+
+
+    //==========================================
+    // OBJETO IMAGEM
+    //==========================================
+
+    const imagem = {
+
+        arquivo:
+            req.file.buffer,
+
+        Produto_idProduto:
+            Number(
+                Produto_idProduto
+            )
+
+    };
+
+
+    //==========================================
+    // ATUALIZAR
+    //==========================================
+
+    imagemProdutoModel.atualizar(
+        id,
+        imagem,
+        (erro, resultado) => {
+
+            if (erro) {
+
+                console.log(
+                    "Erro ao atualizar imagem:",
+                    erro
+                );
+
+
+                return res.status(500).json({
+
+                    sucesso: false,
+
+                    mensagem:
+                        "Erro ao atualizar imagem."
+
+                });
+
+            }
+
+
+            if (
+                resultado.affectedRows === 0
+            ) {
+
+                return res.status(404).json({
+
+                    sucesso: false,
+
+                    mensagem:
+                        "Imagem não encontrada."
+
+                });
+
+            }
+
+
+            return res.status(200).json({
+
+                sucesso: true,
+
+                mensagem:
+                    "Imagem atualizada com sucesso."
+
             });
 
         }
-
-        res.json({
-            sucesso: true,
-            mensagem: "Imagem atualizada com sucesso."
-        });
-
-    });
+    );
 
 }
+
 
 //==========================================
 // EXCLUIR IMAGEM
@@ -149,28 +433,64 @@ function atualizar(req, res) {
 
 function excluir(req, res) {
 
-    // Obtém o ID da imagem a ser excluída a partir dos parâmetros da URL
-    const id = req.params.id;
+    const id =
+        req.params.id;
 
-    imagemProdutoModel.excluir(id, (erro, resultado) => {
 
-        if (erro) {
+    imagemProdutoModel.excluir(
+        id,
+        (erro, resultado) => {
 
-            return res.status(500).json({
-                sucesso: false,
-                mensagem: "Erro ao excluir imagem."
+            if (erro) {
+
+                console.log(
+                    "Erro ao excluir imagem:",
+                    erro
+                );
+
+
+                return res.status(500).json({
+
+                    sucesso: false,
+
+                    mensagem:
+                        "Erro ao excluir imagem."
+
+                });
+
+            }
+
+
+            if (
+                resultado.affectedRows === 0
+            ) {
+
+                return res.status(404).json({
+
+                    sucesso: false,
+
+                    mensagem:
+                        "Imagem não encontrada."
+
+                });
+
+            }
+
+
+            return res.status(200).json({
+
+                sucesso: true,
+
+                mensagem:
+                    "Imagem excluída com sucesso."
+
             });
 
         }
-
-        res.json({
-            sucesso: true,
-            mensagem: "Imagem excluída com sucesso."
-        });
-
-    });
+    );
 
 }
+
 
 //==========================================
 // EXPORTAÇÃO

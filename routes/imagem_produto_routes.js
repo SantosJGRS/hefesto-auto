@@ -1,26 +1,125 @@
-// nesse arquivo, definimos as rotas relacionadas às imagens dos produtos e associamos cada rota a uma função do ImagemProdutoController. As rotas são:
-// POST /imagem_produto: para cadastrar uma nova imagem de produto.
-// GET /imagem_produto: para listar todas as imagens de produtos.
-// GET /imagem_produto/:id: para buscar uma imagem de produto específica pelo ID.
-// PUT /imagem_produto/:id: para atualizar as informações de uma imagem de produto específica pelo ID.
-// DELETE /imagem_produto/:id: para excluir uma imagem de produto específica pelo ID.
+//==========================================
+// IMPORTAÇÕES
+//==========================================
 
 const express = require("express");
-// Importando o módulo express para criar rotas e lidar com requisições HTTP.
+const multer = require("multer");
 
 const router = express.Router();
-// Criando um objeto router para definir as rotas relacionadas às imagens dos produtos.
 
-const ImagemProdutoController = require("../controller/imagem_produto_controller.js");
+const ImagemProdutoController =
+    require("../controller/imagem_produto_controller.js");
 
-router.post("/", ImagemProdutoController.cadastrar);
 
-router.get("/", ImagemProdutoController.listar);
+//==========================================
+// CONFIGURAÇÃO DO MULTER
+//==========================================
 
-router.get("/:id", ImagemProdutoController.buscarPorId);
+const storage =
+    multer.memoryStorage();
 
-router.put("/:id", ImagemProdutoController.atualizar);
 
-router.delete("/:id", ImagemProdutoController.excluir);
+const upload =
+    multer({
+
+        storage: storage,
+
+        limits: {
+            fileSize: 3 * 1024 * 1024
+        }
+
+    });
+
+
+//==========================================
+// CADASTRAR IMAGEM
+//==========================================
+
+router.post(
+    "/",
+
+    function (req, res, next) {
+
+        upload.single("arquivo")(
+            req,
+            res,
+            function (erro) {
+
+                if (erro) {
+
+                    console.log(
+                        "ERRO MULTER:",
+                        erro
+                    );
+
+                    return res.status(400).json({
+
+                        sucesso: false,
+
+                        mensagem:
+                            "Erro no upload: " +
+                            erro.message
+
+                    });
+
+                }
+
+                next();
+
+            }
+        );
+
+    },
+
+    ImagemProdutoController.cadastrar
+);
+
+
+//==========================================
+// LISTAR IMAGENS
+//==========================================
+
+router.get(
+    "/",
+    ImagemProdutoController.listar
+);
+
+
+//==========================================
+// BUSCAR IMAGEM
+//==========================================
+
+router.get(
+    "/:id",
+    ImagemProdutoController.buscarPorId
+);
+
+
+//==========================================
+// ATUALIZAR IMAGEM
+//==========================================
+
+router.put(
+    "/:id",
+
+    upload.single("arquivo"),
+
+    ImagemProdutoController.atualizar
+);
+
+
+//==========================================
+// EXCLUIR IMAGEM
+//==========================================
+
+router.delete(
+    "/:id",
+    ImagemProdutoController.excluir
+);
+
+
+//==========================================
+// EXPORTAÇÃO
+//==========================================
 
 module.exports = router;

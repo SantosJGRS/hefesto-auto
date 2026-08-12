@@ -1,8 +1,9 @@
 const conexao = require("../conexao/conexao.js");
 
-// =========================
-// Cadastrar Imagem
-// =========================
+
+//==========================================
+// CADASTRAR IMAGEM
+//==========================================
 
 function cadastrar(imagem, callback) {
 
@@ -26,39 +27,56 @@ function cadastrar(imagem, callback) {
 
 }
 
-// =========================
-// Listar Imagens
-// =========================
+
+//==========================================
+// LISTAR IMAGENS
+//==========================================
 
 function listar(callback) {
 
     const sql = `
-        SELECT * FROM Imagem_Produto
+        SELECT
+            idImagem_Produto,
+            arquivo,
+            Produto_idProduto
+        FROM Imagem_Produto
     `;
 
-    conexao.query(sql, callback);
+    conexao.query(
+        sql,
+        callback
+    );
 
 }
 
-// =========================
-// Buscar por ID
-// =========================
+
+//==========================================
+// BUSCAR IMAGEM POR ID
+//==========================================
 
 function buscarPorId(id, callback) {
 
     const sql = `
-        SELECT *
+        SELECT
+            idImagem_Produto,
+            arquivo,
+            Produto_idProduto
         FROM Imagem_Produto
         WHERE idImagem_Produto = ?
     `;
 
-    conexao.query(sql, [id], callback);
+    conexao.query(
+        sql,
+        [id],
+        callback
+    );
 
 }
 
-// =========================
-// Atualizar Imagem
-// =========================
+
+//==========================================
+// ATUALIZAR IMAGEM
+//==========================================
 
 function atualizar(id, imagem, callback) {
 
@@ -82,9 +100,10 @@ function atualizar(id, imagem, callback) {
 
 }
 
-// =========================
-// Excluir Imagem
-// =========================
+
+//==========================================
+// EXCLUIR IMAGEM
+//==========================================
 
 function excluir(id, callback) {
 
@@ -93,9 +112,18 @@ function excluir(id, callback) {
         WHERE idImagem_Produto = ?
     `;
 
-    conexao.query(sql, [id], callback);
+    conexao.query(
+        sql,
+        [id],
+        callback
+    );
 
 }
+
+
+//==========================================
+// EXPORTAÇÃO
+//==========================================
 
 module.exports = {
 
