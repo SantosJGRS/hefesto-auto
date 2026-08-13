@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Cadastro de Banners | Hefesto Autopeças
+    </title>
+
+    <link rel="stylesheet" href="../style/cadastro_banner.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+
+    <div class="app-container">
+
+
+        <aside class="sidebar">
+
+
+            <div class="sidebar-logo">
+
+                <i class="fa-solid fa-car-side"></i>
+
+                <h2>
+                    Hefesto <span>Auto</span>
+                </h2>
+
+            </div>
+
+
+            <nav class="sidebar-nav">
+
+
+                <a href="#" class="nav-item">
+
+                    <i class="fa-solid fa-chart-pie"></i>
+
+                    <span>Dashboard</span>
+
+                </a>
+
+
+                <a href="cadastro_produto.html" class="nav-item">
+
+                    <i class="fa-solid fa-box"></i>
+
+                    <span>Produtos</span>
+
+                </a>
+
+
+                <a href="cadastro_banner.html" class="nav-item active">
+
+                    <i class="fa-solid fa-images"></i>
+
+                    <span>Banners</span>
+
+                </a>
+
+
+                <a href="#" class="nav-item">
+
+                    <i class="fa-solid fa-tags"></i>
+
+                    <span>Categorias</span>
+
+                </a>
+
+
+                <a href="#" class="nav-item">
+
+                    <i class="fa-solid fa-gear"></i>
+
+                    <span>Configurações</span>
+
+                </a>
+
+
+            </nav>
+
+
+        </aside>
+
+
+        <main class="main-content">
+
+
+            <header class="content-header">
+
+
+                <div class="header-title">
+
+                    <h1>
+                        Cadastro de Banners
+                    </h1>
+
+                    <p>
+                        Gerencie os banners promocionais da página inicial do e-commerce
+                    </p>
+
+                </div>
+
+
+                <div class="user-profile">
+
+                    <i class="fa-solid fa-bell"></i>
+
+                    <div class="avatar">
+                        AD
+                    </div>
+
+                </div>
+
+
+            </header>
+
+
+            <div class="content-grid">
+
+
+                <section class="card-section">
+
+
+                    <div class="card-header">
+
+                        <h3 id="tituloFormulario">
+                            <i class="fa-solid fa-plus-circle"></i>
+                            Novo Banner
+                        </h3>
+
+                    </div>
+
+
+                    <form id="formCadastroBanner">
+
+
+                        <div class="form-group">
+
+                            <label for="tituloBanner">
+                                Título do Banner *
+                            </label>
+
+                            <input
+                                type="text"
+                                id="tituloBanner"
+                                placeholder="Ex: Ofertas de Pneus e Rodas"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-row">
+
+
+                            <div class="form-group">
+
+                                <label for="posicaoBanner">
+                                    Posição / Local *
+                                </label>
+
+                                <select id="posicaoBanner" required>
+
+                                    <option value="">
+                                        Selecione a posição
+                                    </option>
+
+                                    <option value="principal">
+                                        Carrossel Principal (Topo)
+                                    </option>
+
+                                    <option value="secundario">
+                                        Banner Secundário (Meio)
+                                    </option>
+
+                                    <option value="rodape">
+                                        Banner Promocional (Rodapé)
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="statusBanner">
+                                    Status *
+                                </label>
+
+                                <select id="statusBanner" required>
+
+                                    <option value="ativo">
+                                        Ativo
+                                    </option>
+
+                                    <option value="inativo">
+                                        Inativo
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="linkBanner">
+                                Link de Redirecionamento (URL)
+                            </label>
+
+                            <input
+                                type="url"
+                                id="linkBanner"
+                                placeholder="https://hefestoauto.com.br/promocao"
+                            >
+
+                        </div>
+
+
+                        <div class="form-row">
+
+
+                            <div class="form-group">
+
+                                <label for="dataInicio">
+                                    Data de Início
+                                </label>
+
+                                <input
+                                    type="date"
+                                    id="dataInicio"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="dataFim">
+                                    Data de Fim
+                                </label>
+
+                                <input
+                                    type="date"
+                                    id="dataFim"
+                                >
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Imagem do Banner *
+                            </label>
+
+                            <div class="upload-area" id="areaUploadBanner">
+
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+
+                                <p>
+                                    Arraste a imagem aqui ou <span>clique para navegar</span>
+                                </p>
+
+                                <small>
+                                    Formatos aceitos: PNG, JPG, WEBP (Máx: 5MB) - Rec: 1920x600px
+                                </small>
+
+                                <input
+                                    type="file"
+                                    id="inputImagemBanner"
+                                    accept="image/*"
+                                    hidden
+                                >
+
+                            </div>
+
+                            <div id="previewImagemContainer" class="preview-container hidden">
+
+                                <img id="imgPreviewBanner" src="" alt="Preview Banner">
+
+                                <button type="button" id="btnRemoverImagem" class="btn-remove-img" title="Remover Imagem">
+
+                                    <i class="fa-solid fa-trash"></i>
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-actions">
+
+                            <button type="button" class="btn-secondary" id="btnLimparForm">
+
+                                <i class="fa-solid fa-eraser"></i>
+
+                                Limpar
+
+                            </button>
+
+
+                            <button type="submit" class="btn-primary" id="btnSalvarBanner">
+
+                                <i class="fa-solid fa-floppy-disk"></i>
+
+                                <span>Salvar Banner</span>
+
+                            </button>
+
+                        </div>
+
+
+                    </form>
+
+
+                </section>
+
+
+                <section class="card-section">
+
+
+                    <div class="card-header search-header">
+
+                        <h3>
+                            <i class="fa-solid fa-list"></i>
+                            Banners Cadastrados
+                        </h3>
+
+
+                        <div class="search-box-admin">
+
+                            <i class="fa-solid fa-magnifying-glass"></i>
+
+                            <input
+                                type="text"
+                                id="inputBuscaBanner"
+                                placeholder="Pesquisar banner..."
+                            >
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="table-responsive">
+
+
+                        <table class="data-table">
+
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>Preview</th>
+
+                                    <th>Título</th>
+
+                                    <th>Posição</th>
+
+                                    <th>Status</th>
+
+                                    <th>Ações</th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="tabelaBanners">
+
+                                </tbody>
+
+
+                        </table>
+
+
+                    </div>
+
+
+                </section>
+
+
+            </div>
+
+
+        </main>
+
+
+    </div>
+
+
+    <script src="../js/cadastro_banner.js"></script>
+
+
+</body>
+
+</html>
